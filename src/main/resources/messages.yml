@@ -1,0 +1,17 @@
+# S-Core v1.0 by Losterixx
+#
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+general:
+  noPlayer: "<gray>Dies können <red>nur Spieler<gray>!"
+  noPerms: "<gray>Hierzu hast du <red>keine Berechtigung<gray>!"
+  playerNotFound: "<gray>Der angegebene Spieler <red>konnte nicht gefunden werden<gray>!"
+
+commands:
+  score:
+    usage: "<gray>Bitte nutze <red>/score <about/reload><gray>!"
+    about: "<gray>S-Core v%version% <dark_gray>- <gray>Losterixx"
+    reload:
+      reloading: "<gray>Alle Konfigurations-Dateien <yellow>werden neugeladen <gray>..."
+      reloaded: "<gray>Alle Konfigurations-Dateien wurden <green>neugeladen<gray>!"

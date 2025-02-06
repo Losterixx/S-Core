@@ -1,0 +1,2 @@
+# S-Core
+by Losterixx

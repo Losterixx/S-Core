@@ -1,0 +1,17 @@
+name: S-Core
+version: '1.0'
+main: dev.losterixx.sCore.Main
+api-version: '1.21'
+authors: [ Losterixx ]
+description: -/-
+softdepend:
+  - PlaceholderAPI
+commands:
+  sCore:
+    description: Main plugin command
+    aliases:
+      - sc
+permissions:
+  sCore.admin:
+    description: Permission to access plugin main command
+    default: op
