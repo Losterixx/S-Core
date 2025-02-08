@@ -11,7 +11,17 @@ commands:
     description: Main plugin command
     aliases:
       - sc
+  setspawn:
+    description: Set the server spawn
+  spawn:
+    description: Teleport to the server spawn
 permissions:
-  sCore.admin:
+  "sCore.admin":
     description: Permission to access plugin main command
+    default: op
+  "sCore.command.setspawn":
+    description: Permission to set the server spawn
+    default: op
+  "sCore.command.spawn":
+    description: Permission to teleport to the server spawn
     default: op

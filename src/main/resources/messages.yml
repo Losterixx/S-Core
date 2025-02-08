@@ -3,6 +3,8 @@
 # This plugin utilizes MiniMessage for messages.
 # For more information, visit https://docs.adventure.kyori.net/minimessage.html
 
+file-version: 1
+
 general:
   noPlayer: "<gray>Dies können <red>nur Spieler<gray>!"
   noPerms: "<gray>Hierzu hast du <red>keine Berechtigung<gray>!"
@@ -15,3 +17,14 @@ commands:
     reload:
       reloading: "<gray>Alle Konfigurations-Dateien <yellow>werden neugeladen <gray>..."
       reloaded: "<gray>Alle Konfigurations-Dateien wurden <green>neugeladen<gray>!"
+  setspawn:
+    usage: "<gray>Bitte nutze <red>/setspawn<gray>!"
+    set: "<gray>Der <yellow>Spawn <gray>wurde gesetzt!"
+  spawn:
+    teleported: "<gray>Du wurdest zum <yellow>Spawn <gray>teleportiert!"
+    noSpawnSet: "<gray>Der <yellow>Spawn <gray>wurde <red>noch nicht gesetzt<gray>!"
+    sound:
+      enabled: true
+      name: "ENTITY_ENDERMAN_TELEPORT"
+      volume: 1.0
+      pitch: 1.0

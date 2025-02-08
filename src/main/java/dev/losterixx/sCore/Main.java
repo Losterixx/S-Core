@@ -2,6 +2,9 @@ package dev.losterixx.sCore;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.losterixx.sCore.commands.SCoreCommand;
+import dev.losterixx.sCore.features.spawn.AutoSpawnTeleportListener;
+import dev.losterixx.sCore.features.spawn.SetSpawnCommand;
+import dev.losterixx.sCore.features.spawn.SpawnCommand;
 import dev.losterixx.sCore.utils.ConfigManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -37,6 +40,9 @@ public final class Main extends JavaPlugin {
             getLogger().warning("PlaceholderAPI could not be found! Placeholders won't work.");
         }
 
+        //-> Commands & Listeners
+        registerCommandsAndListeners();
+
         getLogger().info("Plugin has been enabled!");
 
     }
@@ -54,8 +60,11 @@ public final class Main extends JavaPlugin {
         //-> Commands
         getCommand("score").setExecutor(new SCoreCommand());
         getCommand("score").setTabCompleter(new SCoreCommand());
+        getCommand("setspawn").setExecutor(new SetSpawnCommand());
+        getCommand("spawn").setExecutor(new SpawnCommand());
 
         //-> Listeners
+        Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);
 
     }
 
