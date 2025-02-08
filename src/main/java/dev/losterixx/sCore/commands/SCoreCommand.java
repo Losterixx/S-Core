@@ -2,6 +2,11 @@ package dev.losterixx.sCore.commands;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.losterixx.sCore.Main;
+import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand;
+import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager;
+import dev.losterixx.sCore.features.spawn.AutoSpawnTeleportListener;
+import dev.losterixx.sCore.features.spawn.SetSpawnCommand;
+import dev.losterixx.sCore.features.spawn.SpawnCommand;
 import dev.losterixx.sCore.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -15,12 +20,12 @@ import java.util.List;
 
 public class SCoreCommand implements CommandExecutor, TabCompleter {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
-    private ConfigManager configManager = main.getConfigManager();
-    private YamlDocument config = configManager.getConfig("config");
-    private YamlDocument messages = configManager.getConfig("messages");
-    private Component prefix = mm.deserialize(config.getString("prefix"));
+    private static MiniMessage mm = Main.mm;
+    private static Main main = Main.getInstance();
+    private static ConfigManager configManager = main.getConfigManager();
+    private static YamlDocument config = configManager.getConfig("config");
+    private static YamlDocument messages = configManager.getConfig("messages");
+    private static Component prefix = mm.deserialize(config.getString("prefix"));
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -47,9 +52,18 @@ public class SCoreCommand implements CommandExecutor, TabCompleter {
 
             case "reload" -> {
                 sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.reload.reloading"))));
-                configManager.saveAllConfigs();
+                long now = System.currentTimeMillis();
                 configManager.reloadAllConfigs();
-                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.reload.reloaded"))));
+                updateConfigs();
+                SetSpawnCommand.updateConfigs();
+                SpawnCommand.updateConfigs();
+                AutoSpawnTeleportListener.updateConfigs();
+                BroadcastManager.updateConfigs();
+                BroadcastCommand.updateConfigs();
+                long timeElapsedMillis = System.currentTimeMillis() - now;
+                double timeElapsedSeconds = timeElapsedMillis / 1000.0;
+                String formattedTimeElapsed = String.format("%.3f", timeElapsedSeconds).replaceAll(",", ".");
+                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.reload.reloaded").replaceAll("%time%", String.valueOf(formattedTimeElapsed)))));
             }
 
         }
@@ -70,6 +84,12 @@ public class SCoreCommand implements CommandExecutor, TabCompleter {
         }
 
         return completions;
+    }
+
+    public static void updateConfigs() {
+        config = configManager.getConfig("config");
+        messages = configManager.getConfig("messages");
+        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

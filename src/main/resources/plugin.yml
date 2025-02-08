@@ -15,6 +15,8 @@ commands:
     description: Set the server spawn
   spawn:
     description: Teleport to the server spawn
+  broadcast:
+    description: Broadcast messages
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command
@@ -24,4 +26,7 @@ permissions:
     default: op
   "sCore.command.spawn":
     description: Permission to teleport to the server spawn
+    default: op
+  "sCore.command.broadcast":
+    description: Permission to broadcast messages
     default: op

@@ -15,11 +15,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class AutoSpawnTeleportListener implements Listener {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
-    private ConfigManager configManager = main.getConfigManager();
-    private YamlDocument config = configManager.getConfig("config");
-    private YamlDocument data = configManager.getConfig("data");
+    private static MiniMessage mm = Main.mm;
+    private static Main main = Main.getInstance();
+    private static ConfigManager configManager = main.getConfigManager();
+    private static YamlDocument config = configManager.getConfig("config");
+    private static YamlDocument data = configManager.getConfig("data");
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -63,6 +63,11 @@ public class AutoSpawnTeleportListener implements Listener {
     }
 
     private void teleportToSpawn(Player player) {
+        if (!data.contains("spawn")) {
+            main.getLogger().warning("Spawn location is not set!");
+            return;
+        }
+
         String world = data.getString("spawn.world");
         double x = data.getDouble("spawn.x");
         double y = data.getDouble("spawn.y");
@@ -71,6 +76,11 @@ public class AutoSpawnTeleportListener implements Listener {
         double pitch = data.getDouble("spawn.pitch");
 
         player.teleport(new Location(player.getServer().getWorld(world), x, y, z, (float) yaw, (float) pitch));
+    }
+
+    public static void updateConfigs() {
+        config = configManager.getConfig("config");
+        data = configManager.getConfig("data");
     }
 
 }

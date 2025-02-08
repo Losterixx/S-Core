@@ -8,9 +8,9 @@ file-version: 1
 # The prefix before every message
 prefix: "<gradient:#2D734E:#4DC484><b>S-Core</b> <dark_gray>⚡ <gray>"
 
-# Setting for auto spawn teleport
+# Settings for auto spawn teleport
 autoSpawnTeleport:
-  # Teleport the player to the spawn on firt join
+  # Teleport the player to the spawn on first join
   onFirstJoin: true
   # Teleport the player to the spawn on join
   onJoin: true
@@ -20,3 +20,31 @@ autoSpawnTeleport:
   onHeight:
     enabled: false
     height: -64
+
+# Settings for auto broadcaster
+autoBroadcaster:
+  # Toggle the auto broadcaster
+  enabled: true
+  # The interval in seconds between each message
+  interval: 300
+  # The type of broadcast
+  # Available types:
+  # -> 1 = SEQUENTIAL
+  # -> 2 = RANDOM
+  type: 2
+  # The sound to play when broadcasting
+  sound:
+    enabled: true
+    name: ENTITY_EXPERIENCE_ORB_PICKUP
+    volume: 1.0
+    pitch: 1.0
+  # The messages to broadcast
+  messages:
+    website:
+      - " "
+      - "<gray>Check out our website at <hover:show_text:'<click:open_url:https://www.example.com>'><underlined>www.example.com</underlined></hover>!"
+      - " "
+    discord:
+      - " "
+      - "<gray>Join our Discord server at <hover:show_text:'<click:open_url:https://discord.gg/example>'><underlined>discord.gg/example</underlined></hover>!"
+      - " "

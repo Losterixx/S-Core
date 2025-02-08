@@ -13,13 +13,13 @@ import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
-    private ConfigManager configManager = main.getConfigManager();
-    private YamlDocument config = configManager.getConfig("config");
-    private YamlDocument messages = configManager.getConfig("messages");
-    private YamlDocument data = configManager.getConfig("data");
-    private Component prefix = mm.deserialize(config.getString("prefix"));
+    private static MiniMessage mm = Main.mm;
+    private static Main main = Main.getInstance();
+    private static ConfigManager configManager = main.getConfigManager();
+    private static YamlDocument config = configManager.getConfig("config");
+    private static YamlDocument messages = configManager.getConfig("messages");
+    private static YamlDocument data = configManager.getConfig("data");
+    private static Component prefix = mm.deserialize(config.getString("prefix"));
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -54,6 +54,13 @@ public class SetSpawnCommand implements CommandExecutor {
         player.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.setspawn.set"))));
 
         return false;
+    }
+
+    public static void updateConfigs() {
+        config = configManager.getConfig("config");
+        messages = configManager.getConfig("messages");
+        data = configManager.getConfig("data");
+        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

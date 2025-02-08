@@ -16,7 +16,7 @@ commands:
     about: "<gray>S-Core v%version% <dark_gray>- <gray>Losterixx"
     reload:
       reloading: "<gray>Alle Konfigurations-Dateien <yellow>werden neugeladen <gray>..."
-      reloaded: "<gray>Alle Konfigurations-Dateien wurden <green>neugeladen<gray>!"
+      reloaded: "<gray>Alle Konfigurations-Dateien wurden in %time%s <green>neugeladen<gray>!"
   setspawn:
     usage: "<gray>Bitte nutze <red>/setspawn<gray>!"
     set: "<gray>Der <yellow>Spawn <gray>wurde gesetzt!"
@@ -28,3 +28,7 @@ commands:
       name: "ENTITY_ENDERMAN_TELEPORT"
       volume: 1.0
       pitch: 1.0
+  broadcast:
+    usage: "<gray>Bitte nutze <red>/broadcast <Nachricht><gray>!"
+    sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde <green>gesendet<gray>!"
+    notFound: "<gray>Die Nachricht <yellow>%messageId% <gray>konnte <red>nicht gefunden werden<gray>!"
