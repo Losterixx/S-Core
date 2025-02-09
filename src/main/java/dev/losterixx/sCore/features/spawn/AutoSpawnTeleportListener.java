@@ -15,22 +15,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class AutoSpawnTeleportListener implements Listener {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
-    private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static YamlDocument data = configManager.getConfig("data");
+    private MiniMessage mm = Main.mm;
+    private Main main = Main.getInstance();
+    private ConfigManager configManager = main.getConfigManager();
+    private YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private YamlDocument getData() { return configManager.getConfig("data"); }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
         if (!player.hasPlayedBefore()) {
-            if (config.getBoolean("autoSpawnTeleport.onFirstJoin")) {
+            if (getConfig().getBoolean("autoSpawnTeleport.onFirstJoin")) {
                 teleportToSpawn(player);
             }
         } else {
-            if (config.getBoolean("autoSpawnTeleport.onJoin")) {
+            if (getConfig().getBoolean("autoSpawnTeleport.onJoin")) {
                 teleportToSpawn(player);
             }
         }
@@ -40,7 +40,7 @@ public class AutoSpawnTeleportListener implements Listener {
     public void onRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
 
-        if (config.getBoolean("autoSpawnTeleport.onRespawn")) {
+        if (getConfig().getBoolean("autoSpawnTeleport.onRespawn")) {
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -54,8 +54,8 @@ public class AutoSpawnTeleportListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if (config.getBoolean("autoSpawnTeleport.onHeight.enabled")) {
-            int height = config.getInt("autoSpawnTeleport.onHeight.height");
+        if (getConfig().getBoolean("autoSpawnTeleport.onHeight.enabled")) {
+            int height = getConfig().getInt("autoSpawnTeleport.onHeight.height");
             if (player.getLocation().getY() < height) {
                 teleportToSpawn(player);
             }
@@ -63,24 +63,19 @@ public class AutoSpawnTeleportListener implements Listener {
     }
 
     private void teleportToSpawn(Player player) {
-        if (!data.contains("spawn")) {
+        if (!getData().contains("spawn")) {
             main.getLogger().warning("Spawn location is not set!");
             return;
         }
 
-        String world = data.getString("spawn.world");
-        double x = data.getDouble("spawn.x");
-        double y = data.getDouble("spawn.y");
-        double z = data.getDouble("spawn.z");
-        double yaw = data.getDouble("spawn.yaw");
-        double pitch = data.getDouble("spawn.pitch");
+        String world = getData().getString("spawn.world");
+        double x = getData().getDouble("spawn.x");
+        double y = getData().getDouble("spawn.y");
+        double z = getData().getDouble("spawn.z");
+        double yaw = getData().getDouble("spawn.yaw");
+        double pitch = getData().getDouble("spawn.pitch");
 
         player.teleport(new Location(player.getServer().getWorld(world), x, y, z, (float) yaw, (float) pitch));
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        data = configManager.getConfig("data");
     }
 
 }

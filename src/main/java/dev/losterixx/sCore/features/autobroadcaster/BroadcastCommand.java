@@ -15,35 +15,35 @@ import java.util.List;
 
 public class BroadcastCommand implements CommandExecutor, TabCompleter {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
-    private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static YamlDocument messages = configManager.getConfig("messages");
-    private static Component prefix = mm.deserialize(config.getString("prefix"));
+    private MiniMessage mm = Main.mm;
+    private Main main = Main.getInstance();
+    private ConfigManager configManager = main.getConfigManager();
+    private YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private YamlDocument getMessages() { return configManager.getConfig("messages"); }
+    private Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!sender.hasPermission("sCore.commands.broadcast")) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPerms"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 1) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.broadcast.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.broadcast.usage"))));
             return false;
         }
 
         String messageId = args[0].toLowerCase();
 
-        if (!config.contains("autoBroadcaster.messages." + messageId)) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.broadcast.notFound").replaceAll("%messageId%", messageId))));
+        if (!getConfig().contains("autoBroadcaster.messages." + messageId)) {
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.broadcast.notFound").replaceAll("%messageId%", messageId))));
             return false;
         }
 
         BroadcastManager.broadcast(messageId);
-        sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.broadcast.sent").replaceAll("%messageId%", messageId))));
+        sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.broadcast.sent").replaceAll("%messageId%", messageId))));
 
         return false;
     }
@@ -56,7 +56,7 @@ public class BroadcastCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 0) {
             List<String> keys = new ArrayList<>();
-            for (Object key : config.getSection("autoBroadcaster.messages").getKeys()) {
+            for (Object key : getConfig().getSection("autoBroadcaster.messages").getKeys()) {
                 keys.add((String) key);
             }
 
@@ -65,7 +65,7 @@ public class BroadcastCommand implements CommandExecutor, TabCompleter {
             }
         } else if (args.length == 1) {
             List<String> keys = new ArrayList<>();
-            for (Object key : config.getSection("autoBroadcaster.messages").getKeys()) {
+            for (Object key : getConfig().getSection("autoBroadcaster.messages").getKeys()) {
                 keys.add((String) key);
             }
 
@@ -77,12 +77,6 @@ public class BroadcastCommand implements CommandExecutor, TabCompleter {
         }
 
         return completions;
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        messages = configManager.getConfig("messages");
-        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

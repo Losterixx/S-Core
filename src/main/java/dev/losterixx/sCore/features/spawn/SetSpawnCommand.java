@@ -13,54 +13,47 @@ import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
-    private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static YamlDocument messages = configManager.getConfig("messages");
-    private static YamlDocument data = configManager.getConfig("data");
-    private static Component prefix = mm.deserialize(config.getString("prefix"));
+    private MiniMessage mm = Main.mm;
+    private Main main = Main.getInstance();
+    private ConfigManager configManager = main.getConfigManager();
+    private YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private YamlDocument getMessages() { return configManager.getConfig("messages"); }
+    private YamlDocument getData() { return configManager.getConfig("data"); }
+    private Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPlayer"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPlayer"))));
             return false;
         }
 
         if (!sender.hasPermission("sCore.command.setspawn")) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPerms"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 0) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.setspawn.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.setspawn.usage"))));
             return false;
         }
 
         Player player = (Player) sender;
         Location loc = player.getLocation();
 
-        data.set("spawn.world", loc.getWorld().getName());
-        data.set("spawn.x", loc.getX());
-        data.set("spawn.y", loc.getY());
-        data.set("spawn.z", loc.getZ());
-        data.set("spawn.yaw", loc.getYaw());
-        data.set("spawn.pitch", loc.getPitch());
+        getData().set("spawn.world", loc.getWorld().getName());
+        getData().set("spawn.x", loc.getX());
+        getData().set("spawn.y", loc.getY());
+        getData().set("spawn.z", loc.getZ());
+        getData().set("spawn.yaw", loc.getYaw());
+        getData().set("spawn.pitch", loc.getPitch());
 
         configManager.saveConfig("data");
 
-        player.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.setspawn.set"))));
+        player.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.setspawn.set"))));
 
         return false;
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        messages = configManager.getConfig("messages");
-        data = configManager.getConfig("data");
-        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

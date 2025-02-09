@@ -14,64 +14,57 @@ import org.bukkit.entity.Player;
 
 public class SpawnCommand implements CommandExecutor {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
-    private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static YamlDocument messages = configManager.getConfig("messages");
-    private static YamlDocument data = configManager.getConfig("data");
-    private static Component prefix = mm.deserialize(config.getString("prefix"));
+    private MiniMessage mm = Main.mm;
+    private Main main = Main.getInstance();
+    private ConfigManager configManager = main.getConfigManager();
+    private YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private YamlDocument getMessages() { return configManager.getConfig("messages"); }
+    private YamlDocument getData() { return configManager.getConfig("data"); }
+    private Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPlayer"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPlayer"))));
             return false;
         }
 
         if (!sender.hasPermission("sCore.command.spawn")) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPerms"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 0) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.spawn.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.spawn.usage"))));
             return false;
         }
 
         Player player = (Player) sender;
-        String world = data.getString("spawn.world");
+        String world = getData().getString("spawn.world");
 
         if (world == null) {
-            player.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.spawn.noSpawnSet"))));
+            player.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.spawn.noSpawnSet"))));
             return false;
         }
 
-        double x = data.getDouble("spawn.x");
-        double y = data.getDouble("spawn.y");
-        double z = data.getDouble("spawn.z");
-        double yaw = data.getDouble("spawn.yaw");
-        double pitch = data.getDouble("spawn.pitch");
+        double x = getData().getDouble("spawn.x");
+        double y = getData().getDouble("spawn.y");
+        double z = getData().getDouble("spawn.z");
+        double yaw = getData().getDouble("spawn.yaw");
+        double pitch = getData().getDouble("spawn.pitch");
 
         player.teleport(new Location(player.getServer().getWorld(world), x, y, z, (float) yaw, (float) pitch));
-        player.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.spawn.teleported"))));
+        player.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.spawn.teleported"))));
 
-        if (messages.getBoolean("commands.spawn.sound.enabled")) {
-            Sound sound = Sound.valueOf(messages.getString("commands.spawn.sound.name"));
-            double volume = messages.getDouble("commands.spawn.sound.volume");
-            double pitchSound = messages.getDouble("commands.spawn.sound.pitch");
+        if (getMessages().getBoolean("commands.spawn.sound.enabled")) {
+            Sound sound = Sound.valueOf(getMessages().getString("commands.spawn.sound.name"));
+            double volume = getMessages().getDouble("commands.spawn.sound.volume");
+            double pitchSound = getMessages().getDouble("commands.spawn.sound.pitch");
             player.playSound(player, sound, (float) volume, (float) pitchSound);
         }
 
         return false;
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        messages = configManager.getConfig("messages");
-        data = configManager.getConfig("data");
-        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

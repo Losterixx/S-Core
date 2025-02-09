@@ -42,9 +42,9 @@ autoBroadcaster:
   messages:
     website:
       - " "
-      - "<gray>Check out our website at <hover:show_text:'<click:open_url:https://www.example.com>'><underlined>www.example.com</underlined></hover>!"
+      - "<gray>Check out our website at <underlined>www.example.com</underlined>!"
       - " "
     discord:
       - " "
-      - "<gray>Join our Discord server at <hover:show_text:'<click:open_url:https://discord.gg/example>'><underlined>discord.gg/example</underlined></hover>!"
+      - "<gray>Join our Discord server at <underlined>discord.gg/example</underlined>!"
       - " "

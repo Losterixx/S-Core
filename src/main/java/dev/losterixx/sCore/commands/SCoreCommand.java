@@ -20,50 +20,44 @@ import java.util.List;
 
 public class SCoreCommand implements CommandExecutor, TabCompleter {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
-    private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static YamlDocument messages = configManager.getConfig("messages");
-    private static Component prefix = mm.deserialize(config.getString("prefix"));
+    private MiniMessage mm = Main.mm;
+    private Main main = Main.getInstance();
+    private ConfigManager configManager = main.getConfigManager();
+    private YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private YamlDocument getMessages() { return configManager.getConfig("messages"); }
+    private Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!sender.hasPermission("sCore.admin")) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("general.noPerms"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 1) {
-            sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.usage"))));
             return false;
         }
 
         switch (args[0].toLowerCase()) {
 
             default -> {
-                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.usage"))));
+                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.usage"))));
             }
 
             case "about" -> {
-                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.about").replaceAll("%version%", main.getDescription().getVersion()))));
+                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.about").replaceAll("%version%", main.getDescription().getVersion()))));
             }
 
             case "reload" -> {
-                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.reload.reloading"))));
+                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.reload.reloading"))));
                 long now = System.currentTimeMillis();
                 configManager.reloadAllConfigs();
-                updateConfigs();
-                SetSpawnCommand.updateConfigs();
-                SpawnCommand.updateConfigs();
-                AutoSpawnTeleportListener.updateConfigs();
-                BroadcastManager.updateConfigs();
-                BroadcastCommand.updateConfigs();
                 long timeElapsedMillis = System.currentTimeMillis() - now;
                 double timeElapsedSeconds = timeElapsedMillis / 1000.0;
                 String formattedTimeElapsed = String.format("%.3f", timeElapsedSeconds).replaceAll(",", ".");
-                sender.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.score.reload.reloaded").replaceAll("%time%", String.valueOf(formattedTimeElapsed)))));
+                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.reload.reloaded").replaceAll("%time%", String.valueOf(formattedTimeElapsed)))));
             }
 
         }
@@ -84,12 +78,6 @@ public class SCoreCommand implements CommandExecutor, TabCompleter {
         }
 
         return completions;
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        messages = configManager.getConfig("messages");
-        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }

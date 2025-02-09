@@ -19,16 +19,16 @@ public class BroadcastManager {
     private static MiniMessage mm = Main.mm;
     private static Main main = Main.getInstance();
     private static ConfigManager configManager = main.getConfigManager();
-    private static YamlDocument config = configManager.getConfig("config");
-    private static Component prefix = mm.deserialize(config.getString("prefix"));
+    private static YamlDocument getConfig() { return configManager.getConfig("config"); }
+    private static Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }
 
     public static void broadcast(String messageId) {
-        if (!config.contains("autoBroadcaster.messages." + messageId)) {
+        if (!getConfig().contains("autoBroadcaster.messages." + messageId)) {
             main.getLogger().warning("Message with ID " + messageId + " could not be found!");
             return;
         }
 
-        List<String> messagesToSent = config.getStringList("autoBroadcaster.messages." + messageId);
+        List<String> messagesToSent = getConfig().getStringList("autoBroadcaster.messages." + messageId);
 
         if (messagesToSent.isEmpty()) {
             main.getLogger().warning("Message with ID " + messageId + " is empty!");
@@ -41,16 +41,16 @@ public class BroadcastManager {
             }
 
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.sendMessage(prefix.append(mm.deserialize(message)));
+                player.sendMessage(getPrefix().append(mm.deserialize(message)));
             }
 
-            Bukkit.getConsoleSender().sendMessage(prefix.append(mm.deserialize(message)));
+            Bukkit.getConsoleSender().sendMessage(getPrefix().append(mm.deserialize(message)));
         }
 
-        if (config.getBoolean("autoBroadcaster.sound.enabled")) {
-            Sound sound = Sound.valueOf(config.getString("autoBroadcaster.sound.name"));
-            double volume = config.getDouble("autoBroadcaster.sound.volume");
-            double pitch = config.getDouble("autoBroadcaster.sound.pitch");
+        if (getConfig().getBoolean("autoBroadcaster.sound.enabled")) {
+            Sound sound = Sound.valueOf(getConfig().getString("autoBroadcaster.sound.name"));
+            double volume = getConfig().getDouble("autoBroadcaster.sound.volume");
+            double pitch = getConfig().getDouble("autoBroadcaster.sound.pitch");
 
             main.getServer().getOnlinePlayers().forEach(player -> {
                 player.playSound(player, sound, (float) volume, (float) pitch);
@@ -59,14 +59,14 @@ public class BroadcastManager {
     }
 
     public void startBroadcasting() {
-        int interval = config.getInt("autoBroadcaster.interval");
+        int interval = getConfig().getInt("autoBroadcaster.interval");
 
         if (interval <= 0)
             return;
 
-        short type = config.getShort("autoBroadcaster.type");
+        short type = getConfig().getShort("autoBroadcaster.type");
 
-        if (!config.getBoolean("autoBroadcaster.enabled"))
+        if (!getConfig().getBoolean("autoBroadcaster.enabled"))
             return;
 
         new BukkitRunnable() {
@@ -76,7 +76,7 @@ public class BroadcastManager {
             public void run() {
                 if (type == 1) { // SEQUENTIAL
                     List<String> keys = new ArrayList<>();
-                    for (Object key : config.getSection("autoBroadcaster.messages").getKeys()) {
+                    for (Object key : getConfig().getSection("autoBroadcaster.messages").getKeys()) {
                         keys.add((String) key);
                     }
                     if (keys.isEmpty()) return;
@@ -87,7 +87,7 @@ public class BroadcastManager {
                     index = (index + 1) % keys.size();
                 } else if (type == 2) { // RANDOM
                     List<String> keys = new ArrayList<>();
-                    for (Object key : config.getSection("autoBroadcaster.messages").getKeys()) {
+                    for (Object key : getConfig().getSection("autoBroadcaster.messages").getKeys()) {
                         keys.add((String) key);
                     }
                     if (keys.isEmpty()) return;
@@ -97,11 +97,6 @@ public class BroadcastManager {
                 }
             }
         }.runTaskTimer(main, (interval * 20L) / 2, interval * 20L); // interval in seconds
-    }
-
-    public static void updateConfigs() {
-        config = configManager.getConfig("config");
-        prefix = mm.deserialize(config.getString("prefix"));
     }
 
 }
