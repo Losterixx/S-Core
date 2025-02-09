@@ -33,4 +33,6 @@ commands:
     sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde <green>gesendet<gray>!"
     notFound: "<gray>Die Nachricht <yellow>%messageId% <gray>konnte <red>nicht gefunden werden<gray>!"
   invsee:
-      usage: "<gray>Bitte nutze <red>/invsee <Spieler><gray>!"
+    usage: "<gray>Bitte nutze <red>/invsee <Spieler><gray>!"
+    playerOffline: "<gray>Der Spieler ist <red>offline <gray>gegangen!"
+    cannotUseOnSelf: "<gray>Um dein eigenes Inventar zu sehen, <red>nutze '<key:key.inventory>'<gray>!"

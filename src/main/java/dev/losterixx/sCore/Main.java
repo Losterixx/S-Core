@@ -75,6 +75,7 @@ public final class Main extends JavaPlugin {
 
         //-> Listeners
         Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);
+        Bukkit.getPluginManager().registerEvents(new InvseeCommand(), instance);
 
     }
 
