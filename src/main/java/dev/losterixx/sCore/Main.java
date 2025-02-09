@@ -4,6 +4,7 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.losterixx.sCore.commands.SCoreCommand;
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand;
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager;
+import dev.losterixx.sCore.features.invsee.InvseeCommand;
 import dev.losterixx.sCore.features.spawn.AutoSpawnTeleportListener;
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand;
 import dev.losterixx.sCore.features.spawn.SpawnCommand;
@@ -69,6 +70,8 @@ public final class Main extends JavaPlugin {
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("broadcast").setExecutor(new BroadcastCommand());
         getCommand("broadcast").setTabCompleter(new BroadcastCommand());
+        getCommand("invsee").setExecutor(new InvseeCommand());
+        getCommand("invsee").setTabCompleter(new InvseeCommand());
 
         //-> Listeners
         Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);

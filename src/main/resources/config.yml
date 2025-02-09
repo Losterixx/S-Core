@@ -48,3 +48,7 @@ autoBroadcaster:
       - " "
       - "<gray>Join our Discord server at <underlined>discord.gg/example</underlined>!"
       - " "
+
+# Settings for invsee
+invsee:
+  guiTitle: "<gray>Inventory of <white>%player%"

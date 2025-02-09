@@ -32,3 +32,5 @@ commands:
     usage: "<gray>Bitte nutze <red>/broadcast <Nachricht><gray>!"
     sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde <green>gesendet<gray>!"
     notFound: "<gray>Die Nachricht <yellow>%messageId% <gray>konnte <red>nicht gefunden werden<gray>!"
+  invsee:
+      usage: "<gray>Bitte nutze <red>/invsee <Spieler><gray>!"

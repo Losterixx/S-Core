@@ -17,6 +17,10 @@ commands:
     description: Teleport to the server spawn
   broadcast:
     description: Broadcast messages
+  invsee:
+    description: Show/Modify other players inventory
+    aliases:
+      - invs
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command
@@ -29,4 +33,10 @@ permissions:
     default: op
   "sCore.command.broadcast":
     description: Permission to broadcast messages
+    default: op
+  "sCore.command.invsee.show":
+    description: Permission to show other players inventory
+    default: op
+  "sCore.command.invsee.modify":
+    description: Permission to modify other players inventory
     default: op
