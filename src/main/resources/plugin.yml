@@ -32,6 +32,16 @@ commands:
     aliases:
       - armorsee
       - equipsee
+  setwarp:
+    description: Set a warp
+  warp:
+    description: Warp to a location
+  delwarp:
+    description: Delete a warp
+  listwarps:
+    description: List all warps
+    aliases:
+      - warps
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command
@@ -62,4 +72,16 @@ permissions:
     default: op
   "sCore.command.extrasee.modify":
     description: Permission to modify other players extra items
+    default: op
+  "sCore.command.setwarp":
+    description: Permission to set a warp
+    default: op
+  "sCore.command.delwarp":
+    description: Permission to delete a warp
+    default: op
+  "sCore.command.warp":
+    description: Permission to teleport to a warp
+    default: op
+  "sCore.command.listwarps":
+    description: Permission to list all warps
     default: op

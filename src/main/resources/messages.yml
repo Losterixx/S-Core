@@ -41,3 +41,27 @@ commands:
   extrasee:
     usage: "<gray>Bitte nutze <red>/extrasee <Spieler><gray>!"
     cannotUseOnSelf: "<gray>Um dein eigenes Inventar zu sehen, <red>nutze '<key:key.inventory>'<gray>!"
+  setwarp:
+    usage: "<gray>Bitte nute <red>/setwarp <Name><gray>!"
+    set: "<gray>Der Warp <yellow>%warp% <gray>wurde gesetzt!"
+    alreadyExists: "<gray>Der Warp <yellow>%warp% <gray>existiert <red>bereits<gray>!"
+  warp:
+    usage: "<gray>Bitte nutze <red>/warp <Name><gray>!"
+    notFound: "<gray>Der Warp <yellow>%warp% <gray>konnte <red>nicht gefunden werden<gray>!"
+    teleported: "<gray>Du wurdest zum Warp <yellow>%warp% <gray>teleportiert!"
+    locNotFound: "<gray>Die Position des Warps <yellow>%warp% <gray>konnte <red>nicht gefunden werden<gray>!"
+    sound:
+      enabled: true
+      name: "ENTITY_ENDERMAN_TELEPORT"
+      volume: 1.0
+      pitch: 1.0
+  delwarp:
+    usage: "<gray>Bitte nutze <red>/delwarp <Name><gray>!"
+    notFound: "<gray>Der Warp <yellow>%warp% <gray>konnte <red>nicht gefunden werden<gray>!"
+    deleted: "<gray>Der Warp <yellow>%warp% <gray>wurde <red>gelöscht<gray>!"
+  listwarps:
+    usage: "<gray>Bitte nutze <red>/listwarps<gray>!"
+    noWarps: "<gray>Es sind <red>keine Warps <gray>gesetzt!"
+    header: "<newline><gray>Warps:"
+    entry: "<dark_gray> - <white>%warp%<gray>"
+    footer: " "

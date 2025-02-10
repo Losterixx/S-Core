@@ -1,6 +1,10 @@
 package dev.losterixx.sCore.paper;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.losterixx.sCore.paper.features.warps.DelWarpCommand;
+import dev.losterixx.sCore.paper.features.warps.ListWarpsCommand;
+import dev.losterixx.sCore.paper.features.warps.SetWarpCommand;
+import dev.losterixx.sCore.paper.features.warps.WarpCommand;
 import dev.losterixx.sCore.paper.utils.ConfigManager;
 import dev.losterixx.sCore.paper.commands.SCoreCommand;
 import dev.losterixx.sCore.paper.features.autobroadcaster.BroadcastCommand;
@@ -80,6 +84,12 @@ public final class PaperMain extends JavaPlugin {
         getCommand("endersee").setTabCompleter(new EnderseeCommand());
         getCommand("extrasee").setExecutor(new ExtraseeCommand());
         getCommand("extrasee").setTabCompleter(new ExtraseeCommand());
+        getCommand("setwarp").setExecutor(new SetWarpCommand());
+        getCommand("delwarp").setExecutor(new DelWarpCommand());
+        getCommand("delwarp").setTabCompleter(new DelWarpCommand());
+        getCommand("warp").setExecutor(new WarpCommand());
+        getCommand("warp").setTabCompleter(new WarpCommand());
+        getCommand("listwarps").setExecutor(new ListWarpsCommand());
 
         //-> Listeners
         Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);
