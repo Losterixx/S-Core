@@ -74,6 +74,7 @@ public class BroadcastManager {
 
             @Override
             public void run() {
+                if (Bukkit.getOnlinePlayers().isEmpty()) return;
                 if (type == 1) { // SEQUENTIAL
                     List<String> keys = new ArrayList<>();
                     for (Object key : getConfig().getSection("autoBroadcaster.messages").getKeys()) {

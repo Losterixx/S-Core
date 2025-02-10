@@ -21,6 +21,16 @@ commands:
     description: Show/Modify other players inventory
     aliases:
       - invs
+  endersee:
+    description: Show/Modify other players enderchest
+    aliases:
+      - enders
+      - ecsee
+  extrasee:
+    description: Show/Modify other players extra items
+    aliases:
+      - armorsee
+      - equipsee
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command
@@ -39,4 +49,16 @@ permissions:
     default: op
   "sCore.command.invsee.modify":
     description: Permission to modify other players inventory
+    default: op
+  "sCore.command.endersee.show":
+    description: Permission to show other players enderchest
+    default: op
+  "sCore.command.endersee.modify":
+    description: Permission to modify other players enderchest
+    default: op
+  "sCore.command.extrasee.show":
+    description: Permission to show other players extra items
+    default: op
+  "sCore.command.extrasee.modify":
+    description: Permission to modify other players extra items
     default: op
