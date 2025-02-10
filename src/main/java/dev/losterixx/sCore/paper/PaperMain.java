@@ -1,24 +1,24 @@
-package dev.losterixx.sCore;
+package dev.losterixx.sCore.paper;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.commands.SCoreCommand;
-import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand;
-import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager;
-import dev.losterixx.sCore.features.invsee.EnderseeCommand;
-import dev.losterixx.sCore.features.invsee.ExtraseeCommand;
-import dev.losterixx.sCore.features.invsee.InvseeCommand;
-import dev.losterixx.sCore.features.spawn.AutoSpawnTeleportListener;
-import dev.losterixx.sCore.features.spawn.SetSpawnCommand;
-import dev.losterixx.sCore.features.spawn.SpawnCommand;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
+import dev.losterixx.sCore.paper.commands.SCoreCommand;
+import dev.losterixx.sCore.paper.features.autobroadcaster.BroadcastCommand;
+import dev.losterixx.sCore.paper.features.autobroadcaster.BroadcastManager;
+import dev.losterixx.sCore.paper.features.invsee.EnderseeCommand;
+import dev.losterixx.sCore.paper.features.invsee.ExtraseeCommand;
+import dev.losterixx.sCore.paper.features.invsee.InvseeCommand;
+import dev.losterixx.sCore.paper.features.spawn.AutoSpawnTeleportListener;
+import dev.losterixx.sCore.paper.features.spawn.SetSpawnCommand;
+import dev.losterixx.sCore.paper.features.spawn.SpawnCommand;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+public final class PaperMain extends JavaPlugin {
 
-    private static Main instance;
+    private static PaperMain instance;
     public static MiniMessage mm = MiniMessage.miniMessage();
     private ConfigManager configManager;
 
@@ -26,6 +26,8 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
 
         getLogger().info("Plugin is enabling...");
+
+        getLogger().info("Detected Serversoftware: Paper");
 
         //-> Custom
         instance = this;
@@ -87,7 +89,7 @@ public final class Main extends JavaPlugin {
 
     }
 
-    public static Main getInstance() {
+    public static PaperMain getInstance() {
         return instance;
     }
     public ConfigManager getConfigManager() {

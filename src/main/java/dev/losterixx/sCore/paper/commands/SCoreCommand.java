@@ -1,13 +1,9 @@
-package dev.losterixx.sCore.commands;
+package dev.losterixx.sCore.paper.commands;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand;
-import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager;
-import dev.losterixx.sCore.features.spawn.AutoSpawnTeleportListener;
-import dev.losterixx.sCore.features.spawn.SetSpawnCommand;
-import dev.losterixx.sCore.features.spawn.SpawnCommand;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.general.GeneralMain;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
@@ -20,8 +16,8 @@ import java.util.List;
 
 public class SCoreCommand implements CommandExecutor, TabCompleter {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
+    private MiniMessage mm = PaperMain.mm;
+    private PaperMain main = PaperMain.getInstance();
     private ConfigManager configManager = main.getConfigManager();
     private YamlDocument getConfig() { return configManager.getConfig("config"); }
     private YamlDocument getMessages() { return configManager.getConfig("messages"); }
@@ -47,7 +43,7 @@ public class SCoreCommand implements CommandExecutor, TabCompleter {
             }
 
             case "about" -> {
-                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.about").replaceAll("%version%", main.getDescription().getVersion()))));
+                sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.score.about").replaceAll("%version%", GeneralMain.PLUGIN_VERSION))));
             }
 
             case "reload" -> {

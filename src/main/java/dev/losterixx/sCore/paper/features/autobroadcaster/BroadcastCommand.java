@@ -1,8 +1,8 @@
-package dev.losterixx.sCore.features.autobroadcaster;
+package dev.losterixx.sCore.paper.features.autobroadcaster;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
@@ -15,8 +15,8 @@ import java.util.List;
 
 public class BroadcastCommand implements CommandExecutor, TabCompleter {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
+    private MiniMessage mm = PaperMain.mm;
+    private PaperMain main = PaperMain.getInstance();
     private ConfigManager configManager = main.getConfigManager();
     private YamlDocument getConfig() { return configManager.getConfig("config"); }
     private YamlDocument getMessages() { return configManager.getConfig("messages"); }

@@ -1,6 +1,6 @@
 name: S-Core
 version: '1.0'
-main: dev.losterixx.sCore.Main
+main: dev.losterixx.sCore.paper.PaperMain
 api-version: '1.21'
 authors: [ Losterixx ]
 description: -/-

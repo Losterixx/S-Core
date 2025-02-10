@@ -1,0 +1,46 @@
+# S-Core v1.0 by Losterixx
+#
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+file-version: 1
+
+general:
+  noPlayer: "<gray>Dies können <red>nur Spieler<gray>!"
+  noPerms: "<gray>Hierzu hast du <red>keine Berechtigung<gray>!"
+  playerNotFound: "<gray>Der angegebene Spieler <red>konnte nicht gefunden werden<gray>!"
+
+commands:
+  vscore:
+    usage: "<gray>Bitte nutze <red>/vscore <about/reload><gray>!"
+    about: "<gray>S-Core v%version% <dark_gray>- <gray>Losterixx"
+    reload:
+      reloading: "<gray>Alle Konfigurations-Dateien <yellow>werden neugeladen <gray>..."
+      reloaded: "<gray>Alle Konfigurations-Dateien wurden in %time%s <green>neugeladen<gray>!"
+  lobby:
+    usage: "<gray>Bitte nutze <red>/lobby<gray>!"
+    lobbyNotFound: "<gray>Der Lobby-Server <gray>konnte <red>nicht gefunden werden<gray>!"
+    send:
+      sending: "<gray>Verbinde dich mit dem <yellow>Lobby-Server<gray>..."
+      sent: "<gray>Du wurdest mit dem <yellow>Lobby-Server <gray>verbunden<gray>!"
+      error: "<gray>Bei der Verbindung mit dem Lobby-Server ist <red>ein Fehler aufgetreten<gray>!"
+  alert:
+    usage: "<gray>Bitte nutze <red>/alert <Nachricht><gray>!"
+    alert:
+      messages:
+        - " "
+        - "<dark_gray>[<dark_red><b>!<b> ALERT</dark_red><dark_gray>] <red>%message%"
+        - " "
+      sound:
+        enabled: true
+        name: "ENTITY_PLAYER_LEVELUP"
+        volume: 1.0
+        pitch: 1.0
+  find:
+    usage: "<gray>Bitte nutze <red>/find <Spieler><gray>!"
+    success: "<gray>Der Spieler <yellow>%player% <gray>befindet sich auf <yellow>%server%<gray>!"
+    serverNotFound: "<gray>Der Server <yellow>%server% <gray>konnte <red>nicht gefunden werden<gray>!"
+  send:
+    usage: "<gray>Bitte nutze <red>/send <Spieler/*> <Server><gray>!"
+    success: "<gray>Der Spieler <yellow>%player% <gray>wurde zu <yellow>%server% <gray>gesendet!"
+    successAll: "<gray><yellow>Alle Spieler <gray>wurden zu <yellow>%server% <gray>gesendet!"

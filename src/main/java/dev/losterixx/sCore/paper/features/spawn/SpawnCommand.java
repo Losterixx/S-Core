@@ -1,8 +1,8 @@
-package dev.losterixx.sCore.features.spawn;
+package dev.losterixx.sCore.paper.features.spawn;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
@@ -14,8 +14,8 @@ import org.bukkit.entity.Player;
 
 public class SpawnCommand implements CommandExecutor {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
+    private MiniMessage mm = PaperMain.mm;
+    private PaperMain main = PaperMain.getInstance();
     private ConfigManager configManager = main.getConfigManager();
     private YamlDocument getConfig() { return configManager.getConfig("config"); }
     private YamlDocument getMessages() { return configManager.getConfig("messages"); }

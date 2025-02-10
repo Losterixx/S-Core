@@ -1,8 +1,8 @@
-package dev.losterixx.sCore.features.invsee;
+package dev.losterixx.sCore.paper.features.invsee;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -18,14 +18,12 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.UUID;
 
-public class EnderseeCommand implements CommandExecutor, TabCompleter, Listener {
+public class InvseeCommand implements CommandExecutor, TabCompleter, Listener {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
+    private MiniMessage mm = PaperMain.mm;
+    private PaperMain main = PaperMain.getInstance();
     private ConfigManager configManager = main.getConfigManager();
     private YamlDocument getConfig() { return configManager.getConfig("config"); }
     private YamlDocument getMessages() { return configManager.getConfig("messages"); }
@@ -39,13 +37,13 @@ public class EnderseeCommand implements CommandExecutor, TabCompleter, Listener 
             return false;
         }
 
-        if (!sender.hasPermission("sCore.command.endersee.show") && !sender.hasPermission("sCore.command.endersee.modify")) {
+        if (!sender.hasPermission("sCore.command.invsee.show") && !sender.hasPermission("sCore.command.invsee.modify")) {
             sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 1) {
-            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.endersee.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.invsee.usage"))));
             return false;
         }
 
@@ -57,12 +55,12 @@ public class EnderseeCommand implements CommandExecutor, TabCompleter, Listener 
         }
 
         if (target.getUniqueId() == ((Player) sender).getUniqueId()) {
-            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.endersee.cannotUseOnSelf"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.invsee.cannotUseOnSelf"))));
             return false;
         }
 
         ((Player) sender).setMetadata("invsee-target", new FixedMetadataValue(main, target.getName()));
-        ((Player) sender).openInventory(target.getEnderChest());
+        ((Player) sender).openInventory(target.getInventory());
 
         return false;
     }
@@ -71,7 +69,7 @@ public class EnderseeCommand implements CommandExecutor, TabCompleter, Listener 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
 
-        if (!sender.hasPermission("sCore.command.endersee.show") && !sender.hasPermission("sCore.command.endersee.modify")) return completions;
+        if (!sender.hasPermission("sCore.command.invsee.show") && !sender.hasPermission("sCore.command.invsee.modify")) return completions;
 
         if (args.length == 0) {
             for (Player players : main.getServer().getOnlinePlayers()) {

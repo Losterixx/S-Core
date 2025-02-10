@@ -1,8 +1,8 @@
-package dev.losterixx.sCore.features.autobroadcaster;
+package dev.losterixx.sCore.paper.features.autobroadcaster;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class BroadcastManager {
 
-    private static MiniMessage mm = Main.mm;
-    private static Main main = Main.getInstance();
+    private static MiniMessage mm = PaperMain.mm;
+    private static PaperMain main = PaperMain.getInstance();
     private static ConfigManager configManager = main.getConfigManager();
     private static YamlDocument getConfig() { return configManager.getConfig("config"); }
     private static Component getPrefix() { return mm.deserialize(getConfig().getString("prefix")); }

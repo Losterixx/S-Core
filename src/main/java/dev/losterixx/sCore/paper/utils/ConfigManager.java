@@ -1,4 +1,4 @@
-package dev.losterixx.sCore.utils;
+package dev.losterixx.sCore.paper.utils;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.general.GeneralSettings;

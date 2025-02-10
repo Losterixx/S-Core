@@ -1,12 +1,11 @@
-package dev.losterixx.sCore.features.invsee;
+package dev.losterixx.sCore.paper.features.invsee;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.losterixx.sCore.Main;
-import dev.losterixx.sCore.utils.ConfigManager;
+import dev.losterixx.sCore.paper.PaperMain;
+import dev.losterixx.sCore.paper.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,17 +15,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener {
+public class EnderseeCommand implements CommandExecutor, TabCompleter, Listener {
 
-    private MiniMessage mm = Main.mm;
-    private Main main = Main.getInstance();
+    private MiniMessage mm = PaperMain.mm;
+    private PaperMain main = PaperMain.getInstance();
     private ConfigManager configManager = main.getConfigManager();
     private YamlDocument getConfig() { return configManager.getConfig("config"); }
     private YamlDocument getMessages() { return configManager.getConfig("messages"); }
@@ -40,13 +37,13 @@ public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener 
             return false;
         }
 
-        if (!sender.hasPermission("sCore.command.extrasee.show")) {
+        if (!sender.hasPermission("sCore.command.endersee.show") && !sender.hasPermission("sCore.command.endersee.modify")) {
             sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
 
         if (args.length != 1) {
-            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.extrasee.usage"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.endersee.usage"))));
             return false;
         }
 
@@ -58,18 +55,12 @@ public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener 
         }
 
         if (target.getUniqueId() == ((Player) sender).getUniqueId()) {
-            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.extrasee.cannotUseOnSelf"))));
+            sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("commands.endersee.cannotUseOnSelf"))));
             return false;
         }
 
         ((Player) sender).setMetadata("invsee-target", new FixedMetadataValue(main, target.getName()));
-        Inventory gui = Bukkit.createInventory(null, InventoryType.HOPPER, mm.deserialize("<reset>Extra"));
-        gui.setItem(0, target.getInventory().getHelmet());
-        gui.setItem(1, target.getInventory().getChestplate());
-        gui.setItem(2, target.getInventory().getLeggings());
-        gui.setItem(3, target.getInventory().getBoots());
-        gui.setItem(4, target.getInventory().getItemInOffHand());
-        ((Player) sender).openInventory(gui);
+        ((Player) sender).openInventory(target.getEnderChest());
 
         return false;
     }
@@ -78,7 +69,7 @@ public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
 
-        if (!sender.hasPermission("sCore.command.extrasee.show")) return completions;
+        if (!sender.hasPermission("sCore.command.endersee.show") && !sender.hasPermission("sCore.command.endersee.modify")) return completions;
 
         if (args.length == 0) {
             for (Player players : main.getServer().getOnlinePlayers()) {
@@ -98,7 +89,7 @@ public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener 
         Player player = (Player) event.getWhoClicked();
         if (!player.hasMetadata("invsee-target")) return;
 
-        //if (!player.hasPermission("sCore.command.extrasee.modify")) {
+        //if (!player.hasPermission("sCore.command.endersee.modify")) {
             event.setCancelled(true);
         //}
     }
