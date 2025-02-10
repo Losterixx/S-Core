@@ -34,5 +34,10 @@ commands:
     notFound: "<gray>Die Nachricht <yellow>%messageId% <gray>konnte <red>nicht gefunden werden<gray>!"
   invsee:
     usage: "<gray>Bitte nutze <red>/invsee <Spieler><gray>!"
-    playerOffline: "<gray>Der Spieler ist <red>offline <gray>gegangen!"
+    cannotUseOnSelf: "<gray>Um dein eigenes Inventar zu sehen, <red>nutze '<key:key.inventory>'<gray>!"
+  endersee:
+    usage: "<gray>Bitte nutze <red>/endersee <Spieler><gray>!"
+    cannotUseOnSelf: "<gray>Um deine eigene Endertruhe zu sehen, <red>nutze eine Enderchest<gray>!"
+  extrasee:
+    usage: "<gray>Bitte nutze <red>/extrasee <Spieler><gray>!"
     cannotUseOnSelf: "<gray>Um dein eigenes Inventar zu sehen, <red>nutze '<key:key.inventory>'<gray>!"

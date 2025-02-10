@@ -40,7 +40,7 @@ public class ExtraseeCommand implements CommandExecutor, TabCompleter, Listener 
             return false;
         }
 
-        if (!sender.hasPermission("sCore.command.invsee.show")) {
+        if (!sender.hasPermission("sCore.command.extrasee.show")) {
             sender.sendMessage(getPrefix().append(mm.deserialize(getMessages().getString("general.noPerms"))));
             return false;
         }
