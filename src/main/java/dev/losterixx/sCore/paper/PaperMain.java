@@ -3,6 +3,9 @@ package dev.losterixx.sCore.paper;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.losterixx.sCore.paper.features.custommessages.CustomMessagesListener;
 import dev.losterixx.sCore.paper.features.gamemode.GamemodeCommand;
+import dev.losterixx.sCore.paper.features.infocommands.DiscordCommand;
+import dev.losterixx.sCore.paper.features.infocommands.VoteCommand;
+import dev.losterixx.sCore.paper.features.infocommands.WebsiteCommand;
 import dev.losterixx.sCore.paper.features.warps.DelWarpCommand;
 import dev.losterixx.sCore.paper.features.warps.ListWarpsCommand;
 import dev.losterixx.sCore.paper.features.warps.SetWarpCommand;
@@ -93,6 +96,9 @@ public final class PaperMain extends JavaPlugin {
         getCommand("listwarps").setExecutor(new ListWarpsCommand());
         getCommand("gamemode").setExecutor(new GamemodeCommand());
         getCommand("gamemode").setTabCompleter(new GamemodeCommand());
+        getCommand("discord").setExecutor(new DiscordCommand());
+        getCommand("vote").setExecutor(new VoteCommand());
+        getCommand("website").setExecutor(new WebsiteCommand());
 
         //-> Listeners
         Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);

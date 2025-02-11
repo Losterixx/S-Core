@@ -74,3 +74,21 @@ commands:
       creative: "Kreativ-Modus"
       adventure: "Abenteuer-Modus"
       spectator: "Zuschauer-Modus"
+  discord:
+    usage: "<gray>Bitte nutze <red>/discord<gray>!"
+    messages:
+      - " "
+      - "<gray>Unser Discord-Server: <yellow><underlined>discord.gg/example</underlined><gray>!"
+      - " "
+  vote:
+    usage: "<gray>Bitte nutze <red>/vote<gray>!"
+    messages:
+      - " "
+      - "<gray>Unser Vote-Link: <yellow><underlined>vote.example.com</underlined><gray>!"
+      - " "
+  website:
+    usage: "<gray>Bitte nutze <red>/webiste<gray>!"
+    messages:
+      - " "
+      - "<gray>Unsere Webiste: <yellow><underlined>www.example.com</underlined><gray>!"
+      - " "

@@ -46,6 +46,16 @@ commands:
     description: Change gamemode
     aliases:
       - gm
+  discord:
+    description: Open discord link
+    aliases:
+      - dc
+  vote:
+    description: Open vote link
+  website:
+    description: Open website link
+    aliases:
+      - web
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command
@@ -112,4 +122,13 @@ permissions:
     default: op
   "sCore.command.gamemode.spectator.other":
     description: Permission to change other players to spectator gamemode
+    default: op
+  "sCore.command.discord":
+    description: Permission to execute discord command
+    default: op
+  "sCore.command.vote":
+    description: Permission to execute vote command
+    default: op
+  "sCore.command.website":
+    description: Permission to execute website command
     default: op
