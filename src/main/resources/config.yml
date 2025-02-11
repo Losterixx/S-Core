@@ -48,3 +48,11 @@ autoBroadcaster:
       - " "
       - "<gray>Join our Discord server at <underlined>discord.gg/example</underlined>!"
       - " "
+
+# Settings for custom messages
+customMessages:
+  # Set to 'null' to disable the message
+  # Example: 'join: null'
+  join: "%prefix%<gray>Der Spieler <yellow>%player% <gray>hat den Server betreten!"
+  quit: "%prefix%<gray>Der Spieler <yellow>%player% <gray>hat den Server verlassen!"
+  death: "%prefix%<gray>Der Spieler <yellow>%player% <gray>ist gestorben!"

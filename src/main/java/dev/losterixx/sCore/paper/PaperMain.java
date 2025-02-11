@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.paper;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.losterixx.sCore.paper.features.custommessages.CustomMessagesListener;
 import dev.losterixx.sCore.paper.features.gamemode.GamemodeCommand;
 import dev.losterixx.sCore.paper.features.warps.DelWarpCommand;
 import dev.losterixx.sCore.paper.features.warps.ListWarpsCommand;
@@ -98,6 +99,7 @@ public final class PaperMain extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InvseeCommand(), instance);
         Bukkit.getPluginManager().registerEvents(new EnderseeCommand(), instance);
         Bukkit.getPluginManager().registerEvents(new ExtraseeCommand(), instance);
+        Bukkit.getPluginManager().registerEvents(new CustomMessagesListener(), instance);
 
     }
 
