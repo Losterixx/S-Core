@@ -65,3 +65,12 @@ commands:
     header: "<newline><gray>Warps:"
     entry: "<dark_gray> - <white>%warp%<gray>"
     footer: " "
+  gamemode:
+    usage: "<gray>Bitte nutze <red>/gamemode <0/1/2/3> <Spieler><gray>!"
+    changed-self: "<gray>Dein Spielmodus wurde auf <yellow>%gamemode% <gray>geändert!"
+    changed-other: "<gray>Der Spielmodus von <yellow>%player% <gray>wurde auf <yellow>%gamemode% <gray>geändert!"
+    gamemodes:
+      survival: "Überlebens-Modus"
+      creative: "Kreativ-Modus"
+      adventure: "Abenteuer-Modus"
+      spectator: "Zuschauer-Modus"

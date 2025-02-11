@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.paper;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.losterixx.sCore.paper.features.gamemode.GamemodeCommand;
 import dev.losterixx.sCore.paper.features.warps.DelWarpCommand;
 import dev.losterixx.sCore.paper.features.warps.ListWarpsCommand;
 import dev.losterixx.sCore.paper.features.warps.SetWarpCommand;
@@ -35,7 +36,6 @@ public final class PaperMain extends JavaPlugin {
 
         //-> Custom
         instance = this;
-
         //-> Configs
         configManager = new ConfigManager(this, getDataFolder().toPath());
         YamlDocument config = configManager.createConfig("config", "config.yml");
@@ -90,6 +90,8 @@ public final class PaperMain extends JavaPlugin {
         getCommand("warp").setExecutor(new WarpCommand());
         getCommand("warp").setTabCompleter(new WarpCommand());
         getCommand("listwarps").setExecutor(new ListWarpsCommand());
+        getCommand("gamemode").setExecutor(new GamemodeCommand());
+        getCommand("gamemode").setTabCompleter(new GamemodeCommand());
 
         //-> Listeners
         Bukkit.getPluginManager().registerEvents(new AutoSpawnTeleportListener(), instance);
