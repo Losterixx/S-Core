@@ -1,0 +1,84 @@
+package dev.losterixx.sCore.commands
+
+import dev.losterixx.sCore.Main
+import org.bukkit.command.Command
+import org.bukkit.command.CommandExecutor
+import org.bukkit.command.CommandSender
+import org.bukkit.command.TabCompleter
+import kotlin.system.measureTimeMillis
+
+class SCoreCommand  : CommandExecutor, TabCompleter {
+
+    private val mm = Main.miniMessage
+    private val main = Main.instance
+    private val configManager = Main.configManager
+    private fun getConfig() = configManager.getConfig("config")
+    private fun getMessages() = configManager.getConfig(getConfig().getString("langFile", "english"))
+    private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
+
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
+
+        if (!sender.hasPermission("sCore.admin")) {
+            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPerms")))
+            return false
+        }
+
+        if (args.isEmpty()) {
+            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.usage")))
+            return false
+        }
+
+        when (args[0].lowercase()) {
+
+            "about" -> {
+                var aboutMessage = getMessages().getString("commands.s-core.about", null)
+
+                if (aboutMessage == null || !aboutMessage.contains("%version%") || !aboutMessage.contains("%author%")) {
+                    aboutMessage = "<gray>S-Core v%version% <dark_gray>- <gray>%author%"
+                }
+
+                sender.sendMessage(mm.deserialize(getPrefix() + aboutMessage
+                    .replace("%version%", main.description.version)
+                    .replace("%author%", main.description.authors.joinToString(", "))))
+            }
+
+            "reload", "rl" -> {
+                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.reload.reloading")))
+
+                val formattedElapsed = runCatching {
+                    measureTimeMillis {
+                        configManager.reloadConfig("config")
+                        main.loadLangFiles()
+                        configManager.reloadAllConfigs()
+                    }
+                }.getOrElse { 0 }.let { "$it" }
+
+                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.reload.reloaded")
+                    .replace("%time%", formattedElapsed)))
+            }
+
+            else -> {
+                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.usage")))
+            }
+        }
+
+        return false
+    }
+
+    override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
+        val completions = mutableListOf<String>()
+
+        if (!sender.hasPermission("sCore.admin")) return completions
+
+        if (args.isEmpty()) {
+            completions.add("about")
+            completions.add("reload")
+        } else if (args.size == 1) {
+            if ("about".startsWith(args[0].lowercase())) completions.add("about")
+            if ("reload".startsWith(args[0].lowercase())) completions.add("reload")
+        }
+
+        return completions
+    }
+
+}

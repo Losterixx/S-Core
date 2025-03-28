@@ -1,0 +1,32 @@
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+file-version: 1
+
+# General messages
+general:
+  noPlayer: "<gray>You <red>must be a player<gray> to execute this command!"
+  noPerms: "<gray>You <red>do not have permission<gray> to execute this command!"
+  playerNotFound: "<gray>The given player <red>could not be found<gray>!"
+
+# Command messages
+commands:
+  # Messages for the /s-core command (main plugin command)
+  s-core:
+    usage: "<gray>Please use <red>/s-core <about/reload><gray>!"
+    about: "<gray>S-Core v%version% <dark_gray>- <gray>%author%"
+    reload:
+      reloading: "<yellow>Reloading <gray>S-Core..."
+      reloaded: "<green>Successfully reloaded <gray>S-Core! <dark_gray>(%time%ms)"
+  setspawn:
+    usage: "<gray>Please use <red>/setspawn<gray>!"
+    set: "<gray>Spawn <green>has been set<gray>!"
+  spawn:
+    usage: "<gray>Please use <red>/spawn<gray>!"
+    teleporting: "<green>Teleporting <gray>to the spawn..."
+    noSpawnSet: "<red>No spawn <gray>set!"
+    sound:
+      enabled: true
+      sound: "ENTITY_ENDERMAN_TELEPORT"
+      volume: 1.0
+      pitch: 1.0

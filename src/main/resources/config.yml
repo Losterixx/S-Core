@@ -1,0 +1,23 @@
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+file-version: 1
+
+# The prefix before every message
+prefix: "<gradient:#2D734E:#4DC484><b>S-Core</b> <dark_gray>⚡ <gray>"
+
+# The messages file to use
+langFile: 'english'
+
+# Settings for auto spawn teleport
+autoSpawnTeleport:
+  # Teleport the player to the spawn on first join
+  onFirstJoin: true
+  # Teleport the player to the spawn on join
+  onJoin: true
+  # Teleport the player to the spawn on death
+  onRespawn: true
+  # Teleport the player to the spawn when the player height is below the given value
+  onHeight:
+    enabled: false
+    height: -64

@@ -1,0 +1,20 @@
+name: S-Core
+version: '1.0'
+main: dev.losterixx.sCore.Main
+api-version: '1.21'
+authors: [ Losterixx ]
+description: The one and only core system you'll ever need.
+softdepend:
+  - PlaceholderAPI
+  - Nexo
+  - Vault
+permissions:
+  "sCore.admin":
+    description: Permission to access plugin main command
+    default: op
+  "sCore.command.setspawn":
+    description: Permission to set the server spawn
+    default: op
+  "sCore.command.spawn":
+    description: Permission to teleport to the server spawn
+    default: op
