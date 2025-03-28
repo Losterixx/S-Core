@@ -1,0 +1,35 @@
+# In this file you need to use legacy color codes like '§a' or '§c'
+# For HEX-Colors you need to use the legacy format like '§x§r§r§g§g§b§b'
+
+general:
+  # Here you can define the return value if a placeholder is disabled
+  disabledValue: "Disabled placeholder"
+  # Here you can define the return value if an error occurs while parsing a placeholder
+  errorValue: "???"
+
+# Here you can configure player placeholders
+# Format: %sCore_player_{PLACEHOLDER}%
+player:
+  world:
+    enabled: true
+    # Here you can define the translations for specific worlds
+    # You can also use color codes, but only legacy color codes like '§a' or '§c'
+    translations:
+      "world": "§aOverworld"
+      "world_nether": "§cNether"
+      "world_the_end": "§dEnd"
+  money:
+    enabled: true
+    # Here you can define how many fractional digits should be displayed
+    fractionalDigits: 2
+  money_formatted:
+    enabled: true
+    decimalFormat:
+      # Here you can define the format of the balance
+      format: "#,###.##"
+      # Here you can define the decimal separator
+      # Samples:
+      # 'ENGLISH' -> '1,000.00'
+      # 'FRENCH' -> '1 000,00'
+      # 'GERMAN' -> '1.000,00'
+      locale: 'ENGLISH'

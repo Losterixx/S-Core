@@ -18,6 +18,7 @@ repositories {
 
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     maven("https://repo.nexomc.com/releases")
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -25,8 +26,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("dev.dejvokep:boosted-yaml:1.3.6")
+
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.nexomc:nexo:1.1.0")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
+        exclude(group = "org.bukkit", module = "bukkit")
+    }
 }
 
 val targetJavaVersion = 21

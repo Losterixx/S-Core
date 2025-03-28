@@ -1,11 +1,14 @@
 package dev.losterixx.sCore
 
+import dev.losterixx.sCore.placeholderapi.CustomPlaceholders
 import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.RegisterManager
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.nio.file.Files
+
 
 class Main : JavaPlugin() {
 
@@ -19,6 +22,9 @@ class Main : JavaPlugin() {
         lateinit var configManager: ConfigManager
             private set
         lateinit var registerManager: RegisterManager
+            private set
+
+        lateinit var economy: Economy
             private set
     }
 
@@ -41,12 +47,16 @@ class Main : JavaPlugin() {
         }
         val messages = configManager.createConfig(langFile, "lang/$langFile.yml", "lang")
         val data = configManager.createConfig("data", "data.yml")
+        val customPlaceholders = configManager.createConfig("custom-placeholders", "custom-placeholders.yml", "lang")
         logger.info("Using language file: ${messages.file?.name}")
         logger.info("Loaded ${configManager.getAllConfigs().size} configs!")
 
         //-> APIs
+        if (!setupEconomy()) {
+            logger.warning("Vault could not be found! Economy-Features won't work.")
+        }
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            //CustomPlaceholders().register()
+            CustomPlaceholders().register()
             logger.info("Hooked into PlaceholderAPI!")
         } else {
             logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
@@ -86,5 +96,19 @@ class Main : JavaPlugin() {
                 configManager.createConfig(langConfig, "lang/${langFile.fileName}", "lang")
             }
         }
+    }
+
+    private fun setupEconomy(): Boolean {
+        if (server.pluginManager.getPlugin("Vault") == null) {
+            return false
+        }
+
+        val rsp = server.servicesManager.getRegistration<Economy?>(Economy::class.java)
+        if (rsp == null) {
+            return false
+        }
+
+        economy = rsp.getProvider()
+        return economy != null
     }
 }
