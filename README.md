@@ -1,6 +1,9 @@
 # S-Core
 by Losterixx
 
+
+
+
 ## Overview
 S-Core is a versatile Minecraft plugin with useful features for server administrators and players.
 
