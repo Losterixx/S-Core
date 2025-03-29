@@ -11,27 +11,35 @@ import dev.losterixx.sCore.features.spawn.SpawnCommand
 import org.bukkit.Bukkit
 import org.bukkit.command.*
 import org.bukkit.event.HandlerList
+import org.bukkit.event.Listener
 
 class RegisterManager(private val main: Main) {
+
+    private var commands = 0
+    private var listeners = 0
 
     private fun registerCommands() {
         registerCommand("sCore", SCoreCommand(), SCoreCommand(), "score", "s-core")
         registerCommand("setspawn", SetSpawnCommand(), null)
         registerCommand("spawn", SpawnCommand(), null)
         registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
+
+        main.logger.info("Registered $commands commands!")
     }
 
-    private fun registerEvents() {
+    private fun registerListeners() {
         HandlerList.unregisterAll(main)
 
-        main.server.pluginManager.registerEvents(AutoSpawnTpListener(), main)
-        main.server.pluginManager.registerEvents(AutoGamemodeListener(), main)
-        main.server.pluginManager.registerEvents(CustomMessagesListener(), main)
+        registerListener(AutoSpawnTpListener())
+        registerListener(AutoGamemodeListener())
+        registerListener(CustomMessagesListener())
+
+        main.logger.info("Registered $listeners listeners!")
     }
 
-    fun register() {
+    fun registerAll() {
         registerCommands()
-        registerEvents()
+        registerListeners()
     }
 
 
@@ -62,8 +70,19 @@ class RegisterManager(private val main: Main) {
             }
 
             commandMap.register(name, command)
+            commands++
         } catch (e: Exception) {
             main.logger.warning("Failed to register command $name!")
+            e.printStackTrace()
+        }
+    }
+
+    private fun registerListener(listener: Listener) {
+        try {
+            main.server.pluginManager.registerEvents(listener, main)
+            listeners++
+        } catch (e: Exception) {
+            main.logger.warning("Failed to register event ${listener.javaClass.simpleName}!")
             e.printStackTrace()
         }
     }

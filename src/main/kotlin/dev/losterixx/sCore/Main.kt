@@ -42,7 +42,9 @@ class Main : JavaPlugin() {
         logger.info("Loaded ${configManager.getAllConfigs().size} configs!")
 
         //-> APIs
-        if (!setupEconomy()) {
+        if (setupEconomy()) {
+            logger.info("Hooked into Vault!")
+        } else {
             logger.warning("Vault could not be found! Economy-Features won't work.")
         }
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -54,7 +56,7 @@ class Main : JavaPlugin() {
 
         //-> Register
         registerManager = RegisterManager(instance)
-        registerManager.register()
+        registerManager.registerAll()
 
         logger.info("Plugin has been enabled!")
 
