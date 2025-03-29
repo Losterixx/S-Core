@@ -34,6 +34,10 @@ commands:
       creative: "<green>Kreativmodus<gray>"
       adventure: "<yellow>Abenteuermodus<gray>"
       spectator: "<aqua>Zuschauermodus<gray>"
+  broadcast:
+    usage: "<gray>Bitte nutze <red>/broadcast <Nachricht><gray>!"
+    sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde gesendet!"
+    notFound: "<gray>Die angegebene Nachricht <red>konnte nicht gefunden <gray>werden!"
 
 # Nachrichten für die custom Nachrichten
 customMessages:

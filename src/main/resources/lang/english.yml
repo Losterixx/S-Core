@@ -34,6 +34,10 @@ commands:
       creative: "<green>Creative<gray>"
       adventure: "<yellow>Adventure<gray>"
       spectator: "<aqua>Spectator<gray>"
+  broadcast:
+    usage: "<gray>Please use <red>/broadcast <message><gray>!"
+    sent: "<gray>The message <yellow>%messageId% <gray>has been sent!"
+    notFound: "<gray>The given message <red>could not be found<gray>!"
 
 # Messages for the custom messages
 customMessages:

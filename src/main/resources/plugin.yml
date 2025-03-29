@@ -42,3 +42,6 @@ permissions:
   "sCore.command.gamemode.spectator.other":
     description: Permission to change other players to spectator gamemode
     default: op
+  "sCore.command.broadcast":
+    description: Permission to access the broadcast command
+    default: op

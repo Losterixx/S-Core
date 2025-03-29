@@ -1,5 +1,6 @@
 package dev.losterixx.sCore
 
+import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
 import dev.losterixx.sCore.placeholderapi.CustomPlaceholders
 import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.RegisterManager
@@ -25,6 +26,9 @@ class Main : JavaPlugin() {
             private set
 
         lateinit var economy: Economy
+            private set
+
+        lateinit var broadcastManager: BroadcastManager
             private set
     }
 
@@ -53,6 +57,10 @@ class Main : JavaPlugin() {
         } else {
             logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
         }
+
+        //-> Features
+        broadcastManager = BroadcastManager()
+        broadcastManager.startBroadcasting()
 
         //-> Register
         registerManager = RegisterManager(instance)

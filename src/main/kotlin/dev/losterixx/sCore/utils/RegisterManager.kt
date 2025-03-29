@@ -2,6 +2,7 @@ package dev.losterixx.sCore.utils
 
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.SCoreCommand
+import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
 import dev.losterixx.sCore.features.gamemode.GamemodeCommand
@@ -23,6 +24,7 @@ class RegisterManager(private val main: Main) {
         registerCommand("setspawn", SetSpawnCommand(), null)
         registerCommand("spawn", SpawnCommand(), null)
         registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
+        registerCommand("broadcast", BroadcastCommand(), BroadcastCommand(), "bc")
 
         main.logger.info("Registered $commands commands!")
     }

@@ -44,3 +44,31 @@ autoGamemode:
   onJoin: 'SURVIVAL'
   # Set the gamemode on respawn
   onRespawn: null
+
+# Settings for auto broadcaster
+autoBroadcaster:
+  # Toggle the auto broadcaster
+  enabled: true
+  # The interval in seconds between each message
+  interval: 900
+  # The type of broadcasting
+  # Available types:
+  # -> 1 = SEQUENTIAL
+  # -> 2 = RANDOM
+  type: 1
+  # The sound to play when broadcasting
+  sound:
+    enabled: true
+    sound: ENTITY.PLAYER.LEVELUP
+    volume: 1.0
+    pitch: 1.0
+  # The messages to broadcast
+  messages:
+    website:
+      - "%prefix%"
+      - "%prefix% <gray>Check out our website at <underlined>www.example.com</underlined>!"
+      - "%prefix%"
+    discord:
+      - "%prefix%"
+      - "%prefix% <gray>Join our Discord server at <underlined>discord.gg/example</underlined>!"
+      - "%prefix%"
