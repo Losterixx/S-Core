@@ -25,8 +25,3 @@ commands:
     usage: "<gray>Bitte nutze <red>/spawn<gray>!"
     teleport: "<gray>Du wirst zum Spawn <green>teleportiert<gray>..."
     noSpawnSet: "<red>Es wurde <red>kein Spawn gesetzt<gray>!"
-    sound:
-      enabled: true
-      sound: "ENTITY_ENDERMAN_TELEPORT"
-      volume: 1.0
-      pitch: 1.0

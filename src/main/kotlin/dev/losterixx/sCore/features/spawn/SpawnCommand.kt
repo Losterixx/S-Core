@@ -54,10 +54,10 @@ class SpawnCommand : CommandExecutor {
 
         val loc = Location(world, x, y, z, yaw, pitch)
 
-        if (getMessages().getBoolean("commands.spawn.sound.enabled")) {
-            val soundName = getMessages().getString("commands.spawn.sound.sound")
-            val soundVolume = getMessages().getDouble("commands.spawn.sound.volume")
-            val soundPitch = getMessages().getDouble("commands.spawn.sound.pitch")
+        if (getConfig().getBoolean("sounds.teleport.enabled")) {
+            val soundName = getConfig().getString("sounds.teleport.sound")
+            val soundVolume = getConfig().getDouble("sounds.teleport.volume")
+            val soundPitch = getConfig().getDouble("sounds.teleport.pitch")
             player.playSound(player, Sound.valueOf(soundName), SoundCategory.MASTER, soundVolume.toFloat(), soundPitch.toFloat())
         }
 

@@ -37,18 +37,8 @@ class Main : JavaPlugin() {
 
         //-> Configs
         configManager = ConfigManager(instance, dataFolder.toPath())
-        val config = configManager.createConfig("config", "config.yml")
         loadLangFiles()
-        val langFile = config.getString("langFile", null)
-        if (langFile == null) {
-            logger.warning("No language file specified in config.yml! Defaulting to english.yml.")
-            config.set("langFile", "english")
-            configManager.saveConfig("config")
-        }
-        val messages = configManager.createConfig(langFile, "lang/$langFile.yml", "lang")
-        val data = configManager.createConfig("data", "data.yml")
-        val customPlaceholders = configManager.createConfig("custom-placeholders", "custom-placeholders.yml", "lang")
-        logger.info("Using language file: ${messages.file?.name}")
+        loadConfigFiles()
         logger.info("Loaded ${configManager.getAllConfigs().size} configs!")
 
         //-> APIs
@@ -74,6 +64,23 @@ class Main : JavaPlugin() {
 
         logger.info("Plugin has been disabled!")
 
+    }
+
+
+    fun loadConfigFiles() {
+        configManager.createConfig("config", "config.yml")
+        configManager.createConfig("data", "data.yml")
+        configManager.createConfig("custom-placeholders", "custom-placeholders.yml")
+
+        loadLangFiles()
+        val langFile = configManager.getConfig("config").getString("langFile", null)
+        if (langFile == null) {
+            logger.warning("No language file specified in config.yml! Defaulting to english.yml.")
+            config.set("langFile", "english")
+            configManager.saveConfig("config")
+        }
+        configManager.createConfig(langFile, "lang/$langFile.yml", "lang")
+        logger.info("Using language file: $langFile.yml")
     }
 
     fun loadLangFiles() {

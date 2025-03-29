@@ -9,6 +9,19 @@ prefix: "<gradient:#2D734E:#4DC484><b>S-Core</b> <dark_gray>⚡ <gray>"
 # The messages file to use
 langFile: 'english'
 
+# Settings for sounds
+sounds:
+  # Play a sound when the player gets teleported
+  teleport:
+    # Toggle the sound
+    enabled: true
+    # The sound to play
+    sound: "ENTITY_ENDERMAN_TELEPORT"
+    # The volume of the sound
+    volume: 1.0
+    # The pitch of the sound
+    pitch: 1.0
+
 # Settings for auto spawn teleport
 autoSpawnTeleport:
   # Teleport the player to the spawn on first join
