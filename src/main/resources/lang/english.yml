@@ -34,3 +34,24 @@ commands:
       creative: "<green>Creative<gray>"
       adventure: "<yellow>Adventure<gray>"
       spectator: "<aqua>Spectator<gray>"
+
+# Messages for the custom messages
+customMessages:
+  join:
+    # Overrides the default join message if enabled
+    enabled: true
+    # Message displayed when a player joins
+    # Set to 'null' to disable the message
+    message: "%prefix% <green>→ <gray>Player <white>%player% <gray>has joined!"
+  quit:
+    # Overrides the default quit message if enabled
+    enabled: true
+    # Message displayed when a player leaves
+    # Set to 'null' to disable the message
+    message: "%prefix% <red>← <gray>Player <white>%player% <gray>has left!"
+  death:
+    # Overrides the default death message if enabled
+    enabled: true
+    # Message displayed when a player dies
+    # Set to 'null' to disable the message
+    message: "%prefix% <dark_red>☠ <gray>Player <white>%player% <gray>has died!"

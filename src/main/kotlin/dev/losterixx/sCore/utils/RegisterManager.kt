@@ -2,6 +2,7 @@ package dev.losterixx.sCore.utils
 
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.SCoreCommand
+import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
 import dev.losterixx.sCore.features.gamemode.GamemodeCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
@@ -25,6 +26,7 @@ class RegisterManager(private val main: Main) {
 
         main.server.pluginManager.registerEvents(AutoSpawnTpListener(), main)
         main.server.pluginManager.registerEvents(AutoGamemodeListener(), main)
+        main.server.pluginManager.registerEvents(CustomMessagesListener(), main)
     }
 
     fun register() {
