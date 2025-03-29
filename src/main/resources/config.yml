@@ -34,3 +34,13 @@ autoSpawnTeleport:
   onHeight:
     enabled: false
     height: -64
+
+# Settings for auto gamemode
+# Set to 'null' to disable
+autoGamemode:
+  # Set the gamemode on first join
+  onFirstJoin: 'SURVIVAL'
+  # Set the gamemode on join
+  onJoin: 'SURVIVAL'
+  # Set the gamemode on respawn
+  onRespawn: null

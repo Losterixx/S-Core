@@ -2,6 +2,8 @@ package dev.losterixx.sCore.utils
 
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.SCoreCommand
+import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
+import dev.losterixx.sCore.features.gamemode.GamemodeCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
@@ -15,12 +17,14 @@ class RegisterManager(private val main: Main) {
         registerCommand("sCore", SCoreCommand(), SCoreCommand(), "score", "s-core")
         registerCommand("setspawn", SetSpawnCommand(), null)
         registerCommand("spawn", SpawnCommand(), null)
+        registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
     }
 
     private fun registerEvents() {
         HandlerList.unregisterAll(main)
 
         main.server.pluginManager.registerEvents(AutoSpawnTpListener(), main)
+        main.server.pluginManager.registerEvents(AutoGamemodeListener(), main)
     }
 
     fun register() {

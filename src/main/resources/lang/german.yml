@@ -25,3 +25,13 @@ commands:
     usage: "<gray>Bitte nutze <red>/spawn<gray>!"
     teleport: "<gray>Du wirst zum Spawn <green>teleportiert<gray>..."
     noSpawnSet: "<red>Es wurde <red>kein Spawn gesetzt<gray>!"
+  gamemode:
+    usage: "<gray>Bitte nutze <red>/gamemode <0/1/2/3> <?Spieler><gray>!"
+    success:
+      self: "<gray>Dein Spielmodus wurde zu %gamemode% gewechselt!"
+      other: "<gray>Der Spielmodus von <yellow>%player% <gray>wurde zu %gamemode% gewechselt!"
+    gamemodes:
+      0: "<red>Überlebensmodus<gray>"
+      1: "<green>Kreativmodus<gray>"
+      2: "<yellow>Abenteuermodus<gray>"
+      3: "<aqua>Zuschauermodus<gray>"

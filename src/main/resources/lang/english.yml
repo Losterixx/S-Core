@@ -25,3 +25,12 @@ commands:
     usage: "<gray>Please use <red>/spawn<gray>!"
     teleporting: "<green>Teleporting <gray>to the spawn..."
     noSpawnSet: "<red>No spawn <gray>set!"
+  gamemode:
+    usage: "<gray>Please use <red>/gamemode <0/1/2/3> <?player><gray>!"
+    changed-self: "<gray>Your gamemode has been changed to %gamemode%!"
+    changed-other: "<gray>The gamemode of <yellow>%player% <gray>has been changed to %gamemode%!"
+    gamemodes:
+      survival: "<red>Survival<gray>"
+      creative: "<green>Creative<gray>"
+      adventure: "<yellow>Adventure<gray>"
+      spectator: "<aqua>Spectator<gray>"

@@ -1,5 +1,5 @@
 name: S-Core
-version: '1.0.1'
+version: '1.1'
 main: dev.losterixx.sCore.Main
 api-version: '1.21'
 authors: [ Losterixx ]
@@ -17,4 +17,28 @@ permissions:
     default: op
   "sCore.command.spawn":
     description: Permission to teleport to the server spawn
+    default: op
+  "sCore.command.gamemode.survival.self":
+    description: Permission to change to survival gamemode
+    default: op
+  "sCore.command.gamemode.survival.other":
+    description: Permission to change other players to survival gamemode
+    default: op
+  "sCore.command.gamemode.creative.self":
+    description: Permission to change to creative gamemode
+    default: op
+  "sCore.command.gamemode.creative.other":
+    description: Permission to change other players to creative gamemode
+    default: op
+  "sCore.command.gamemode.adventure.self":
+    description: Permission to change to adventure gamemode
+    default: op
+  "sCore.command.gamemode.adventure.other":
+    description: Permission to change other players to adventure gamemode
+    default: op
+  "sCore.command.gamemode.spectator.self":
+    description: Permission to change to spectator gamemode
+    default: op
+  "sCore.command.gamemode.spectator.other":
+    description: Permission to change other players to spectator gamemode
     default: op
