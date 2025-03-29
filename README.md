@@ -2,8 +2,6 @@
 by Losterixx
 
 
-
-
 ## Overview
 S-Core is a versatile Minecraft plugin with useful features for server administrators and players.
 
@@ -28,3 +26,5 @@ A wiki will be created once the plugin receives more features.
 ## Developer API
 A developer API is planned but currently has a low priority.
 
+## Support
+My Discord-Server: [S-Projects](https://discord.gg/gnGsUAwp76)
