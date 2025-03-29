@@ -19,7 +19,7 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 - More features in development ...
 
 ## Download
-- **GitHub Releases:** Coming soon
+- **GitHub Releases:** [Releases](https://github.com/Losterixx/S-Core/releases)
 - **Modrinth:** Coming soon
 
 ## Documentation
