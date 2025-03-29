@@ -13,6 +13,9 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 - Spawn system:
   - `/setspawn` and `/spawn`
   - Automatic teleportation on (join, first join, death, movement when below a specified Y-height)
+- Custom placeholders
+  - Configurable in `custom-placeholders.yml`
+  - Placeholders: `%sCore_player_world%`, `%sCore_player_money%`, `%sCore_player_money_formatted%`
 - More features in development ...
 
 ## Download
