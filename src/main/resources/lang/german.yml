@@ -27,9 +27,8 @@ commands:
     noSpawnSet: "<red>Es wurde <red>kein Spawn gesetzt<gray>!"
   gamemode:
     usage: "<gray>Bitte nutze <red>/gamemode <0/1/2/3> <?Spieler><gray>!"
-    success:
-      self: "<gray>Dein Spielmodus wurde zu %gamemode% gewechselt!"
-      other: "<gray>Der Spielmodus von <yellow>%player% <gray>wurde zu %gamemode% gewechselt!"
+    changed-self: "<gray>Dein Spielmodus wurde zu %gamemode% gewechselt!"
+    changed-other: "<gray>Der Spielmodus von <yellow>%player% <gray>wurde zu %gamemode% gewechselt!"
     gamemodes:
       0: "<red>Überlebensmodus<gray>"
       1: "<green>Kreativmodus<gray>"

@@ -66,7 +66,7 @@ class GamemodeCommand : CommandExecutor, TabCompleter {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-other")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.survival"))
                         .replace("%player%", target.name)))
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
+                    target.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.survival"))))
                 }
             }
@@ -97,7 +97,7 @@ class GamemodeCommand : CommandExecutor, TabCompleter {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-other")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.creative"))
                         .replace("%player%", target.name)))
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
+                    target.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.creative"))))
                 }
             }
@@ -128,7 +128,7 @@ class GamemodeCommand : CommandExecutor, TabCompleter {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-other")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.adventure"))
                         .replace("%player%", target.name)))
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
+                    target.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.adventure"))))
                 }
             }
@@ -159,7 +159,7 @@ class GamemodeCommand : CommandExecutor, TabCompleter {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-other")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.spectator"))
                         .replace("%player%", target.name)))
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
+                    target.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.gamemode.changed-self")
                         .replace("%gamemode%", getMessages().getString("commands.gamemode.gamemodes.spectator"))))
                 }
             }

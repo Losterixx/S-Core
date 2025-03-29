@@ -1,5 +1,5 @@
-# In this file you need to use legacy color codes like '§a' or '§c'
-# For HEX-Colors you need to use the legacy format like '§x§r§r§g§g§b§b'
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
 
 general:
   # Here you can define the return value if a placeholder is disabled
@@ -15,9 +15,9 @@ player:
     # Here you can define the translations for specific worlds
     # You can also use color codes, but only legacy color codes like '§a' or '§c'
     translations:
-      "world": "§aOverworld"
-      "world_nether": "§cNether"
-      "world_the_end": "§dEnd"
+      "world": "<green>Overworld"
+      "world_nether": "<red>Nether"
+      "world_the_end": "<dark_aqua>End"
   money:
     enabled: true
     # Here you can define how many fractional digits should be displayed
