@@ -56,6 +56,13 @@ commands:
       - "%prefix% "
       - "%prefix% <gray>Visit our website: <yellow>https://yourserver.com"
       - "%prefix% "
+  msg:
+    usage: "<gray>Please use <red>/msg <player> <message><gray>!"
+    selfError: "<gray>You <red>cannot send a message to yourself<gray>!"
+    invalidChars: "<gray>The message contains <red>invalid characters<gray>!"
+  reply:
+    usage: "<gray>Please use <red>/reply <message><gray>!"
+    noTarget: "<gray>You have <red>no one to reply to<gray>!"
 
 # Messages for the custom messages
 customMessages:

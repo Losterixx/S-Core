@@ -26,3 +26,7 @@ custom-placeholders: true
 # This module provides:
 # - /discord, /website & /vote commands
 info-commands: true
+
+# This module provides:
+# - /msg & /reply commands
+msg: true

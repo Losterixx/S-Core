@@ -54,3 +54,9 @@ permissions:
   "sCore.command.website":
     description: Permission to access the website command
     default: op
+  "sCore.command.msg":
+    description: Permission to access the msg command
+    default: op
+  "sCore.command.reply":
+    description: Permission to access the reply command
+    default: op

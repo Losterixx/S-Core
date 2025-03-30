@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import kotlin.system.measureTimeMillis
 
-class SCoreCommand  : CommandExecutor, TabCompleter {
+class SCoreCommand : CommandExecutor, TabCompleter {
 
     private val mm = Main.miniMessage
     private val main = Main.instance

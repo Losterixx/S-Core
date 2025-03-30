@@ -72,3 +72,14 @@ autoBroadcaster:
       - "%prefix%"
       - "%prefix% <gray>Join our Discord server at <underlined>discord.gg/example</underlined>!"
       - "%prefix%"
+
+# Settings for the msg system
+msg:
+  # HEX-Color for the message text
+  textColor: "#FFFFFF"
+  # These characters are allowed in the message
+  allowedCharactersRegex: "^[A-Za-z0-9ÄÖÜäöüß_\\-+&/\\[\\](){}\\\\?!.;,:´`^°#'|<>\"$€@%=*~\\\\ ]+$"
+  # The format for the message
+  # Warning: If you remove the '%player%' or '%target%' placeholder an error will occur
+  self-target: '<white><hover:show_text:"<gray>Click to response."><click:suggest_command:/msg %player% ><dark_gray>[<yellow><b>MSG</b><dark_gray>] <dark_gray>[<gray>%player% <dark_gray>› <gray>You<dark_gray>] <white>'
+  target-self: '<white><hover:show_text:"<gray>Click to send another message."><click:suggest_command:/msg %target% ><dark_gray>[<yellow><b>MSG</b><dark_gray>] <dark_gray>[<gray>You <dark_gray>› <gray>%target%<dark_gray>] <white>'

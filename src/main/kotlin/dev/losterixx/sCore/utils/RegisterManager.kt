@@ -9,6 +9,8 @@ import dev.losterixx.sCore.features.gamemode.GamemodeCommand
 import dev.losterixx.sCore.features.infocommands.DiscordCommand
 import dev.losterixx.sCore.features.infocommands.VoteCommand
 import dev.losterixx.sCore.features.infocommands.WebsiteCommand
+import dev.losterixx.sCore.features.msg.MsgCommand
+import dev.losterixx.sCore.features.msg.ReplyCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
@@ -34,6 +36,8 @@ object RegisterManager {
         if (getModules().getBoolean("info-commands")) registerCommand("discord", DiscordCommand(), null, "dc")
         if (getModules().getBoolean("info-commands")) registerCommand("website", WebsiteCommand(), null, "web")
         if (getModules().getBoolean("info-commands")) registerCommand("vote", VoteCommand(), null)
+        if (getModules().getBoolean("msg")) registerCommand("msg", MsgCommand(), MsgCommand(), "w", "whisper", "tell", "t")
+        if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
 
         main.logger.info("Registered $commands commands!")
     }
@@ -44,6 +48,7 @@ object RegisterManager {
         if (getModules().getBoolean("spawn")) registerListener(AutoSpawnTpListener())
         if (getModules().getBoolean("gamemode")) registerListener(AutoGamemodeListener())
         if (getModules().getBoolean("custom-messages")) registerListener(CustomMessagesListener())
+        if (getModules().getBoolean("msg")) registerListener(ReplyCommand())
 
         main.logger.info("Registered $listeners listeners!")
     }

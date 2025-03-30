@@ -56,6 +56,13 @@ commands:
       - "%prefix% "
       - "%prefix% <gray>Besuche unsere Website: <underlined>https://yourserver.com"
       - "%prefix% "
+  msg:
+    usage: "<gray>Bitte nutze <red>/msg <Spieler> <Nachricht><gray>!"
+    selfError: "<gray>Du kannst <red>nicht dich selbst<gray> anschreiben!"
+    invalidChars: "<gray>Deine Nachricht enthält <red>ungültige Zeichen<gray>!"
+  reply:
+    usage: "<gray>Bitte nutze <red>/reply <Nachricht><gray>!"
+    noTarget: "<gray>Du hast <red>niemanden <gray>angeschrieben!"
 
 # Nachrichten für die custom Nachrichten
 customMessages:
