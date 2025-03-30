@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.autobroadcaster
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -10,11 +11,9 @@ class BroadcastCommand : CommandExecutor, TabCompleter {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
-    private fun getMessages() = configManager.getConfig(getConfig().getString("langFile", "english"))
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile", "english"))
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
-    private val broadcastManager = Main.broadcastManager
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
@@ -36,7 +35,7 @@ class BroadcastCommand : CommandExecutor, TabCompleter {
             return false
         }
 
-        broadcastManager.broadcast(messageId)
+        BroadcastManager.broadcast(messageId)
         sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.broadcast.sent")
             .replace("%messageId%", messageId)))
 

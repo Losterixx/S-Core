@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.commands
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -11,9 +12,8 @@ class SCoreCommand  : CommandExecutor, TabCompleter {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
-    private fun getMessages() = configManager.getConfig(getConfig().getString("langFile", "english"))
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile", "english"))
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -47,9 +47,9 @@ class SCoreCommand  : CommandExecutor, TabCompleter {
 
                 val formattedElapsed = runCatching {
                     measureTimeMillis {
-                        configManager.reloadConfig("config")
+                        ConfigManager.reloadConfig("config")
                         main.loadLangFiles()
-                        configManager.reloadAllConfigs()
+                        ConfigManager.reloadAllConfigs()
                     }
                 }.getOrElse { 0 }.let { "$it" }
 

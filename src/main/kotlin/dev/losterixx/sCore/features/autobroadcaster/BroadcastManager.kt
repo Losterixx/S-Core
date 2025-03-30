@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.autobroadcaster
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.SoundCategory
@@ -8,12 +9,11 @@ import org.bukkit.scheduler.BukkitRunnable
 import kotlin.random.Random
 
 
-class BroadcastManager {
+object BroadcastManager {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
+    private fun getConfig() = ConfigManager.getConfig("config")
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     fun broadcast(messageId: String?) {

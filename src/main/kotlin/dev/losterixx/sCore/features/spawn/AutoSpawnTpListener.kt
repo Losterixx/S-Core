@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.spawn
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -13,9 +14,8 @@ import org.bukkit.event.player.PlayerRespawnEvent
 class AutoSpawnTpListener : Listener {
 
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
-    private fun getData() = configManager.getConfig("data")
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getData() = ConfigManager.getConfig("data")
 
     private fun teleportToSpawn(player: Player) {
         getData().getString("spawn.world")?.let { worldName ->

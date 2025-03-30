@@ -4,7 +4,7 @@
 file-version: 1
 
 # The prefix before every message
-prefix: "<gradient:#2D734E:#4DC484><b>S-Core</b> <dark_gray>⚡ <gray>"
+prefix: "<#47E3A4><b>S-Core</b> <dark_gray>⚡ <gray>"
 
 # The messages file to use
 langFile: 'english'

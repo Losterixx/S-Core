@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.placeholderapi
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 import java.text.DecimalFormat
@@ -12,8 +13,7 @@ import kotlin.math.pow
 class CustomPlaceholders : PlaceholderExpansion() {
 
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getCustomPlaceholders() = configManager.getConfig("custom-placeholders")
+    private fun getCustomPlaceholders() = ConfigManager.getConfig("custom-placeholders")
     private val economy = Main.economy
 
 

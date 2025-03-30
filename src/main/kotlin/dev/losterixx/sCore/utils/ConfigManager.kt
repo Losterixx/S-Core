@@ -3,12 +3,14 @@ package dev.losterixx.sCore.utils
 import dev.dejvokep.boostedyaml.YamlDocument
 import dev.dejvokep.boostedyaml.settings.general.GeneralSettings
 import dev.dejvokep.boostedyaml.settings.loader.LoaderSettings
-import org.bukkit.plugin.java.JavaPlugin
+import dev.losterixx.sCore.Main
 import java.io.IOException
 import java.nio.file.Files
-import java.nio.file.Path
 
-class ConfigManager(private val plugin: JavaPlugin, private val dataDirectory: Path) {
+object ConfigManager {
+
+    private val plugin = Main.instance
+    private val dataDirectory = plugin.dataFolder.toPath()
 
     private val configs: MutableMap<String, YamlDocument> = HashMap()
 

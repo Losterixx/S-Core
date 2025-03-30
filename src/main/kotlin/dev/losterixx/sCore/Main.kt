@@ -17,18 +17,10 @@ class Main : JavaPlugin() {
         lateinit var instance: Main
             private set
 
-        const val DEFAULT_PREFIX = "<gradient:#2D734E:#4DC484><b>S-Core</b> <dark_gray>⚡ <gray>"
+        const val DEFAULT_PREFIX = "<#47E3A4><b>S-Core</b> <dark_gray>⚡ <gray>"
         val miniMessage = MiniMessage.miniMessage()
 
-        lateinit var configManager: ConfigManager
-            private set
-        lateinit var registerManager: RegisterManager
-            private set
-
         lateinit var economy: Economy
-            private set
-
-        lateinit var broadcastManager: BroadcastManager
             private set
     }
 
@@ -40,10 +32,9 @@ class Main : JavaPlugin() {
         instance = this
 
         //-> Configs
-        configManager = ConfigManager(instance, dataFolder.toPath())
         loadLangFiles()
         loadConfigFiles()
-        logger.info("Loaded ${configManager.getAllConfigs().size} configs!")
+        logger.info("Loaded ${ConfigManager.getAllConfigs().size} configs!")
 
         //-> APIs
         if (setupEconomy()) {
@@ -59,12 +50,10 @@ class Main : JavaPlugin() {
         }
 
         //-> Features
-        broadcastManager = BroadcastManager()
-        broadcastManager.startBroadcasting()
+        BroadcastManager.startBroadcasting()
 
         //-> Register
-        registerManager = RegisterManager(instance)
-        registerManager.registerAll()
+        RegisterManager.registerAll()
 
         logger.info("Plugin has been enabled!")
 
@@ -78,18 +67,18 @@ class Main : JavaPlugin() {
 
 
     fun loadConfigFiles() {
-        configManager.createConfig("config", "config.yml")
-        configManager.createConfig("data", "data.yml")
-        configManager.createConfig("custom-placeholders", "custom-placeholders.yml")
+        ConfigManager.createConfig("config", "config.yml")
+        ConfigManager.createConfig("data", "data.yml")
+        ConfigManager.createConfig("custom-placeholders", "custom-placeholders.yml")
 
         loadLangFiles()
-        val langFile = configManager.getConfig("config").getString("langFile", null)
+        val langFile = ConfigManager.getConfig("config").getString("langFile", null)
         if (langFile == null) {
             logger.warning("No language file specified in config.yml! Defaulting to english.yml.")
             config.set("langFile", "english")
-            configManager.saveConfig("config")
+            ConfigManager.saveConfig("config")
         }
-        configManager.createConfig(langFile, "lang/$langFile.yml", "lang")
+        ConfigManager.createConfig(langFile, "lang/$langFile.yml", "lang")
         logger.info("Using language file: $langFile.yml")
     }
 
@@ -104,13 +93,13 @@ class Main : JavaPlugin() {
 
         defaultLangFiles.forEach { fileName ->
             val langConfig = fileName.removeSuffix(".yml")
-            configManager.createConfig(langConfig, "lang/$fileName", "lang")
+            ConfigManager.createConfig(langConfig, "lang/$fileName", "lang")
         }
 
         Files.list(langDirectory).filter { it.toString().endsWith(".yml") }.forEach { langFile ->
             val langConfig = langFile.fileName.toString().removeSuffix(".yml")
-            if (!configManager.existsConfig(langConfig)) {
-                configManager.createConfig(langConfig, "lang/${langFile.fileName}", "lang")
+            if (!ConfigManager.existsConfig(langConfig)) {
+                ConfigManager.createConfig(langConfig, "lang/${langFile.fileName}", "lang")
             }
         }
     }

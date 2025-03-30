@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.spawn
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -10,10 +11,9 @@ class SetSpawnCommand : CommandExecutor {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
-    private fun getMessages() = configManager.getConfig(getConfig().getString("langFile", "english"))
-    private fun getData() = configManager.getConfig("data")
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile", "english"))
+    private fun getData() = ConfigManager.getConfig("data")
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -42,7 +42,7 @@ class SetSpawnCommand : CommandExecutor {
         getData().set("spawn.z", loc.z)
         getData().set("spawn.yaw", loc.yaw)
         getData().set("spawn.pitch", loc.pitch)
-        configManager.saveConfig("data")
+        ConfigManager.saveConfig("data")
 
         sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.setspawn.set")))
 

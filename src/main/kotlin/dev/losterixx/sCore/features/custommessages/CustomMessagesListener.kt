@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.custommessages
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
@@ -11,9 +12,8 @@ class CustomMessagesListener : Listener {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
-    private fun getMessages() = configManager.getConfig(getConfig().getString("langFile", "english"))
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile", "english"))
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     @EventHandler

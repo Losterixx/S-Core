@@ -14,7 +14,9 @@ import org.bukkit.command.*
 import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 
-class RegisterManager(private val main: Main) {
+object RegisterManager {
+
+    private val main = Main.instance
 
     private var commands = 0
     private var listeners = 0

@@ -1,6 +1,7 @@
 package dev.losterixx.sCore.features.gamemode
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.utils.ConfigManager
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -10,8 +11,7 @@ import org.bukkit.event.player.PlayerRespawnEvent
 class AutoGamemodeListener : Listener {
 
     private val main = Main.instance
-    private val configManager = Main.configManager
-    private fun getConfig() = configManager.getConfig("config")
+    private fun getConfig() = ConfigManager.getConfig("config")
 
 
     @EventHandler
