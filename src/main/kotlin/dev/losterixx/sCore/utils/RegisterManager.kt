@@ -6,6 +6,9 @@ import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
 import dev.losterixx.sCore.features.gamemode.GamemodeCommand
+import dev.losterixx.sCore.features.infocommands.DiscordCommand
+import dev.losterixx.sCore.features.infocommands.VoteCommand
+import dev.losterixx.sCore.features.infocommands.WebsiteCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
@@ -28,6 +31,9 @@ object RegisterManager {
         if (getModules().getBoolean("spawn")) registerCommand("spawn", SpawnCommand(), null)
         if (getModules().getBoolean("gamemode")) registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
         if (getModules().getBoolean("auto-broadcaster")) registerCommand("broadcast", BroadcastCommand(), BroadcastCommand(), "bc")
+        if (getModules().getBoolean("info-commands")) registerCommand("discord", DiscordCommand(), null, "dc")
+        if (getModules().getBoolean("info-commands")) registerCommand("website", WebsiteCommand(), null, "web")
+        if (getModules().getBoolean("info-commands")) registerCommand("vote", VoteCommand(), null)
 
         main.logger.info("Registered $commands commands!")
     }

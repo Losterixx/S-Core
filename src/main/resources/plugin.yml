@@ -45,3 +45,12 @@ permissions:
   "sCore.command.broadcast":
     description: Permission to access the broadcast command
     default: op
+  "sCore.command.discord":
+    description: Permission to access the discord command
+    default: op
+  "sCore.command.vote":
+    description: Permission to access the vote command
+    default: op
+  "sCore.command.website":
+    description: Permission to access the website command
+    default: op

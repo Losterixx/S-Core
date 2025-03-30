@@ -22,3 +22,7 @@ custom-messages: true
 # This module allows:
 # - Setting custom placeholders in 'custom-placeholders.yml'
 custom-placeholders: true
+
+# This module provides:
+# - /discord, /website & /vote commands
+info-commands: true

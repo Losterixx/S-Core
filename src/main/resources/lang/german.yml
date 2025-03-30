@@ -38,6 +38,24 @@ commands:
     usage: "<gray>Bitte nutze <red>/broadcast <Nachricht><gray>!"
     sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde gesendet!"
     notFound: "<gray>Die angegebene Nachricht <red>konnte nicht gefunden <gray>werden!"
+  discord:
+    usage: "<gray>Bitte nutze <red>/discord<gray>!"
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Unser Discord-Server: <underlined>https://discord.gg/yourserver"
+      - "%prefix% "
+  vote:
+    usage: "<gray>Bitte nutze <red>/vote<gray>!"
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Vote für unseren server: <underlined>https://vote.youserver.com"
+      - "%prefix% "
+  website:
+    usage: "<gray>Bitte nutze <red>/website<gray>!"
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Besuche unsere Website: <underlined>https://yourserver.com"
+      - "%prefix% "
 
 # Nachrichten für die custom Nachrichten
 customMessages:
