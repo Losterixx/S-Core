@@ -1,0 +1,24 @@
+# In this file, you can choose which modules to enable or disable.
+# Disabled modules will not be loaded.
+
+# This module provides:
+# - /setspawn & /spawn commands
+spawn: true
+
+# This module provides:
+# - /gamemode command
+# - Automatic gamemode changes
+gamemode: true
+
+# This module provides:
+# - /broadcast command
+# - Automatic broadcast messages
+auto-broadcaster: true
+
+# This module provides:
+# - Custom messages for player actions (join, quit, death)
+custom-messages: true
+
+# This module allows:
+# - Setting custom placeholders in 'custom-placeholders.yml'
+custom-placeholders: true

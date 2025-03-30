@@ -17,16 +17,17 @@ import org.bukkit.event.Listener
 object RegisterManager {
 
     private val main = Main.instance
+    private fun getModules() = ConfigManager.getConfig("modules")
 
     private var commands = 0
     private var listeners = 0
 
     private fun registerCommands() {
         registerCommand("sCore", SCoreCommand(), SCoreCommand(), "score", "s-core")
-        registerCommand("setspawn", SetSpawnCommand(), null)
-        registerCommand("spawn", SpawnCommand(), null)
-        registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
-        registerCommand("broadcast", BroadcastCommand(), BroadcastCommand(), "bc")
+        if (getModules().getBoolean("spawn")) registerCommand("setspawn", SetSpawnCommand(), null)
+        if (getModules().getBoolean("spawn")) registerCommand("spawn", SpawnCommand(), null)
+        if (getModules().getBoolean("gamemode")) registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
+        if (getModules().getBoolean("auto-broadcaster")) registerCommand("broadcast", BroadcastCommand(), BroadcastCommand(), "bc")
 
         main.logger.info("Registered $commands commands!")
     }
@@ -34,9 +35,9 @@ object RegisterManager {
     private fun registerListeners() {
         HandlerList.unregisterAll(main)
 
-        registerListener(AutoSpawnTpListener())
-        registerListener(AutoGamemodeListener())
-        registerListener(CustomMessagesListener())
+        if (getModules().getBoolean("spawn")) registerListener(AutoSpawnTpListener())
+        if (getModules().getBoolean("gamemode")) registerListener(AutoGamemodeListener())
+        if (getModules().getBoolean("custom-messages")) registerListener(CustomMessagesListener())
 
         main.logger.info("Registered $listeners listeners!")
     }

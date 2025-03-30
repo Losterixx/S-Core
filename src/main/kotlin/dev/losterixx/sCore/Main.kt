@@ -43,8 +43,12 @@ class Main : JavaPlugin() {
             logger.warning("Vault could not be found! Economy-Features won't work.")
         }
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            CustomPlaceholders().register()
-            logger.info("Hooked into PlaceholderAPI!")
+            if (ConfigManager.getConfig("modules").getBoolean("custom-placeholders")) {
+                CustomPlaceholders().register()
+                logger.info("Hooked into PlaceholderAPI!")
+            } else {
+                logger.info("Custom Placeholders are disabled in modules.yml! Skipping PlaceholderAPI hook.")
+            }
         } else {
             logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
         }
@@ -68,6 +72,7 @@ class Main : JavaPlugin() {
 
     fun loadConfigFiles() {
         ConfigManager.createConfig("config", "config.yml")
+        ConfigManager.createConfig("modules", "modules.yml")
         ConfigManager.createConfig("data", "data.yml")
         ConfigManager.createConfig("custom-placeholders", "custom-placeholders.yml")
 
