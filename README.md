@@ -14,6 +14,11 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 - Custom placeholders
   - Configurable in `custom-placeholders.yml`
   - Placeholders: `%sCore_player_world%`, `%sCore_player_money%`, `%sCore_player_money_formatted%`
+- Gamemode (/gamemode + auto set gamemode on join)
+- Auto-Broadcaster (Sends messages in givin intervals)
+- CustomMessages
+  - Remove/Edit default minecraft messages
+  - Messages to edit: join, quit, death
 - More features in development ...
 
 ## Download
