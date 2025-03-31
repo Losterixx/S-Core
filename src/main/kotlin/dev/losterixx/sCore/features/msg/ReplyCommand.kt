@@ -26,7 +26,7 @@ class ReplyCommand : CommandExecutor, Listener {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
         if (sender !is Player) {
-            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.notPlayer")))
+            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPlayer")))
             return false
         }
 
@@ -67,7 +67,6 @@ class ReplyCommand : CommandExecutor, Listener {
         target.sendMessage(formattedMessageToSender)
 
         lastMessages[player] = target
-
 
         return false
     }

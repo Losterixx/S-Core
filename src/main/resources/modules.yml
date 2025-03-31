@@ -30,3 +30,8 @@ info-commands: true
 # This module provides:
 # - /msg & /reply commands
 msg: true
+
+# This module provides:
+# - /invsee command
+# - Invsee listener
+invsee: true

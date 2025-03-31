@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
-
 class MsgCommand : CommandExecutor, TabCompleter {
 
     private val mm = Main.miniMessage
@@ -28,7 +27,7 @@ class MsgCommand : CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
         if (sender !is Player) {
-            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.notPlayer")))
+            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPlayer")))
             return false
         }
 
@@ -74,7 +73,6 @@ class MsgCommand : CommandExecutor, TabCompleter {
         target.sendMessage(formattedMessageToSender)
 
         lastMessages[player] = target
-
 
         return false
     }

@@ -9,6 +9,7 @@ import dev.losterixx.sCore.features.gamemode.GamemodeCommand
 import dev.losterixx.sCore.features.infocommands.DiscordCommand
 import dev.losterixx.sCore.features.infocommands.VoteCommand
 import dev.losterixx.sCore.features.infocommands.WebsiteCommand
+import dev.losterixx.sCore.features.invsee.InvseeCommand
 import dev.losterixx.sCore.features.msg.MsgCommand
 import dev.losterixx.sCore.features.msg.ReplyCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
@@ -38,6 +39,7 @@ object RegisterManager {
         if (getModules().getBoolean("info-commands")) registerCommand("vote", VoteCommand(), null)
         if (getModules().getBoolean("msg")) registerCommand("msg", MsgCommand(), MsgCommand(), "w", "whisper", "tell", "t")
         if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
+        if (getModules().getBoolean("invsee")) registerCommand("invsee", InvseeCommand(), InvseeCommand(), "invs")
 
         main.logger.info("Registered $commands commands!")
     }
@@ -49,6 +51,7 @@ object RegisterManager {
         if (getModules().getBoolean("gamemode")) registerListener(AutoGamemodeListener())
         if (getModules().getBoolean("custom-messages")) registerListener(CustomMessagesListener())
         if (getModules().getBoolean("msg")) registerListener(ReplyCommand())
+        if (getModules().getBoolean("invsee")) registerListener(InvseeCommand())
 
         main.logger.info("Registered $listeners listeners!")
     }

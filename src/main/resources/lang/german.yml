@@ -63,6 +63,9 @@ commands:
   reply:
     usage: "<gray>Bitte nutze <red>/reply <Nachricht><gray>!"
     noTarget: "<gray>Du hast <red>niemanden <gray>angeschrieben!"
+  invsee:
+    usage: "<gray>Bitte nutze <red>/invsee <Spieler><gray>!"
+    selfError: "<gray>Um dein eigenes Inventar zu sehen, <red>nutze '<key:key.inventory>'<gray>!"
 
 # Nachrichten für die custom Nachrichten
 customMessages:

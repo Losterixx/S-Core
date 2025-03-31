@@ -60,3 +60,6 @@ permissions:
   "sCore.command.reply":
     description: Permission to access the reply command
     default: op
+  "sCore.command.invsee":
+    description: Permission to access the invsee command
+    default: op

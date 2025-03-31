@@ -63,6 +63,9 @@ commands:
   reply:
     usage: "<gray>Please use <red>/reply <message><gray>!"
     noTarget: "<gray>You have <red>no one to reply to<gray>!"
+  invsee:
+    usage: "<gray>Please use <red>/invsee <player><gray>!"
+    selfError: "<gray>To open you own inventory <red>use '<key:key.inventory>'<gray>!"
 
 # Messages for the custom messages
 customMessages:

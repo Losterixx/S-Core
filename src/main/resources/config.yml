@@ -83,3 +83,10 @@ msg:
   # Warning: If you remove the '%player%' or '%target%' placeholder an error will occur
   self-target: '<white><hover:show_text:"<gray>Click to response."><click:suggest_command:/msg %player% ><dark_gray>[<yellow><b>MSG</b><dark_gray>] <dark_gray>[<gray>%player% <dark_gray>› <gray>You<dark_gray>] <white>'
   target-self: '<white><hover:show_text:"<gray>Click to send another message."><click:suggest_command:/msg %target% ><dark_gray>[<yellow><b>MSG</b><dark_gray>] <dark_gray>[<gray>You <dark_gray>› <gray>%target%<dark_gray>] <white>'
+
+# Settings for the invsee system
+invsee:
+  gui:
+    title: "<gray>Inventory of <yellow>%player%<gray>"
+    fillEmptySlots: true
+    fillerMaterial: "BLACK_STAINED_GLASS_PANE"
