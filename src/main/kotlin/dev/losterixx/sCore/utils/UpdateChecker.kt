@@ -15,7 +15,7 @@ class UpdateChecker(private val plugin: JavaPlugin) {
 
             if (conn.responseCode == 200) {
                 val json = conn.inputStream.bufferedReader().readText()
-                Regex("\"tag_name\":\"(.*?)\"").find(json)?.groupValues?.get(1)
+                Regex("\"tag_name\":\"(.*?)\"").find(json)?.groupValues?.get(1)?.replace("v", "")
             } else null
         } catch (e: Exception) {
             null
