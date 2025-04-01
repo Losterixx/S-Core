@@ -15,6 +15,7 @@ import dev.losterixx.sCore.features.msg.ReplyCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
+import dev.losterixx.sCore.features.whois.WhoisCommand
 import dev.losterixx.sCore.other.updatechecker.UpdateListener
 import org.bukkit.Bukkit
 import org.bukkit.command.*
@@ -41,6 +42,7 @@ object RegisterManager {
         if (getModules().getBoolean("msg")) registerCommand("msg", MsgCommand(), MsgCommand(), "w", "whisper", "tell", "t")
         if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
         if (getModules().getBoolean("invsee")) registerCommand("invsee", InvseeCommand(), InvseeCommand(), "invs")
+        if (getModules().getBoolean("whois")) registerCommand("whois", WhoisCommand(), WhoisCommand(), "playerinfo")
 
         main.logger.info("Registered $commands commands!")
     }

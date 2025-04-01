@@ -63,3 +63,6 @@ permissions:
   "sCore.command.invsee":
     description: Permission to access the invsee command
     default: op
+  "sCore.command.whois":
+    description: Permission to access the whois command
+    default: op

@@ -70,6 +70,23 @@ commands:
   invsee:
     usage: "<gray>Please use <red>/invsee <player><gray>!"
     selfError: "<gray>To open you own inventory <red>use '<key:key.inventory>'<gray>!"
+  whois:
+    usage: "<gray>Please use <red>/whois <player><gray>!"
+    # In these messages you can use PlaceholderAPI
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Player: <yellow>%player_name%"
+      - "%prefix% <gray>Displayname: <yellow>%player_displayname%"
+      - "%prefix% <gray>UUID: <yellow>%player_uuid%"
+      - "%prefix% <gray>IP: <yellow>%player_ip%"
+      - "%prefix% <gray>Ping: <yellow>%player_ping%"
+      - "%prefix% <gray>World: <yellow>%player_world%"
+      - "%prefix% <gray>Health: <yellow>%player_health%/%player_health_scale%"
+      - "%prefix% <gray>Food: <yellow>%player_food_level%"
+      - "%prefix% <gray>Gamemode: <yellow>%player_gamemode%"
+      - "%prefix% <gray>Is Flying: <yellow>%player_is_flying%"
+      - "%prefix% <gray>Last played: <yellow>%player_last_played_formatted%"
+      - "%prefix% "
 
 # Messages for the custom messages
 customMessages:

@@ -35,3 +35,7 @@ msg: true
 # - /invsee command
 # - Invsee listener
 invsee: true
+
+# This module provides:
+# - /whois command
+whois: true
