@@ -15,6 +15,7 @@ import dev.losterixx.sCore.features.msg.ReplyCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
+import dev.losterixx.sCore.other.updatechecker.UpdateListener
 import org.bukkit.Bukkit
 import org.bukkit.command.*
 import org.bukkit.event.HandlerList
@@ -47,6 +48,7 @@ object RegisterManager {
     private fun registerListeners() {
         HandlerList.unregisterAll(main)
 
+        registerListener(UpdateListener())
         if (getModules().getBoolean("spawn")) registerListener(AutoSpawnTpListener())
         if (getModules().getBoolean("gamemode")) registerListener(AutoGamemodeListener())
         if (getModules().getBoolean("custom-messages")) registerListener(CustomMessagesListener())

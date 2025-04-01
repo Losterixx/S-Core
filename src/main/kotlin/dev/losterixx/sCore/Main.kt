@@ -4,6 +4,7 @@ import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
 import dev.losterixx.sCore.placeholderapi.CustomPlaceholders
 import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.RegisterManager
+import dev.losterixx.sCore.utils.UpdateChecker
 import net.kyori.adventure.text.minimessage.MiniMessage
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
@@ -23,6 +24,9 @@ class Main : JavaPlugin() {
         lateinit var economy: Economy
             private set
     }
+
+    lateinit var updateChecker: UpdateChecker
+        private set
 
     override fun onEnable() {
 
@@ -51,6 +55,18 @@ class Main : JavaPlugin() {
             }
         } else {
             logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
+        }
+
+        //-> Update Checker
+        updateChecker = UpdateChecker(instance)
+        if (ConfigManager.getConfig("config").getBoolean("updateChecker.consoleMessage")) {
+            if (!isLatestVersion()) {
+                logger.warning("You are not using the latest version of S-Core! Please update to the latest version.")
+                logger.warning("Latest version: ${updateChecker.getLatestGitHubRelease("Losterixx", "S-Core")}")
+                logger.warning("Your version: ${description.version}")
+            } else {
+                logger.info("You are using the latest version of S-Core!")
+            }
         }
 
         //-> Features
@@ -107,6 +123,14 @@ class Main : JavaPlugin() {
                 ConfigManager.createConfig(langConfig, "lang/${langFile.fileName}", "lang")
             }
         }
+    }
+
+    fun isLatestVersion(): Boolean {
+        val updateChecker = UpdateChecker(instance)
+
+        val currentVersion = description.version
+        val latestVersion = updateChecker.getLatestGitHubRelease("Losterixx", "S-Core")
+        return latestVersion == null || latestVersion == currentVersion
     }
 
     private fun setupEconomy(): Boolean {

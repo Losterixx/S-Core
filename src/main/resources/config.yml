@@ -9,6 +9,14 @@ prefix: "<#47E3A4><b>S-Core</b> <dark_gray>⚡ <gray>"
 # The messages file to use
 langFile: 'english'
 
+# Settings for the update checker
+updateChecker:
+  # Send a message to the console when a new version is available
+  consoleMessage: true
+  # Send a message to the player when a new version is available
+  # This requires the permission 'sCore.admin' or to be an OP
+  playerMessage: true
+
 # Settings for sounds
 sounds:
   # Play a sound when the player gets teleported

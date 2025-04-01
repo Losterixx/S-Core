@@ -9,6 +9,10 @@ general:
   noPerms: "<gray>Du hast <red>keine Berechtigung<gray> für diesen Befehl!"
   playerNotFound: "<gray>Der angegebene Spieler <red>konnte nicht gefunden<gray> werden!"
 
+# Other messages
+other:
+  updateChecker: "<gray>Es ist ein <yellow>Update verfügbar<gray>! Die momentane Version ist die <red>v%current-version%<gray>, die neuste Version ist die <green>%latest-version%<gray>!"
+
 # Befehlsnachrichten
 commands:
   # Nachrichten für den /s-core Befehl (Hauptbefehl des Plugins)
