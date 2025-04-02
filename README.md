@@ -8,6 +8,7 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 ## Features
 - Reload the plugin directly in-game
 - Customizable messages
+- Update-Checker (Automatically checks for updates on startup and when an admin joins.)
 - Spawn system:
   - `/setspawn` and `/spawn`
   - Automatic teleportation on (join, first join, death, movement when below a specified Y-height)
@@ -16,9 +17,12 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
   - Placeholders: `%sCore_player_world%`, `%sCore_player_money%`, `%sCore_player_money_formatted%`
 - Gamemode (/gamemode + auto set gamemode on join)
 - Auto-Broadcaster (Sends messages in givin intervals)
-- CustomMessages
+- Custom-Messages
   - Remove/Edit default minecraft messages
   - Messages to edit: join, quit, death
+- Info-Commands (/discord, /vote, /website)
+- Invsee (Currently view-only)
+- MSG (/msg, /reply)
 - More features in development ...
 
 ## Download
@@ -29,7 +33,7 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 A wiki will be created once the plugin receives more features.
 
 ## Developer API
-A developer API is planned but currently has a low priority.
+A developer API is planned but is currently low priority, as there isn't much at the moment that would an API be useful for.
 
 ## Support
 My Discord-Server: [S-Projects](https://discord.gg/gnGsUAwp76)
