@@ -13,15 +13,14 @@ class CustomMessagesListener : Listener {
     private val mm = Main.miniMessage
     private val main = Main.instance
     private fun getConfig() = ConfigManager.getConfig("config")
-    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile", "english"))
     private fun getPrefix() = getConfig().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
-        val joinMessage = getMessages().getString("customMessages.join.message", null)
+        val joinMessage = getConfig().getString("customMessages.join.message", null)
 
-        if (getMessages().getBoolean("customMessages.join.enabled")) {
+        if (getConfig().getBoolean("customMessages.join.enabled")) {
             val message = if (joinMessage != null) mm.deserialize(joinMessage
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
@@ -33,9 +32,9 @@ class CustomMessagesListener : Listener {
     @EventHandler
     fun onQuit(event: PlayerQuitEvent) {
         val player = event.player
-        val quitMessage = getMessages().getString("customMessages.quit.message", null)
+        val quitMessage = getConfig().getString("customMessages.quit.message", null)
 
-        if (getMessages().getBoolean("customMessages.quit.enabled")) {
+        if (getConfig().getBoolean("customMessages.quit.enabled")) {
             val message = if (quitMessage != null) mm.deserialize(quitMessage
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
@@ -47,9 +46,9 @@ class CustomMessagesListener : Listener {
     @EventHandler
     fun onDeath(event: PlayerDeathEvent) {
         val player = event.player
-        val deathMessage = getMessages().getString("customMessages.death.message", null)
+        val deathMessage = getConfig().getString("customMessages.death.message", null)
 
-        if (getMessages().getBoolean("customMessages.death.enabled")) {
+        if (getConfig().getBoolean("customMessages.death.enabled")) {
             val message = if (deathMessage != null) mm.deserialize(deathMessage
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
