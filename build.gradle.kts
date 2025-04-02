@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.losterixx"
-version = "1.1"
+version = "1.2"
 
 repositories {
     mavenCentral()
@@ -26,6 +26,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("dev.dejvokep:boosted-yaml:1.3.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.3")
 
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.nexomc:nexo:1.1.0")

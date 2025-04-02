@@ -45,16 +45,20 @@ class SCoreCommand : CommandExecutor, TabCompleter {
             "reload", "rl" -> {
                 sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.reload.reloading")))
 
-                val formattedElapsed = runCatching {
+                val elapsedTime = runCatching {
                     measureTimeMillis {
                         ConfigManager.reloadConfig("config")
                         main.loadLangFiles()
                         ConfigManager.reloadAllConfigs()
                     }
-                }.getOrElse { 0 }.let { "$it" }
+                }.getOrElse {
+                    sender.sendMessage(mm.deserialize(getPrefix() + "<red>Error while reloading configs! Check console."))
+                    it.printStackTrace()
+                    -1
+                }
 
                 sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.reload.reloaded")
-                    .replace("%time%", formattedElapsed)))
+                    .replace("%time%", elapsedTime.toString())))
             }
 
             else -> {

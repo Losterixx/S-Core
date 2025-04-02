@@ -13,7 +13,7 @@ player:
   world:
     enabled: true
     # Here you can define the translations for specific worlds
-    # You can also use color codes, but only legacy color codes like '§a' or '§c'
+    # You can also use color codes (e.g., <green>, <red>, etc.) for the translations
     translations:
       "world": "<green>Overworld"
       "world_nether": "<red>Nether"

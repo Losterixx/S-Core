@@ -22,6 +22,7 @@ commands:
     reload:
       reloading: "<gray>S-Core <yellow>wird neugeladen<gray>..."
       reloaded: "<gray>S-Core wurde <green>erfolgreich neugeladen<gray>! <dark_gray>(%time%ms)"
+      error: "<red>Fehler beim Neuladen <gray>von S-Core! Überprüfe die Konsole für Details."
   setspawn:
     usage: "<gray>Bitte nutze <red>/setspawn<gray>!"
     set: "<gray>Der Spawn <green>wurde gesetzt<gray>!"

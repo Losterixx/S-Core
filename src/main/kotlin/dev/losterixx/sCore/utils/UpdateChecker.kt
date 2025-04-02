@@ -1,10 +1,9 @@
 package dev.losterixx.sCore.utils
 
-import org.bukkit.plugin.java.JavaPlugin
 import java.net.HttpURLConnection
 import java.net.URL
 
-class UpdateChecker(private val plugin: JavaPlugin) {
+object UpdateChecker {
 
     fun getLatestGitHubRelease(user: String, repo: String): String? {
         return try {

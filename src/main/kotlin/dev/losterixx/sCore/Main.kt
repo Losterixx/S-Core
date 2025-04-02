@@ -3,6 +3,7 @@ package dev.losterixx.sCore
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
 import dev.losterixx.sCore.placeholderapi.CustomPlaceholders
 import dev.losterixx.sCore.utils.ConfigManager
+import dev.losterixx.sCore.utils.CoroutineUtils
 import dev.losterixx.sCore.utils.RegisterManager
 import dev.losterixx.sCore.utils.UpdateChecker
 import net.kyori.adventure.text.minimessage.MiniMessage
@@ -25,15 +26,13 @@ class Main : JavaPlugin() {
             private set
     }
 
-    lateinit var updateChecker: UpdateChecker
-        private set
-
     override fun onEnable() {
 
         logger.info("Plugin is being enabled...")
 
         //-> Custom
         instance = this
+        CoroutineUtils.init(instance)
 
         //-> Configs
         loadLangFiles()
@@ -57,29 +56,32 @@ class Main : JavaPlugin() {
             logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
         }
 
-        //-> Update Checker
-        updateChecker = UpdateChecker(instance)
-        if (ConfigManager.getConfig("config").getBoolean("updateChecker.consoleMessage")) {
-            if (!isLatestVersion()) {
-                logger.warning("You are not using the latest version of S-Core! Please update to the latest version.")
-                logger.warning("Latest version: ${updateChecker.getLatestGitHubRelease("Losterixx", "S-Core")}")
-                logger.warning("Your version: ${description.version}")
-            } else {
-                logger.info("You are using the latest version of S-Core!")
-            }
-        }
-
         //-> Features
         BroadcastManager.startBroadcasting()
 
         //-> Register
         RegisterManager.registerAll()
 
+        //-> Update Checker
+        if (ConfigManager.getConfig("config").getBoolean("updateChecker.consoleMessage")) {
+            CoroutineUtils.launchAsync {
+                if (!isLatestVersion()) {
+                    logger.warning("You are not using the latest version of S-Core! Please update to the latest version.")
+                    logger.warning("Latest version: ${UpdateChecker.getLatestGitHubRelease("Losterixx", "S-Core")}")
+                    logger.warning("Your version: ${description.version}")
+                } else {
+                    logger.info("You are using the latest version of S-Core!")
+                }
+            }
+        }
+
         logger.info("Plugin has been enabled!")
 
     }
 
     override fun onDisable() {
+
+        CoroutineUtils.cancelAll()
 
         logger.info("Plugin has been disabled!")
 
@@ -126,24 +128,16 @@ class Main : JavaPlugin() {
     }
 
     fun isLatestVersion(): Boolean {
-        val updateChecker = UpdateChecker(instance)
-
         val currentVersion = description.version
-        val latestVersion = updateChecker.getLatestGitHubRelease("Losterixx", "S-Core")
-        return latestVersion == null || latestVersion == currentVersion
+        val latestVersion = UpdateChecker.getLatestGitHubRelease("Losterixx", "S-Core")
+        return latestVersion != null && latestVersion == currentVersion
     }
 
     private fun setupEconomy(): Boolean {
-        if (server.pluginManager.getPlugin("Vault") == null) {
-            return false
-        }
-
-        val rsp = server.servicesManager.getRegistration<Economy?>(Economy::class.java)
-        if (rsp == null) {
-            return false
-        }
-
-        economy = rsp.getProvider()
-        return economy != null
+        val vault = server.pluginManager.getPlugin("Vault") ?: return false
+        val rsp = server.servicesManager.getRegistration(Economy::class.java) ?: return false
+        economy = rsp.provider ?: return false
+        return true
     }
+
 }
