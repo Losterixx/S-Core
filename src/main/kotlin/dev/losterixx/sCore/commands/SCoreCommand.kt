@@ -1,11 +1,14 @@
 package dev.losterixx.sCore.commands
 
 import dev.losterixx.sCore.Main
+import dev.losterixx.sCore.Main.Companion.miniMessage
 import dev.losterixx.sCore.utils.ConfigManager
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
+import java.net.URI
 import kotlin.system.measureTimeMillis
 
 class SCoreCommand : CommandExecutor, TabCompleter {
@@ -50,6 +53,8 @@ class SCoreCommand : CommandExecutor, TabCompleter {
                         ConfigManager.reloadConfig("config")
                         main.loadLangFiles()
                         ConfigManager.reloadAllConfigs()
+
+                        main.registerServerLinks()
                     }
                 }.getOrElse {
                     sender.sendMessage(mm.deserialize(getPrefix() + "<red>Error while reloading configs! Check console."))

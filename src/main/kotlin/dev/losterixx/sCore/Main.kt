@@ -11,6 +11,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+import java.net.URI
 import java.nio.file.Files
 
 class Main : JavaPlugin() {
@@ -61,6 +62,9 @@ class Main : JavaPlugin() {
 
         //-> Register
         RegisterManager.registerAll()
+
+        //-> Other
+        registerServerLinks()
 
         //-> Update Checker
         if (ConfigManager.getConfig("config").getBoolean("updateChecker.consoleMessage")) {
@@ -134,6 +138,17 @@ class Main : JavaPlugin() {
         val currentVersion = description.version
         val latestVersion = UpdateChecker.getLatestGitHubRelease("Losterixx", "S-Core")
         return latestVersion != null && latestVersion == currentVersion
+    }
+
+    fun registerServerLinks() {
+        if (ConfigManager.getConfig("modules").getBoolean("server-links")) {
+            val serverLinks = Bukkit.getServerLinks()
+            for (entry in ConfigManager.getConfig("config").getSection("serverLinks").getRoutesAsStrings(false)) {
+                val entryTitle = ConfigManager.getConfig("config").getString("serverLinks.$entry.title")
+                val entryLink = URI(ConfigManager.getConfig("config").getString("serverLinks.$entry.link"))
+                serverLinks.addLink(miniMessage.deserialize(entryTitle), entryLink)
+            }
+        }
     }
 
     private fun setupEconomy(): Boolean {

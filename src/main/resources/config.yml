@@ -30,6 +30,18 @@ sounds:
     # The pitch of the sound
     pitch: 1.0
 
+# Settings for server links
+# You can add as many links as you want
+serverLinks:
+  # The website link
+  website:
+    title: "<yellow><b>Website"
+    link: "https://www.example.com"
+  # The Discord link
+  discord:
+    title: "<blue><b>Discord"
+    link: "https://discord.gg/example"
+
 # Settings for auto spawn teleport
 autoSpawnTeleport:
   # Teleport the player to the spawn on first join

@@ -6,6 +6,10 @@
 spawn: true
 
 # This module provides:
+# - The server-links in config.yml/serverLinks
+server-links: true
+
+# This module provides:
 # - /gamemode command
 # - Automatic gamemode changes
 gamemode: true
