@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.losterixx"
-version = "1.2"
+version = "1.3"
 
 repositories {
     mavenCentral()
@@ -47,6 +47,11 @@ tasks {
     }
     shadowJar {
         archiveClassifier.set("")
+
+        from("src/main/kotlin/dev/losterixx/sCore/utils/bStats/Metrics.java") {
+            include("dev/losterixx/sCore/utils/bStats/**")
+        }
+
         relocate("dev.dejvokep.boostedyaml", "dev.losterixx.sCore.libs")
     }
     processResources {
@@ -55,6 +60,14 @@ tasks {
         filteringCharset = "UTF-8"
         filesMatching("plugin.yml") {
             expand(props)
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs("src/main/kotlin", "src/main/java")
         }
     }
 }

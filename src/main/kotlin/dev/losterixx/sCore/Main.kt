@@ -6,12 +6,12 @@ import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.CoroutineUtils
 import dev.losterixx.sCore.utils.RegisterManager
 import dev.losterixx.sCore.utils.UpdateChecker
+import dev.losterixx.sCore.utils.bStats.Metrics
 import net.kyori.adventure.text.minimessage.MiniMessage
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.nio.file.Files
-
 
 class Main : JavaPlugin() {
 
@@ -74,6 +74,9 @@ class Main : JavaPlugin() {
                 }
             }
         }
+
+        //-> Metrics
+        val metrics = Metrics(this, 25338)
 
         logger.info("Plugin has been enabled!")
 
