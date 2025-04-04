@@ -54,6 +54,9 @@ class SCoreCommand : CommandExecutor, TabCompleter {
                         main.loadLangFiles()
                         ConfigManager.reloadAllConfigs()
 
+                        main.server.serverLinks.links.forEach {
+                            main.server.serverLinks.removeLink(it)
+                        }
                         main.registerServerLinks()
                     }
                 }.getOrElse {

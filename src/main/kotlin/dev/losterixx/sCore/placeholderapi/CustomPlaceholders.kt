@@ -14,7 +14,7 @@ class CustomPlaceholders : PlaceholderExpansion() {
 
     private val main = Main.instance
     private fun getCustomPlaceholders() = ConfigManager.getConfig("custom-placeholders")
-    private val economy = Main.economy
+    private val economy = main.economy
 
 
     override fun getIdentifier(): String {

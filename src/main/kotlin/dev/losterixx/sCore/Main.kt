@@ -22,10 +22,10 @@ class Main : JavaPlugin() {
 
         const val DEFAULT_PREFIX = "<#47E3A4><b>S-Core</b> <dark_gray>⚡ <gray>"
         val miniMessage = MiniMessage.miniMessage()
-
-        lateinit var economy: Economy
-            private set
     }
+
+    var economy: Economy? = null
+        private set
 
     override fun onEnable() {
 
