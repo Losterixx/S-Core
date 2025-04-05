@@ -43,3 +43,7 @@ invsee: true
 # This module provides:
 # - /whois command
 whois: true
+
+# This module provides:
+# - /setwarp, /warp, /delwarp & /listwarps commands
+warps: true

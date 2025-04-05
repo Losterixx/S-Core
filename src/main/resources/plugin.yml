@@ -66,3 +66,15 @@ permissions:
   "sCore.command.whois":
     description: Permission to access the whois command
     default: op
+  "sCore.command.setwarp":
+    description: Permission to set warps
+    default: op
+  "sCore.command.warp":
+    description: Permission to teleport to warps
+    default: op
+  "sCore.command.delwarp":
+    description: Permission to delete warps
+    default: op
+  "sCore.command.listwarps":
+    description: Permission to list warps
+    default: op

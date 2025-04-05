@@ -15,6 +15,10 @@ import dev.losterixx.sCore.features.msg.ReplyCommand
 import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
 import dev.losterixx.sCore.features.spawn.SetSpawnCommand
 import dev.losterixx.sCore.features.spawn.SpawnCommand
+import dev.losterixx.sCore.features.warps.DelWarpCommand
+import dev.losterixx.sCore.features.warps.ListWarpsCommand
+import dev.losterixx.sCore.features.warps.SetWarpCommand
+import dev.losterixx.sCore.features.warps.WarpCommand
 import dev.losterixx.sCore.features.whois.WhoisCommand
 import dev.losterixx.sCore.other.updatechecker.UpdateListener
 import org.bukkit.Bukkit
@@ -43,6 +47,10 @@ object RegisterManager {
         if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
         if (getModules().getBoolean("invsee")) registerCommand("invsee", InvseeCommand(), InvseeCommand(), "invs")
         if (getModules().getBoolean("whois")) registerCommand("whois", WhoisCommand(), WhoisCommand(), "playerinfo")
+        if (getModules().getBoolean("warps")) registerCommand("setwarp", SetWarpCommand(), null)
+        if (getModules().getBoolean("warps")) registerCommand("warp", WarpCommand(), WarpCommand())
+        if (getModules().getBoolean("warps")) registerCommand("delwarp", DelWarpCommand(), DelWarpCommand())
+        if (getModules().getBoolean("warps")) registerCommand("listwarps", ListWarpsCommand(), null, "warps")
 
         main.logger.info("Registered $commands commands!")
     }

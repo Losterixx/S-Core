@@ -88,3 +88,22 @@ commands:
       - "%prefix% <gray>Fliegt: <yellow>%player_is_flying%"
       - "%prefix% <gray>Zuletzt gespielt: <yellow>%player_last_played_formatted%"
       - "%prefix% "
+  setwarp:
+    usage: "<gray>Bitte nutze <red>/setwarp <Name><gray>!"
+    set: "<gray>Der Warp <green>wurde gesetzt<gray>!"
+    alreadyExists: "<red>Der Warp <yellow>%warp% <red>existiert bereits<gray>!"
+  warp:
+    usage: "<gray>Bitte nutze <red>/warp <Name><gray>!"
+    teleport: "<gray>Du wirst zum Warp <green>teleportiert<gray>..."
+    notFound: "<red>Der Warp <yellow>%warp% <red>konnte nicht gefunden<gray> werden!"
+    locNotFound: "<red>Der Warp <yellow>%warp% <red>Ort konnte nicht gefunden<gray> werden!"
+  delwarp:
+    usage: "<gray>Bitte nutze <red>/delwarp <Name><gray>!"
+    deleted: "<gray>Der Warp <yellow>%warp% <gray>wurde gelöscht!"
+    notFound: "<red>Der Warp <yellow>%warp% <red>konnte nicht gefunden<gray> werden!"
+  listwarps:
+    usage: "<gray>Bitte nutze <red>/listwarps<gray>!"
+    noWarps: "<red>Es sind <red>keine Warps gesetzt<gray>!"
+    warpsHeader: "%prefix%<newline>%prefix%<gray>Warps: "
+    warpsElement: "%prefix%<dark_gray> - <white>%warp%<gray>"
+    warpsFooter: "%prefix% "
