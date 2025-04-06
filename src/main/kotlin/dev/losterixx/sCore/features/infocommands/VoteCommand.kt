@@ -23,7 +23,7 @@ class VoteCommand  : CommandExecutor {
             return false
         }
 
-        if (!args.isEmpty()) {
+        if (args.isNotEmpty()) {
             sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.vote.usage")))
             return false
         }

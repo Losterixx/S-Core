@@ -61,6 +61,18 @@ commands:
       - "%prefix% "
       - "%prefix% <gray>Besuche unsere Website: <underlined>https://yourserver.com"
       - "%prefix% "
+  help:
+    usage: "<gray>Bitte nutze <red>/help<gray>!"
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Du brauchst Hilfe? Hier findest du unser Wiki: <underlined>https://wiki.yourserver.com"
+      - "%prefix% "
+  rules:
+    usage: "<gray>Bitte nutze <red>/rules<gray>!"
+    messages:
+      - "%prefix% "
+      - "%prefix% <gray>Bitte beachte unser Regelwerk: <underlined>https://rules.yourserver.com"
+      - "%prefix% "
   msg:
     usage: "<gray>Bitte nutze <red>/msg <Spieler> <Nachricht><gray>!"
     selfError: "<gray>Du kannst <red>nicht dich selbst<gray> anschreiben!"

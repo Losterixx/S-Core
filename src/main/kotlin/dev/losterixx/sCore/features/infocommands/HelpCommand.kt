@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import kotlin.system.measureTimeMillis
 
-class DiscordCommand  : CommandExecutor {
+class HelpCommand  : CommandExecutor {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
@@ -18,17 +18,17 @@ class DiscordCommand  : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
-        if (!sender.hasPermission("sCore.command.discord")) {
+        if (!sender.hasPermission("sCore.command.help")) {
             sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPerms")))
             return false
         }
 
         if (args.isNotEmpty()) {
-            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.discord.usage")))
+            sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.help.usage")))
             return false
         }
 
-        for (message in getMessages().getStringList("commands.discord.messages")) {
+        for (message in getMessages().getStringList("commands.help.messages")) {
             sender.sendMessage(mm.deserialize(message
                 .replace("%prefix%", getPrefix()
                 .replace("%player%", sender.name))))

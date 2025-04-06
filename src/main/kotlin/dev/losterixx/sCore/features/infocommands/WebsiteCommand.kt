@@ -23,7 +23,7 @@ class WebsiteCommand  : CommandExecutor {
             return false
         }
 
-        if (!args.isEmpty()) {
+        if (args.isNotEmpty()) {
             sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.website.usage")))
             return false
         }

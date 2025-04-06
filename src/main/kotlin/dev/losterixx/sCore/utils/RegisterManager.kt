@@ -6,9 +6,7 @@ import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
 import dev.losterixx.sCore.features.gamemode.GamemodeCommand
-import dev.losterixx.sCore.features.infocommands.DiscordCommand
-import dev.losterixx.sCore.features.infocommands.VoteCommand
-import dev.losterixx.sCore.features.infocommands.WebsiteCommand
+import dev.losterixx.sCore.features.infocommands.*
 import dev.losterixx.sCore.features.invsee.InvseeCommand
 import dev.losterixx.sCore.features.msg.MsgCommand
 import dev.losterixx.sCore.features.msg.ReplyCommand
@@ -43,6 +41,8 @@ object RegisterManager {
         if (getModules().getBoolean("info-commands")) registerCommand("discord", DiscordCommand(), null, "dc")
         if (getModules().getBoolean("info-commands")) registerCommand("website", WebsiteCommand(), null, "web")
         if (getModules().getBoolean("info-commands")) registerCommand("vote", VoteCommand(), null)
+        if (getModules().getBoolean("info-commands")) registerCommand("help", HelpCommand(), null)
+        if (getModules().getBoolean("info-commands")) registerCommand("rules", RulesCommand(), null)
         if (getModules().getBoolean("msg")) registerCommand("msg", MsgCommand(), MsgCommand(), "w", "whisper", "tell", "t")
         if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
         if (getModules().getBoolean("invsee")) registerCommand("invsee", InvseeCommand(), InvseeCommand(), "invs")
