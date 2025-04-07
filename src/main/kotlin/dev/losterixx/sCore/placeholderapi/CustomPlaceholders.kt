@@ -13,6 +13,7 @@ import kotlin.math.pow
 class CustomPlaceholders : PlaceholderExpansion() {
 
     private val main = Main.instance
+    private val prefix = ConfigManager.getConfig("config").getString("prefix") ?: Main.DEFAULT_PREFIX
     private fun getCustomPlaceholders() = ConfigManager.getConfig("custom-placeholders")
     private val economy = main.economy
 
@@ -33,6 +34,10 @@ class CustomPlaceholders : PlaceholderExpansion() {
         if (player == null) return null
 
         when(identifier.lowercase()) {
+
+            "prefix" -> {
+                return prefix
+            }
 
             "player_world" -> {
                 if (!getCustomPlaceholders().getBoolean("player.world.enabled")) return getCustomPlaceholders().getString("general.disabledValue")

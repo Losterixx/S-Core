@@ -131,3 +131,21 @@ customMessages:
     # Message displayed when a player dies
     # Set to 'null' to disable the message
     message: "%prefix% <dark_red>☠ <gray>Player <white>%player% <gray>has died!"
+
+# Settings for custom join actions
+# Here you can also use PlaceholderAPI placeholders
+customActions:
+  # Here you can specify as many actions as you want
+  # But remember that it can cause lag if you have too many actions
+  # If you don't to use any action, just set it to 'join: []'
+  join:
+    - '[MESSAGE] %sCore_prefix% <gray>Welcome to the server, <yellow>%player_name%<gray>!'
+    - '[TITLE] <green><b>WELCOME;<yellow>%player_name%'
+    - '[ACTIONBAR] <green>Welcome to the server, <yellow>%player_name%<gray>!'
+    - '[PLAYER_COMMAND] /spawn'
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;1.0;1.0'
+  respawn:
+    - '[MESSAGE] %sCore_prefix% '
+    - '[MESSAGE] %sCore_prefix% <gray>Welcome back, <yellow>%player_name%<gray>!'
+    - '[MESSAGE] %sCore_prefix% '
+    - '[PLAYER_COMMAND] /spawn'

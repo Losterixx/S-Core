@@ -47,3 +47,7 @@ whois: true
 # This module provides:
 # - /setwarp, /warp, /delwarp & /listwarps commands
 warps: true
+
+# This module provides:
+# - All custom actions defined under 'customActions' in 'config.yml'
+customActions: true

@@ -65,6 +65,7 @@ class Main : JavaPlugin() {
 
         //-> Other
         registerServerLinks()
+        server.messenger.registerOutgoingPluginChannel(instance, "BungeeCord")
 
         //-> Update Checker
         if (ConfigManager.getConfig("config").getBoolean("updateChecker.consoleMessage")) {
@@ -89,6 +90,8 @@ class Main : JavaPlugin() {
     override fun onDisable() {
 
         CoroutineUtils.cancelAll()
+
+        server.messenger.unregisterOutgoingPluginChannel(instance, "BungeeCord")
 
         logger.info("Plugin has been disabled!")
 
