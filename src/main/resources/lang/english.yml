@@ -23,6 +23,10 @@ commands:
       reloading: "<yellow>Reloading <gray>S-Core..."
       reloaded: "<green>Successfully reloaded <gray>S-Core! <dark_gray>(%time%ms)"
       error: "<gray>An <red>error occurred <gray>while reloading S-Core! Check the console for details."
+    help:
+      - "%prefix% "
+      - "%prefix% <gray>Explore our wiki for help: <underlined>https://s-projects.gitbook.io/s-projects/"
+      - "%prefix% "
   setspawn:
     usage: "<gray>Please use <red>/setspawn<gray>!"
     set: "<gray>Spawn <green>has been set<gray>!"

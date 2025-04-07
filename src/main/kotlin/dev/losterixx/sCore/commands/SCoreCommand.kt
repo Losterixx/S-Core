@@ -69,6 +69,13 @@ class SCoreCommand : CommandExecutor, TabCompleter {
                     .replace("%time%", elapsedTime.toString())))
             }
 
+            "help" -> {
+                for (line in getMessages().getStringList("commands.s-core.help")) {
+                    sender.sendMessage(mm.deserialize(line
+                        .replace("%prefix%", getPrefix())))
+                }
+            }
+
             else -> {
                 sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.s-core.usage")))
             }
@@ -85,9 +92,11 @@ class SCoreCommand : CommandExecutor, TabCompleter {
         if (args.isEmpty()) {
             completions.add("about")
             completions.add("reload")
+            completions.add("help")
         } else if (args.size == 1) {
             if ("about".startsWith(args[0].lowercase())) completions.add("about")
             if ("reload".startsWith(args[0].lowercase())) completions.add("reload")
+            if ("help".startsWith(args[0].lowercase())) completions.add("help")
         }
 
         return completions
