@@ -47,36 +47,6 @@ commands:
     usage: "<gray>Bitte nutze <red>/broadcast <Nachricht><gray>!"
     sent: "<gray>Die Nachricht <yellow>%messageId% <gray>wurde gesendet!"
     notFound: "<gray>Die angegebene Nachricht <red>konnte nicht gefunden <gray>werden!"
-  discord:
-    usage: "<gray>Bitte nutze <red>/discord<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Unser Discord-Server: <underlined>https://discord.gg/yourserver"
-      - "%prefix% "
-  vote:
-    usage: "<gray>Bitte nutze <red>/vote<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Vote für unseren server: <underlined>https://vote.youserver.com"
-      - "%prefix% "
-  website:
-    usage: "<gray>Bitte nutze <red>/website<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Besuche unsere Website: <underlined>https://yourserver.com"
-      - "%prefix% "
-  help:
-    usage: "<gray>Bitte nutze <red>/help<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Du brauchst Hilfe? Hier findest du unser Wiki: <underlined>https://wiki.yourserver.com"
-      - "%prefix% "
-  rules:
-    usage: "<gray>Bitte nutze <red>/rules<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Bitte beachte unser Regelwerk: <underlined>https://rules.yourserver.com"
-      - "%prefix% "
   msg:
     usage: "<gray>Bitte nutze <red>/msg <Spieler> <Nachricht><gray>!"
     selfError: "<gray>Du kannst <red>nicht dich selbst<gray> anschreiben!"

@@ -4,8 +4,9 @@ main: dev.losterixx.sCore.Main
 api-version: '1.21'
 authors: [ Losterixx ]
 description: The one and only core system you'll ever need.
-softdepend:
+depend:
   - PlaceholderAPI
+softdepend:
   - Nexo
   - Vault
 permissions:

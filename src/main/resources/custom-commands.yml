@@ -1,0 +1,58 @@
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+file-version: 1
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Note: This commands are only executable by players.
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+discord:
+  # The command to trigger this command.
+  command: 'discord'
+  # The aliases for this command.
+  # Set this to '[]' to disable aliases.
+  aliases: [ 'dc' ]
+  # The actions to perform when the command is executed.
+  actions:
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;0.9;1.1'
+    - '[MESSAGE] %sCore_prefix%'
+    - '[MESSAGE] %sCore_prefix% <gray>Join our Discord server: <white><underlined><click:open_url:https://discord.gg/your-discord-link>https://discord.gg/your-discord-link</click></underlined></white>'
+    - '[MESSAGE] %sCore_prefix%'
+
+vote:
+  command: 'vote'
+  aliases: []
+  actions:
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;0.9;1.1'
+    - '[MESSAGE] %sCore_prefix%'
+    - '[MESSAGE] %sCore_prefix% <gray>Vote for us: <white><underlined><click:open_url:https://vote.yourserver.com>https://vote.yourserver.com</click></underlined></white>'
+    - '[MESSAGE] %sCore_prefix%'
+
+website:
+  command: 'website'
+  aliases: [ 'web' ]
+  actions:
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;0.9;1.1'
+    - '[MESSAGE] %sCore_prefix%'
+    - '[MESSAGE] %sCore_prefix% <gray>Visit our website: <white><underlined><click:open_url:https://yourserver.com>https://yourserver.com</click></underlined></white>'
+    - '[MESSAGE] %sCore_prefix%'
+
+help:
+  command: 'help'
+  aliases: [ 'wiki', 'guide' ]
+  actions:
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;0.9;1.1'
+    - '[MESSAGE] %sCore_prefix%'
+    - '[MESSAGE] %sCore_prefix% <gray>For help, visit our wiki: <white><underlined><click:open_url:https://s-projects.gitbook.io/s-projects/>https://s-projects.gitbook.io/s-projects/</click></underlined></white>'
+    - '[MESSAGE] %sCore_prefix%'
+
+rules:
+  command: 'rules'
+  aliases: []
+  actions:
+    - '[SOUND] ENTITY_PLAYER_LEVELUP;0.9;1.1'
+    - '[MESSAGE] %sCore_prefix%'
+    - '[MESSAGE] %sCore_prefix% <gray>Read our server rules: <white><underlined><click:open_url:https://yourserver.com/rules>https://yourserver.com/rules</click></underlined></white>'
+    - '[MESSAGE] %sCore_prefix%'
+

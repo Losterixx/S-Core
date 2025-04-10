@@ -47,36 +47,6 @@ commands:
     usage: "<gray>Please use <red>/broadcast <message><gray>!"
     sent: "<gray>The message <yellow>%messageId% <gray>has been sent!"
     notFound: "<gray>The given message <red>could not be found<gray>!"
-  discord:
-    usage: "<gray>Please use <red>/discord<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Join our Discord server: <underlined>https://discord.gg/yourserver"
-      - "%prefix% "
-  vote:
-    usage: "<gray>Please use <red>/vote<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Vote for us: <underlined>https://vote.youserver.com"
-      - "%prefix% "
-  website:
-    usage: "<gray>Please use <red>/website<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Visit our website: <underlined>https://yourserver.com"
-      - "%prefix% "
-  help:
-    usage: "<gray>Please use <red>/help<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Need help? Check the wiki: <underlined>https://wiki.youserver.com"
-      - "%prefix% "
-  rules:
-    usage: "<gray>Please use <red>/rules<gray>!"
-    messages:
-      - "%prefix% "
-      - "%prefix% <gray>Read the rules: <underlined>https://rules.youserver.com"
-      - "%prefix% "
   msg:
     usage: "<gray>Please use <red>/msg <player> <message><gray>!"
     selfError: "<gray>You <red>cannot send a message to yourself<gray>!"

@@ -1,37 +1,36 @@
 package dev.losterixx.sCore.utils
 
 import dev.losterixx.sCore.Main
-import dev.losterixx.sCore.commands.SCoreCommand
+import dev.losterixx.sCore.commands.*
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
 import dev.losterixx.sCore.features.custom.customactions.CustomActionsListener
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
-import dev.losterixx.sCore.features.gamemode.AutoGamemodeListener
-import dev.losterixx.sCore.features.gamemode.GamemodeCommand
-import dev.losterixx.sCore.features.infocommands.*
+import dev.losterixx.sCore.features.gamemode.*
 import dev.losterixx.sCore.features.invsee.InvseeCommand
-import dev.losterixx.sCore.features.msg.MsgCommand
-import dev.losterixx.sCore.features.msg.ReplyCommand
-import dev.losterixx.sCore.features.spawn.AutoSpawnTpListener
-import dev.losterixx.sCore.features.spawn.SetSpawnCommand
-import dev.losterixx.sCore.features.spawn.SpawnCommand
-import dev.losterixx.sCore.features.warps.DelWarpCommand
-import dev.losterixx.sCore.features.warps.ListWarpsCommand
-import dev.losterixx.sCore.features.warps.SetWarpCommand
-import dev.losterixx.sCore.features.warps.WarpCommand
+import dev.losterixx.sCore.features.msg.*
+import dev.losterixx.sCore.features.spawn.*
+import dev.losterixx.sCore.features.warps.*
 import dev.losterixx.sCore.features.whois.WhoisCommand
 import dev.losterixx.sCore.other.updatechecker.UpdateListener
 import org.bukkit.Bukkit
 import org.bukkit.command.*
+import org.bukkit.entity.Player
 import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 
 object RegisterManager {
 
     private val main = Main.instance
+    private val mm = Main.miniMessage
     private fun getModules() = ConfigManager.getConfig("modules")
+    private fun getConfig() = ConfigManager.getConfig("config")
+    private fun getMessages() = ConfigManager.getConfig(getConfig().getString("langFile" ) ?: "english")
+    private fun getCustomCommands() = ConfigManager.getConfig("custom-commands")
+    private fun getPrefix() = getMessages().getString("prefix") ?: Main.DEFAULT_PREFIX
 
     private var commands = 0
     private var listeners = 0
+    private var customCommands = 0
 
     private fun registerCommands() {
         registerCommand("sCore", SCoreCommand(), SCoreCommand(), "score", "s-core")
@@ -39,11 +38,6 @@ object RegisterManager {
         if (getModules().getBoolean("spawn")) registerCommand("spawn", SpawnCommand(), null)
         if (getModules().getBoolean("gamemode")) registerCommand("gamemode", GamemodeCommand(), GamemodeCommand(), "gm")
         if (getModules().getBoolean("auto-broadcaster")) registerCommand("broadcast", BroadcastCommand(), BroadcastCommand(), "bc")
-        if (getModules().getBoolean("info-commands")) registerCommand("discord", DiscordCommand(), null, "dc")
-        if (getModules().getBoolean("info-commands")) registerCommand("website", WebsiteCommand(), null, "web")
-        if (getModules().getBoolean("info-commands")) registerCommand("vote", VoteCommand(), null)
-        if (getModules().getBoolean("info-commands")) registerCommand("help", HelpCommand(), null)
-        if (getModules().getBoolean("info-commands")) registerCommand("rules", RulesCommand(), null)
         if (getModules().getBoolean("msg")) registerCommand("msg", MsgCommand(), MsgCommand(), "w", "whisper", "tell", "t")
         if (getModules().getBoolean("msg")) registerCommand("reply", ReplyCommand(), null, "r")
         if (getModules().getBoolean("invsee")) registerCommand("invsee", InvseeCommand(), InvseeCommand(), "invs")
@@ -73,6 +67,35 @@ object RegisterManager {
     fun registerAll() {
         registerCommands()
         registerListeners()
+    }
+
+
+    fun registerCustomCommands() {
+        getCustomCommands().getRoutesAsStrings(false).forEach { key ->
+            val section = getCustomCommands().getSection(key) ?: return@forEach
+            val commandName = section.getString("command")?.replace("/", "")
+            val aliases = section.getStringList("aliases").orEmpty()
+            val actions = section.getStringList("actions").orEmpty()
+
+            if (commandName.isNullOrEmpty() || actions.isEmpty()) {
+                main.logger.warning("Invalid command in custom-commands.yml: $key")
+                return@forEach
+            }
+
+            registerCommand(commandName, CommandExecutor { sender, _, _, _ ->
+                if (sender !is Player) {
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPlayer")))
+                    return@CommandExecutor false
+                }
+
+                ConfigActionHandler.executeActions(sender, actions)
+
+                false
+            }, null, *aliases.toTypedArray())
+
+            customCommands++
+        }
+        main.logger.info("Registered $customCommands custom commands!")
     }
 
 

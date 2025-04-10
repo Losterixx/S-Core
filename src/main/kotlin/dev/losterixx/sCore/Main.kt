@@ -54,7 +54,8 @@ class Main : JavaPlugin() {
                 logger.info("Custom Placeholders are disabled in modules.yml! Skipping PlaceholderAPI hook.")
             }
         } else {
-            logger.warning("PlaceholderAPI could not be found! Placeholders won't work.")
+            logger.warning("PlaceholderAPI could not be found! This plugin is required.")
+            server.pluginManager.disablePlugin(instance)
         }
 
         //-> Features
@@ -62,6 +63,7 @@ class Main : JavaPlugin() {
 
         //-> Register
         RegisterManager.registerAll()
+        RegisterManager.registerCustomCommands()
 
         //-> Other
         registerServerLinks()
@@ -103,6 +105,7 @@ class Main : JavaPlugin() {
         ConfigManager.createConfig("modules", "modules.yml")
         ConfigManager.createConfig("data", "data.yml")
         ConfigManager.createConfig("custom-placeholders", "custom-placeholders.yml")
+        ConfigManager.createConfig("custom-commands", "custom-commands.yml")
 
         loadLangFiles()
         val langFile = ConfigManager.getConfig("config").getString("langFile", null)
