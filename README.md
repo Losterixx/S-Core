@@ -23,6 +23,10 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 - Info-Commands (/discord, /vote, /website)
 - Invsee (Currently view-only)
 - MSG (/msg, /reply)
+- ServerLinks
+- Warps (`/setwarp`, `/warp`, `/delwarp`, `/warps`)
+- CustomActions (onJoin, onRespawn)
+- CustomCommands
 - More features in development ...
 
 ## Download
