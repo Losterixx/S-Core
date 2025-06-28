@@ -50,4 +50,12 @@ warps: true
 
 # This module provides:
 # - All custom actions defined under 'customActions' in 'config.yml'
-customActions: true
+custom-actions: true
+
+# This module provides:
+# - The custom tablist header and footer
+tablist: true
+
+# This module provides:
+# - The custom scoreboard
+scoreboard: true

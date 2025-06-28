@@ -1,6 +1,8 @@
 package dev.losterixx.sCore
 
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
+import dev.losterixx.sCore.features.scoreboard.ScoreboardManager
+import dev.losterixx.sCore.features.tablist.TablistManager
 import dev.losterixx.sCore.placeholderapi.CustomPlaceholders
 import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.CoroutineUtils
@@ -59,7 +61,10 @@ class Main : JavaPlugin() {
         }
 
         //-> Features
-        BroadcastManager.startBroadcasting()
+        val modules = ConfigManager.getConfig("modules")
+        if (modules.getBoolean("auto-broadcaster")) BroadcastManager.startBroadcasting()
+        if (modules.getBoolean("tablist")) TablistManager.startTablistUpdater()
+        if (modules.getBoolean("scoreboard")) ScoreboardManager.startScoreboardUpdater()
 
         //-> Register
         RegisterManager.registerAll()

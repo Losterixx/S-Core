@@ -149,3 +149,37 @@ customActions:
     - '[MESSAGE] %sCore_prefix% <gray>Welcome back, <yellow>%player_name%<gray>!'
     - '[MESSAGE] %sCore_prefix% '
     - '[PLAYER_COMMAND] /spawn'
+
+# Settings for the tablist
+tablist:
+  # Enable or disable the custom tablist header and footer
+  enabled: true
+  # Update interval in ticks (20 ticks = 1 second)
+  updateInterval: 20
+  # The header of the tablist
+  header:
+    - " "
+    - "<gold><b>Welcome to the Server!"
+    - "<gray>Enjoy your stay!"
+    - " "
+  footer:
+    - " "
+    - "<gray>Players online: <yellow>%server_online%<gray> | Max players: <yellow>%server_max_players%"
+    - "<gray>Server version: <yellow>%server_version%"
+    - " "
+
+# Settings for the custom scoreboard
+scoreboard:
+  # Enable or disable the custom scoreboard
+  enabled: true
+  # Update interval in ticks (20 ticks = 1 second)
+  updateInterval: 20
+  # The title of the scoreboard
+  title: "<gold><b>Player Info"
+  # The lines of the scoreboard
+  lines:
+    - ""
+    - "<gray>Player: <white>%player_name%"
+    - "<gray>Health: <red>%player_health%<gray>/<red>%player_max_health%"
+    - "<gray>Level: <green>%player_level%"
+    - " "
