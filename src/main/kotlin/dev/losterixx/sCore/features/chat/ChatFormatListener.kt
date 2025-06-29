@@ -21,7 +21,7 @@ class ChatFormatListener : Listener {
 
         if (!getConfig().getBoolean("chat.format.enabled")) return
 
-        var messageText = PlainTextComponentSerializer.plainText().serialize(event.message())
+        var messageText = translateLegacyCodes(PlainTextComponentSerializer.plainText().serialize(event.message()))
         val rawFormat = getConfig().getString("chat.format.format") ?: return
 
         val hasColor = player.hasPermission("sCore.chat.color")
@@ -60,4 +60,34 @@ class ChatFormatListener : Listener {
         main.server.broadcast(component)
     }
 
+    private fun translateLegacyCodes(message: String): String {
+        return message
+            .replace(Regex("&([0-9a-fA-Fk-orK-OR])")) { matchResult ->
+                when (val code = matchResult.groupValues[1].lowercase()) {
+                    "0" -> "<black>"
+                    "1" -> "<dark_blue>"
+                    "2" -> "<dark_green>"
+                    "3" -> "<dark_aqua>"
+                    "4" -> "<dark_red>"
+                    "5" -> "<dark_purple>"
+                    "6" -> "<gold>"
+                    "7" -> "<gray>"
+                    "8" -> "<dark_gray>"
+                    "9" -> "<blue>"
+                    "a" -> "<green>"
+                    "b" -> "<aqua>"
+                    "c" -> "<red>"
+                    "d" -> "<light_purple>"
+                    "e" -> "<yellow>"
+                    "f" -> "<white>"
+                    "k" -> "<obfuscated>"
+                    "l" -> "<bold>"
+                    "m" -> "<strikethrough>"
+                    "n" -> "<underlined>"
+                    "o" -> "<italic>"
+                    "r" -> "<reset>"
+                    else -> matchResult.value
+                }
+            }
+    }
 }
