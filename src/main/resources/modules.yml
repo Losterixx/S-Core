@@ -59,3 +59,7 @@ tablist: true
 # This module provides:
 # - The custom scoreboard
 scoreboard: true
+
+# This module provides:
+# - The custom chat format, anti-spam, chat filters, clear-chat, and chat-lock
+chat: true

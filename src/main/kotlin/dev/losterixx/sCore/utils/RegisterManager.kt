@@ -3,6 +3,7 @@ package dev.losterixx.sCore.utils
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.*
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
+import dev.losterixx.sCore.features.chat.ChatFormatListener
 import dev.losterixx.sCore.features.custom.customactions.CustomActionsListener
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.*
@@ -60,6 +61,7 @@ object RegisterManager {
         if (getModules().getBoolean("msg")) registerListener(ReplyCommand())
         if (getModules().getBoolean("invsee")) registerListener(InvseeCommand())
         if (getModules().getBoolean("customActions")) registerListener(CustomActionsListener())
+        if (getModules().getBoolean("chat")) registerListener(ChatFormatListener())
 
         main.logger.info("Registered $listeners listeners!")
     }

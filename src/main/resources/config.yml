@@ -183,3 +183,12 @@ scoreboard:
     - "<gray>Health: <red>%player_health%<gray>/<red>%player_max_health%"
     - "<gray>Level: <green>%player_level%"
     - " "
+
+# Settings for the custom chat
+chat:
+  format:
+    # Enable or disable the custom chat format
+    enabled: true
+    # The format of the chat message
+    # You can use PlaceholderAPI placeholders here (and %message% placeholder)
+    format: "<dark_gray>[%player_world%] <white>%player_name% <dark_gray>: <gray>%message%"
