@@ -79,7 +79,7 @@ autoBroadcaster:
   # The sound to play when broadcasting
   sound:
     enabled: true
-    sound: ENTITY.PLAYER.LEVELUP
+    sound: ENTITY_PLAYER_LEVELUP
     volume: 1.0
     pitch: 1.0
   # The messages to broadcast

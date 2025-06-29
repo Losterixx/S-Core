@@ -45,7 +45,13 @@ object BroadcastManager {
         }
 
         if (getConfig().getBoolean("autoBroadcaster.sound.enabled")) {
-            val sound: Sound = Sound.valueOf(getConfig().getString("autoBroadcaster.sound.sound").lowercase().replace("_", "."))
+            val soundName = getConfig().getString("autoBroadcaster.sound.sound")?.uppercase()?.replace('.', '_') ?: "ENTITY_PLAYER_LEVELUP"
+            val sound = try {
+                Sound.valueOf(soundName)
+            } catch (e: Exception) {
+                main.logger.warning("Invalid sound-name for autoBroadcaster: $soundName. Using default sound.")
+                Sound.ENTITY_PLAYER_LEVELUP
+            }
             val volume = getConfig().getDouble("autoBroadcaster.sound.volume")
             val pitch = getConfig().getDouble("autoBroadcaster.sound.pitch")
 
