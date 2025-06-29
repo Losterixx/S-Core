@@ -79,3 +79,12 @@ permissions:
   "sCore.command.listwarps":
     description: Permission to list warps
     default: op
+  "sCore.chat.color":
+    description: Permission to use color codes in chat
+    default: op
+  "sCore.chat.format":
+    description: Permission to use chat formats
+    default: op
+  "sCore.chat.minimessage":
+    description: Permission to use MiniMessage in chat
+    default: op

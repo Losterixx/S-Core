@@ -21,17 +21,39 @@ class ChatFormatListener : Listener {
 
         if (!getConfig().getBoolean("chat.format.enabled")) return
 
-        val messageText = PlainTextComponentSerializer.plainText().serialize(event.message())
+        var messageText = PlainTextComponentSerializer.plainText().serialize(event.message())
         val rawFormat = getConfig().getString("chat.format.format") ?: return
-        val parsedFormat = if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            PlaceholderAPI.setPlaceholders(player,
-            rawFormat.replace("%message%", messageText)
+
+        val hasColor = player.hasPermission("sCore.chat.color")
+        val hasFormat = player.hasPermission("sCore.chat.format")
+        val hasMiniMessage = player.hasPermission("sCore.chat.minimessage")
+
+        if (!hasMiniMessage) {
+            val allowedTags = listOf(
+                "black","dark_blue","dark_green","dark_aqua","dark_red","dark_purple","gold","gray","dark_gray",
+                "blue","green","aqua","red","light_purple","yellow","white",
+                "bold", "b", "italic", "i", "underlined", "u", "strikethrough", "obfuscated"
             )
-        } else {
-            rawFormat
-                .replace("%player_name%", player.name)
-                .replace("%message%", messageText)
+            val allowedPattern = allowedTags.joinToString("|")
+            messageText = messageText.replace(
+                Regex("<(?!$allowedPattern)([a-zA-Z0-9_:-]+)(:[^>]+)?\\s*\\/?>", RegexOption.IGNORE_CASE),
+                ""
+            )
+            messageText = messageText.replace(
+                Regex("</(?!$allowedPattern)[a-zA-Z0-9_:-]+>", RegexOption.IGNORE_CASE),
+                ""
+            )
         }
+        if (!hasFormat) {
+            messageText = messageText.replace(Regex("<(bold|b|italic|i|underlined|u|strikethrough|obfuscated)>", RegexOption.IGNORE_CASE), "")
+            messageText = messageText.replace(Regex("</(bold|b|italic|i|underlined|u|strikethrough|obfuscated)>", RegexOption.IGNORE_CASE), "")
+        }
+        if (!hasColor) {
+            messageText = messageText.replace(Regex("<(black|dark_blue|dark_green|dark_aqua|dark_red|dark_purple|gold|gray|dark_gray|blue|green|aqua|red|light_purple|yellow|white)>", RegexOption.IGNORE_CASE), "")
+            messageText = messageText.replace(Regex("</(black|dark_blue|dark_green|dark_aqua|dark_red|dark_purple|gold|gray|dark_gray|blue|green|aqua|red|light_purple|yellow|white)>", RegexOption.IGNORE_CASE), "")
+        }
+
+        val parsedFormat = PlaceholderAPI.setPlaceholders(player, rawFormat).replace("%message%", messageText)
 
         event.isCancelled = true
         val component = mm.deserialize(parsedFormat)
