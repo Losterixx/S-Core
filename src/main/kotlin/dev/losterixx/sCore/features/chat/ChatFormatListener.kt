@@ -7,6 +7,7 @@ import me.clip.placeholderapi.PlaceholderAPI
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 
 class ChatFormatListener : Listener {
@@ -20,6 +21,7 @@ class ChatFormatListener : Listener {
         val player = event.player
 
         if (!getConfig().getBoolean("chat.format.enabled")) return
+        if (event.isCancelled) return
 
         var messageText = translateLegacyCodes(PlainTextComponentSerializer.plainText().serialize(event.message()))
         val rawFormat = getConfig().getString("chat.format.format") ?: return

@@ -192,3 +192,9 @@ chat:
     # The format of the chat message
     # You can use PlaceholderAPI placeholders here (and %message% placeholder)
     format: "<dark_gray>[%player_world%] <white>%player_name% <dark_gray>: <gray>%message%"
+  chatclear:
+    # The empty messages to send when the chat is cleared
+    emptyMessages: 300
+  chatlock:
+    # Is the chat locked? (Can also be toggled with the /chatlock command)
+    isChatLocked: false

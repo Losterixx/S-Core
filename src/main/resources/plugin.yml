@@ -88,3 +88,12 @@ permissions:
   "sCore.chat.minimessage":
     description: Permission to use MiniMessage in chat
     default: op
+  "sCore.command.chatclear":
+    description: Permission to clear the chat
+    default: op
+  "sCore.command.chatlock":
+    description: Permission to lock the chat
+    default: op
+  "sCore.bypass.chatlock":
+    description: Permission to bypass the chat lock
+    default: op

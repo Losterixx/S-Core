@@ -3,7 +3,9 @@ package dev.losterixx.sCore.utils
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.*
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
+import dev.losterixx.sCore.features.chat.ChatClearCommand
 import dev.losterixx.sCore.features.chat.ChatFormatListener
+import dev.losterixx.sCore.features.chat.ChatLockCommand
 import dev.losterixx.sCore.features.custom.customactions.CustomActionsListener
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.*
@@ -47,6 +49,8 @@ object RegisterManager {
         if (getModules().getBoolean("warps")) registerCommand("warp", WarpCommand(), WarpCommand())
         if (getModules().getBoolean("warps")) registerCommand("delwarp", DelWarpCommand(), DelWarpCommand())
         if (getModules().getBoolean("warps")) registerCommand("listwarps", ListWarpsCommand(), null, "warps")
+        if (getModules().getBoolean("chat")) registerCommand("chatclear", ChatClearCommand(), null, "clearchat", "cc")
+        if (getModules().getBoolean("chat")) registerCommand("chatlock", ChatLockCommand(), null, "lockchat")
 
         main.logger.info("Registered $commands commands!")
     }
@@ -62,6 +66,7 @@ object RegisterManager {
         if (getModules().getBoolean("invsee")) registerListener(InvseeCommand())
         if (getModules().getBoolean("customActions")) registerListener(CustomActionsListener())
         if (getModules().getBoolean("chat")) registerListener(ChatFormatListener())
+        if (getModules().getBoolean("chat")) registerListener(ChatLockCommand())
 
         main.logger.info("Registered $listeners listeners!")
     }

@@ -93,3 +93,13 @@ commands:
     warpsHeader: "%prefix%<newline>%prefix%<gray>Warps: "
     warpsElement: "%prefix%<dark_gray> - <white>%warp%<gray>"
     warpsFooter: "%prefix% "
+  chatclear:
+    usage: "<gray>Bitte nutze <red>/chatclear<gray>!"
+    cleared:
+      - "%prefix% <gray>Der Chat wurde von <white>%player%<gray>!"
+      - " "
+  chatlock:
+    usage: "<gray>Bitte nutze <red>/chatlock<gray>!"
+    locked: "<gray>Der Chat wurde <green>gesperrt<gray>!"
+    unlocked: "<gray>Der Chat wurde <green>entsperrt<gray>!"
+    chatLocked: "<gray>Der Chat ist momentan <red>gesperrt<gray>!"
