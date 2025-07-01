@@ -97,3 +97,6 @@ permissions:
   "sCore.bypass.chatlock":
     description: Permission to bypass the chat lock
     default: op
+  "sCore.bypass.chatfilter":
+    description: Permission to bypass the chat filter
+    default: op

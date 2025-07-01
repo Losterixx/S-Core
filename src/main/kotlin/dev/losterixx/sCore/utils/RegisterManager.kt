@@ -4,6 +4,7 @@ import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.*
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
 import dev.losterixx.sCore.features.chat.ChatClearCommand
+import dev.losterixx.sCore.features.chat.ChatFilterListener
 import dev.losterixx.sCore.features.chat.ChatFormatListener
 import dev.losterixx.sCore.features.chat.ChatLockCommand
 import dev.losterixx.sCore.features.custom.customactions.CustomActionsListener
@@ -67,6 +68,7 @@ object RegisterManager {
         if (getModules().getBoolean("customActions")) registerListener(CustomActionsListener())
         if (getModules().getBoolean("chat")) registerListener(ChatFormatListener())
         if (getModules().getBoolean("chat")) registerListener(ChatLockCommand())
+        if (getModules().getBoolean("chat")) registerListener(ChatFilterListener())
 
         main.logger.info("Registered $listeners listeners!")
     }

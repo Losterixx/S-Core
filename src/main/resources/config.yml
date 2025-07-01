@@ -198,3 +198,23 @@ chat:
   chatlock:
     # Is the chat locked? (Can also be toggled with the /chatlock command)
     isChatLocked: false
+  chatfilter:
+    # Should empty messages be blocked?
+    # Example: If a player sends a message with only spaces or color codes
+    noEmptyMessages: true
+    # Blocks messages with more than the given amount of uppercase letters
+    antiCaps:
+      # Enable or disable the anti-caps feature
+      enabled: true
+      # The percentage of caps that is allowed
+      percentage: 50
+      # The minimum length of the message to check for caps
+      minLength: 7
+    # Should identical messages be blocked?
+    antiSpam: true
+    # Blocks sending messages too fast
+    chatDelay:
+      # Enable or disable the chat delay
+      enabled: true
+      # The delay in seconds before a player can send another message
+      delay: 3

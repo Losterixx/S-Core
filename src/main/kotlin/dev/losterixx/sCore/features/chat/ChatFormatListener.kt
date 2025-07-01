@@ -2,10 +2,9 @@ package dev.losterixx.sCore.features.chat
 
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.utils.ConfigManager
+import dev.losterixx.sCore.utils.MMUtil
 import io.papermc.paper.event.player.AsyncChatEvent
 import me.clip.placeholderapi.PlaceholderAPI
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
-import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -16,14 +15,14 @@ class ChatFormatListener : Listener {
     private val main = Main.instance
     private fun getConfig() = ConfigManager.getConfig("config")
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     fun onChat(event: AsyncChatEvent) {
         val player = event.player
 
         if (!getConfig().getBoolean("chat.format.enabled")) return
         if (event.isCancelled) return
 
-        var messageText = translateLegacyCodes(PlainTextComponentSerializer.plainText().serialize(event.message()))
+        var messageText = MMUtil.translateLegacyCodes(MMUtil.getTextFromComponent(event.message()))
         val rawFormat = getConfig().getString("chat.format.format") ?: return
 
         val hasColor = player.hasPermission("sCore.chat.color")
@@ -60,36 +59,5 @@ class ChatFormatListener : Listener {
         event.isCancelled = true
         val component = mm.deserialize(parsedFormat)
         main.server.broadcast(component)
-    }
-
-    private fun translateLegacyCodes(message: String): String {
-        return message
-            .replace(Regex("&([0-9a-fA-Fk-orK-OR])")) { matchResult ->
-                when (val code = matchResult.groupValues[1].lowercase()) {
-                    "0" -> "<black>"
-                    "1" -> "<dark_blue>"
-                    "2" -> "<dark_green>"
-                    "3" -> "<dark_aqua>"
-                    "4" -> "<dark_red>"
-                    "5" -> "<dark_purple>"
-                    "6" -> "<gold>"
-                    "7" -> "<gray>"
-                    "8" -> "<dark_gray>"
-                    "9" -> "<blue>"
-                    "a" -> "<green>"
-                    "b" -> "<aqua>"
-                    "c" -> "<red>"
-                    "d" -> "<light_purple>"
-                    "e" -> "<yellow>"
-                    "f" -> "<white>"
-                    "k" -> "<obfuscated>"
-                    "l" -> "<bold>"
-                    "m" -> "<strikethrough>"
-                    "n" -> "<underlined>"
-                    "o" -> "<italic>"
-                    "r" -> "<reset>"
-                    else -> matchResult.value
-                }
-            }
     }
 }

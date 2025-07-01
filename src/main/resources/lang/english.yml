@@ -103,3 +103,11 @@ commands:
     locked: "<gray>The chat has been <red>locked<gray>!"
     unlocked: "<gray>The chat has been <green>unlocked<gray>!"
     chatLocked: "<gray>The chat is currently <red>locked<gray>!"
+
+# Chat filter messages
+chat:
+  chatfilter:
+    emptyMessage: "<gray>You <red>cannot send empty messages<gray>!"
+    capsMessage: "<gray>You <red>cannot send messages with more than 50% capital letters<gray>!"
+    spamMessage: "<gray>You <red>cannot send identical messages<gray>!"
+    delayMessage: "<gray>You <red>cannot send messages too fast<gray>! Please wait a moment before sending another message."
