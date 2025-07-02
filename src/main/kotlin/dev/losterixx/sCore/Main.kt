@@ -1,5 +1,6 @@
 package dev.losterixx.sCore
 
+import dev.losterixx.sCore.features.NametagManager
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
 import dev.losterixx.sCore.features.scoreboard.ScoreboardManager
 import dev.losterixx.sCore.features.tablist.TablistManager
@@ -10,6 +11,8 @@ import dev.losterixx.sCore.utils.RegisterManager
 import dev.losterixx.sCore.utils.UpdateChecker
 import dev.losterixx.sCore.utils.bStats.Metrics
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.luckperms.api.LuckPerms
+import net.luckperms.api.LuckPermsProvider
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
@@ -27,6 +30,9 @@ class Main : JavaPlugin() {
     }
 
     var economy: Economy? = null
+        private set
+
+    var luckperms: LuckPerms? = null
         private set
 
     override fun onEnable() {
@@ -48,6 +54,12 @@ class Main : JavaPlugin() {
         } else {
             logger.warning("Vault could not be found! Economy-Features won't work.")
         }
+        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            luckperms = LuckPermsProvider.get()
+            logger.info("Hooked into LuckPerms!")
+        } else {
+            logger.warning("LuckPerms could not be found! Rank/Permission-Features won't work.")
+        }
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             if (ConfigManager.getConfig("modules").getBoolean("custom-placeholders")) {
                 CustomPlaceholders().register()
@@ -65,6 +77,7 @@ class Main : JavaPlugin() {
         if (modules.getBoolean("auto-broadcaster")) BroadcastManager.startBroadcasting()
         if (modules.getBoolean("tablist")) TablistManager.startTablistUpdater()
         if (modules.getBoolean("scoreboard")) ScoreboardManager.startScoreboardUpdater()
+        if (modules.getBoolean("nametag")) NametagManager.startNametagUpdater()
 
         //-> Register
         RegisterManager.registerAll()

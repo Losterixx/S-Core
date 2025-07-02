@@ -166,6 +166,12 @@ tablist:
   enabled: true
   # Update interval in ticks (20 ticks = 1 second)
   updateInterval: 20
+  # Custom player list names
+  playerListNames:
+    # Enable or disable custom player list names
+    enabled: true
+    # The format of the player list name
+    format: "%sCore_player_rank_prefix%%player_name%%sCore_player_rank_suffix%"
   # The header of the tablist
   header:
     - " "
@@ -201,7 +207,7 @@ chat:
     enabled: true
     # The format of the chat message
     # You can use PlaceholderAPI placeholders here (and %message% placeholder)
-    format: "<dark_gray>[%player_world%] <white>%player_name% <dark_gray>: <gray>%message%</gray>"
+    format: "%sCore_player_rank_prefix%%player_name%%sCore_player_rank_suffix% <dark_gray>: <gray>%message%</gray>"
   chatclear:
     # The empty messages to send when the chat is cleared
     emptyMessages: 300
@@ -262,3 +268,29 @@ chat:
         "xD": "😆"
         "_/": "✅"
         "<3": "❤️"
+
+# Settings for the nametag system
+nametag:
+  # Enable or disable the nametag system
+  enabled: true
+  # The format of the nametag
+  prefix: "%sCore_player_rank_prefix%"
+  suffix: "%sCore_player_rank_suffix%"
+  # The update interval in ticks (20 ticks = 1 second)
+  updateInterval: 20
+
+# Settings for the rank system
+ranks:
+  # Should the ranks be sorted by their LuckPerms rank weight?
+  sortTablistByRank: true
+  # Settings for the ranks
+  # [!] Note: This rank system utilizes LuckPerms, the ranks need to be named like the LuckPerms groups.
+  ranks:
+    default:
+      displayName: "<gray>Default</gray>"
+      prefix: "<gray>Default <dark_gray>| <white>"
+      suffix: ""
+    admin:
+      displayName: "<red>Admin</red>"
+      prefix: "<red>Admin <dark_gray>| <white>"
+      suffix: ""

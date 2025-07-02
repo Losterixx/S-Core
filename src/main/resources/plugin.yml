@@ -9,6 +9,7 @@ depend:
 softdepend:
   - Nexo
   - Vault
+  - LuckPerms
 permissions:
   "sCore.admin":
     description: Permission to access plugin main command

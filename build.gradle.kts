@@ -34,6 +34,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
         exclude(group = "org.bukkit", module = "bukkit")
     }
+    compileOnly("net.luckperms:api:5.5")
 }
 
 tasks {

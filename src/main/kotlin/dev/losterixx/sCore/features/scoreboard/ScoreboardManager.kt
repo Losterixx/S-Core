@@ -55,11 +55,7 @@ object ScoreboardManager {
     }
 
     private fun formatText(player: Player, text: String): Component {
-        val replaced = if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            PlaceholderAPI.setPlaceholders(player, text)
-        } else {
-            text
-        }
+        val replaced = PlaceholderAPI.setPlaceholders(player, text)
         return mm.deserialize(replaced)
     }
 }

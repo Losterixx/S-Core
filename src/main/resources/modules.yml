@@ -53,7 +53,7 @@ warps: true
 custom-actions: true
 
 # This module provides:
-# - The custom tablist header and footer
+# - The custom tablist
 tablist: true
 
 # This module provides:
@@ -63,3 +63,7 @@ scoreboard: true
 # This module provides:
 # - The custom chat format, anti-spam, chat filters, clear-chat, and chat-lock
 chat: true
+
+# This module provides:
+# - The nametag system
+nametag: true

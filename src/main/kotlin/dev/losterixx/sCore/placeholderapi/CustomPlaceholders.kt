@@ -13,7 +13,9 @@ import kotlin.math.pow
 class CustomPlaceholders : PlaceholderExpansion() {
 
     private val main = Main.instance
+    private val lp = main.luckperms
     private val prefix = ConfigManager.getConfig("config").getString("prefix") ?: Main.DEFAULT_PREFIX
+    private fun getConfig() = ConfigManager.getConfig("config")
     private fun getCustomPlaceholders() = ConfigManager.getConfig("custom-placeholders")
     private val economy = main.economy
 
@@ -78,6 +80,38 @@ class CustomPlaceholders : PlaceholderExpansion() {
 
         }
 
+        val id = identifier.lowercase()
+        val ranksSection = getConfig().getSection("ranks.ranks") ?: return null
+
+        if (id == "player_rank" || id == "player_rank_displayname" || id == "player_rank_prefix" || id == "player_rank_suffix") {
+            val luckPermsGroup = getPlayerLuckPermsGroup(player) ?: "default"
+            val rankConfig = ranksSection.getSection(luckPermsGroup) ?: (ranksSection.getSection("default") ?: return null)
+
+            return when (id) {
+                "player_rank", "player_rank_displayname" -> rankConfig.getString("displayName")
+                "player_rank_prefix" -> rankConfig.getString("prefix")
+                "player_rank_suffix" -> rankConfig.getString("suffix")
+                else -> null
+            }
+        }
+
+        if (id.startsWith("rank_")) {
+            val parts = id.split("_")
+            if (parts.size == 3) {
+                val rankName = parts[1]
+                val valueType = parts[2]
+                val rankConfig = ranksSection.getSection(rankName) ?: return null
+                return rankConfig.getString(valueType)
+            }
+        }
+
         return null
+    }
+
+    private fun getPlayerLuckPermsGroup(player: Player): String? {
+        if (lp == null) return "LuckPerms not found"
+        val user = lp.userManager.getUser(player.uniqueId) ?: return "LuckPerms error"
+        val primaryGroup = user.primaryGroup
+        return primaryGroup
     }
 }
