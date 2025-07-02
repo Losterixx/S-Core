@@ -29,6 +29,16 @@ sounds:
     volume: 1.0
     # The pitch of the sound
     pitch: 1.0
+  # General ping sound
+  ping:
+    # Toggle the sound
+    enabled: true
+    # The sound to play
+    sound: "BLOCK_NOTE_BLOCK_PLING"
+    # The volume of the sound
+    volume: 1.0
+    # The pitch of the sound
+    pitch: 1.0
 
 # Settings for server links
 # You can add as many links as you want
@@ -191,7 +201,7 @@ chat:
     enabled: true
     # The format of the chat message
     # You can use PlaceholderAPI placeholders here (and %message% placeholder)
-    format: "<dark_gray>[%player_world%] <white>%player_name% <dark_gray>: <gray>%message%"
+    format: "<dark_gray>[%player_world%] <white>%player_name% <dark_gray>: <gray>%message%</gray>"
   chatclear:
     # The empty messages to send when the chat is cleared
     emptyMessages: 300
@@ -218,3 +228,37 @@ chat:
       enabled: true
       # The delay in seconds before a player can send another message
       delay: 3
+    # Blocks messages with invalid characters
+    blockInvalidCharacters:
+      # Enable or disable the invalid characters check
+      enabled: true
+      # The regex pattern for allowed characters
+      # Help: https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+      allowedCharsRegex: "^[\\p{L}\\p{N} ,;.:_#'+~´`?=(){}\\[\\]&%$\"²³!^°<>|€@\\-]*$"
+    # Blocks messages wich contain swear words
+    antiSwear:
+      # Enable or disable the anti-swear feature
+      enabled: true
+      # Should the anti-swear filter ignore case sensitivity?
+      ignoreCase: true
+      # The list of words to block
+      # You can add as many words as you want
+      blockedWords: [ "shit", "fuck", "bitch" ]
+  features:
+    # Replaces text-emojis like ":)" with actual emojis
+    emojis:
+      # Enable or disable the emoji replacement
+      enabled: true
+      # The list of text-emojis to replace
+      # You can add as many emojis as you want
+      emojiMap:
+        ":)": "😊"
+        ":(": "😢"
+        ":D": "😄"
+        ";)": "😉"
+        ":P": "😛"
+        ":o": "😮"
+        ":/": "😕"
+        "xD": "😆"
+        "_/": "✅"
+        "<3": "❤️"

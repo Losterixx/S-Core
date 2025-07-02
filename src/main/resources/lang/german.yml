@@ -111,3 +111,5 @@ chat:
     capsMessage: "<gray>Du <red>kannst keine Nachrichten mit mehr als 50% Großbuchstaben senden<gray>!"
     spamMessage: "<gray>Du <red>kannst keine identischen Nachrichten <gray>senden!"
     delayMessage: "<gray>Du <red>sendest Nachrichten zu schnell<gray>! Bitte warte einen Moment."
+    invalidCharacters: "<gray>Deine Nachricht enthält <red>ungültige Zeichen<gray>!"
+    swearWords: "<gray>Deine Nachricht enthält <red>Schimpfwörter<gray>! Bitte verhalte dich respektvoll."

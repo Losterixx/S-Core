@@ -24,7 +24,8 @@ class ChatFilterListener : Listener {
     fun onChat(event: AsyncChatEvent) {
         val player = event.player
         val messageText = MMUtil.translateLegacyCodes(MMUtil.getTextFromComponent(event.message()))
-        val cleanedMessage = messageText.replace(Regex("<.*?>"), "").replace(" ", "")
+        val cleanedMessage = messageText.replace(Regex("<.*?>"), "")
+        val messageWords = cleanedMessage.split(" ")
 
         if (player.hasPermission("sCore.bypass.chatfilter")) {
             updateMaps(player.uniqueId, cleanedMessage)
@@ -44,14 +45,14 @@ class ChatFilterListener : Listener {
             }
         }
 
-        // No Empty Check
+        // No Empty Messages
         if (getConfig().getBoolean("chat.chatfilter.noEmptyMessages", false) && cleanedMessage.isEmpty()) {
             player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("chat.chatfilter.emptyMessage")))
             event.isCancelled = true
             return
         }
 
-        // Anti Caps Check
+        // Anti Caps
         if (getConfig().getBoolean("chat.chatfilter.antiCaps.enabled", false) && messageText.length > getConfig().getInt("chat.chatfilter.antiCaps.minLength", 7)) {
             val uppercases = messageText.count { it.isUpperCase() }
             val lowercases = messageText.count { it.isLowerCase() }
@@ -63,13 +64,39 @@ class ChatFilterListener : Listener {
             }
         }
 
-        // Anti Spam Check
+        // Anti Spam
         if (getConfig().getBoolean("chat.chatfilter.antiSpam", false)) {
             val lastMessage = lastMessages[player.uniqueId]
             if (lastMessage == cleanedMessage) {
                 player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("chat.chatfilter.spamMessage")))
                 event.isCancelled = true
                 return
+            }
+        }
+
+        // Block Invalid Characters
+        if (getConfig().getBoolean("chat.chatfilter.blockInvalidCharacters.enabled", false)) {
+            val allowedChars = Regex(getConfig().getString("chat.chatfilter.blockInvalidCharacters.allowedCharsRegex", "^[\\\\p{L}\\\\p{N} ,;.:_#'+~´`?=(){}\\[\\]&%$\\\"²³!^°<>|€@\\\\-]*$"))
+            if (!cleanedMessage.matches(allowedChars)) {
+                player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("chat.chatfilter.invalidCharacters")))
+                event.isCancelled = true
+                return
+            }
+        }
+
+        // Anti Swear
+        if (getConfig().getBoolean("chat.chatfilter.antiSwear.enabled", false)) {
+            val swearWords = getConfig().getStringList("chat.chatfilter.antiSwear.blockedWords")
+            val ignoreCase = getConfig().getBoolean("chat.chatfilter.antiSwear.ignoreCase", true)
+            val checkWords = if (ignoreCase) swearWords.map { it.lowercase() } else swearWords
+            val wordsToCheck = if (ignoreCase) messageWords.map { it.lowercase() } else messageWords
+
+            for (word in wordsToCheck) {
+                if (word in checkWords) {
+                    player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("chat.chatfilter.swearMessage")))
+                    event.isCancelled = true
+                    return
+                }
             }
         }
 

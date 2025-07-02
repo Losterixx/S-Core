@@ -8,7 +8,6 @@ import org.bukkit.SoundCategory
 import org.bukkit.scheduler.BukkitRunnable
 import kotlin.random.Random
 
-
 object BroadcastManager {
 
     private val mm = Main.miniMessage
@@ -48,7 +47,7 @@ object BroadcastManager {
             val soundName = getConfig().getString("autoBroadcaster.sound.sound")?.uppercase()?.replace('.', '_') ?: "ENTITY_PLAYER_LEVELUP"
             val sound = try {
                 Sound.valueOf(soundName)
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 main.logger.warning("Invalid sound-name for autoBroadcaster: $soundName. Using default sound.")
                 Sound.ENTITY_PLAYER_LEVELUP
             }
