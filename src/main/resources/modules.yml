@@ -67,3 +67,7 @@ chat: true
 # This module provides:
 # - The nametag system
 nametag: true
+
+# This module provides:
+# - All util commands like /fly or /heal
+util-commands: true

@@ -101,3 +101,9 @@ permissions:
   "sCore.bypass.chatfilter":
     description: Permission to bypass the chat filter
     default: op
+  "sCore.command.fly.self":
+    description: Permission to toggle fly for yourself
+    default: op
+  "sCore.command.fly.other":
+    description: Permission to toggle fly for other players
+    default: op

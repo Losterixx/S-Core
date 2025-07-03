@@ -103,6 +103,20 @@ commands:
     locked: "<gray>The chat has been <red>locked<gray>!"
     unlocked: "<gray>The chat has been <green>unlocked<gray>!"
     chatLocked: "<gray>The chat is currently <red>locked<gray>!"
+  fly:
+    usage: "<gray>Please use <red>/fly <?player><gray>!"
+    enabled-self: "<gray>Fly mode has been <green>enabled<gray>!"
+    disabled-self: "<gray>Fly mode has been <red>disabled<gray>!"
+    enabled-other: "<gray>Fly mode for <white>%player% <gray>has been <green>enabled<gray>!"
+    disabled-other: "<gray>Fly mode for <white>%player% <gray>has been <red>disabled<gray>!"
+  heal:
+    usage: "<gray>Please use <red>/heal <?player><gray>!"
+    healed-self: "<gray>You have been <green>healed<gray>!"
+    healed-other: "<gray>The player <white>%player% <gray>has been <green>healed<gray>!"
+  feed:
+    usage: "<gray>Please use <red>/feed <?player><gray>!"
+    feed-self: "<gray>You have been <green>fed<gray>!"
+    feed-other: "<gray>The player <white>%player% <gray>has been <green>fed<gray>!"
 
 # Chat filter messages
 chat:

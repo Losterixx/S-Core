@@ -1,6 +1,6 @@
 package dev.losterixx.sCore
 
-import dev.losterixx.sCore.features.NametagManager
+import dev.losterixx.sCore.features.nametag.NametagManager
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastManager
 import dev.losterixx.sCore.features.scoreboard.ScoreboardManager
 import dev.losterixx.sCore.features.tablist.TablistManager

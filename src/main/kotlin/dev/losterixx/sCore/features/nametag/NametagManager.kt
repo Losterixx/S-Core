@@ -1,20 +1,17 @@
-package dev.losterixx.sCore.features
+package dev.losterixx.sCore.features.nametag
 
 import dev.losterixx.sCore.Main
-import dev.losterixx.sCore.features.tablist.TablistManager
 import dev.losterixx.sCore.utils.ConfigManager
 import me.clip.placeholderapi.PlaceholderAPI
-import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
-import org.bukkit.scoreboard.Scoreboard
 
 object NametagManager {
 
-    private val mm: MiniMessage = Main.miniMessage
-    private val main = Main.instance
+    private val mm: MiniMessage = Main.Companion.miniMessage
+    private val main = Main.Companion.instance
     private fun getConfig() = ConfigManager.getConfig("config")
 
     fun startNametagUpdater() {

@@ -3,17 +3,14 @@ package dev.losterixx.sCore.utils
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.commands.*
 import dev.losterixx.sCore.features.autobroadcaster.BroadcastCommand
-import dev.losterixx.sCore.features.chat.ChatClearCommand
-import dev.losterixx.sCore.features.chat.ChatFeatureListener
-import dev.losterixx.sCore.features.chat.ChatFilterListener
-import dev.losterixx.sCore.features.chat.ChatFormatListener
-import dev.losterixx.sCore.features.chat.ChatLockCommand
+import dev.losterixx.sCore.features.chat.*
 import dev.losterixx.sCore.features.custom.customactions.CustomActionsListener
 import dev.losterixx.sCore.features.custommessages.CustomMessagesListener
 import dev.losterixx.sCore.features.gamemode.*
 import dev.losterixx.sCore.features.invsee.InvseeCommand
 import dev.losterixx.sCore.features.msg.*
 import dev.losterixx.sCore.features.spawn.*
+import dev.losterixx.sCore.features.utilcmds.*
 import dev.losterixx.sCore.features.warps.*
 import dev.losterixx.sCore.features.whois.WhoisCommand
 import dev.losterixx.sCore.other.updatechecker.UpdateListener
@@ -53,6 +50,9 @@ object RegisterManager {
         if (getModules().getBoolean("warps")) registerCommand("listwarps", ListWarpsCommand(), null, "warps")
         if (getModules().getBoolean("chat")) registerCommand("chatclear", ChatClearCommand(), null, "clearchat", "cc")
         if (getModules().getBoolean("chat")) registerCommand("chatlock", ChatLockCommand(), null, "lockchat")
+        if (getModules().getBoolean("util-commands")) registerCommand("fly", FlyCommand(), FlyCommand())
+        if (getModules().getBoolean("util-commands")) registerCommand("heal", HealCommand(), HealCommand())
+        if (getModules().getBoolean("util-commands")) registerCommand("feed", FeedCommand(), FeedCommand(), "eat")
 
         main.logger.info("Registered $commands commands!")
     }
