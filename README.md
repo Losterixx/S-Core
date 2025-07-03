@@ -27,6 +27,11 @@ S-Core is a versatile Minecraft plugin with useful features for server administr
 - Warps (`/setwarp`, `/warp`, `/delwarp`, `/warps`)
 - CustomActions (onJoin, onRespawn)
 - CustomCommands
+- Tablist
+- Scoreboard
+- Chat (Chatfilter, Emojis ...)
+- Ranks (Create placeholders for ranks prefix, suffix and displayname | Utilizes LuckPerms)
+- Util Commands (/fly, /heal ...)
 - More features in development ...
 
 ## Download
