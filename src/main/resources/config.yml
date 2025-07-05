@@ -123,6 +123,8 @@ invsee:
 
 # Messages for the custom messages
 customMessages:
+  # Should messages not be sent when the player is vanished? (has metadata 'vanished')
+  respectVanish: true
   join:
     # Overrides the default join message if enabled
     enabled: true
@@ -240,7 +242,7 @@ chat:
       enabled: true
       # The regex pattern for allowed characters
       # Help: https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
-      allowedCharsRegex: "^[\\p{L}\\p{N} ,;.:_#'+~´`?=(){}\\[\\]&%$\"²³!^°<>|€@\\-]*$"
+      allowedCharsRegex: "^[\\p{L}\\p{N} ,;.:_#'+~´`?=/(){}\\[\\]&%$\"²³!^°<>|€@\\-]*$"
     # Blocks messages wich contain swear words
     antiSwear:
       # Enable or disable the anti-swear feature
@@ -281,8 +283,6 @@ nametag:
 
 # Settings for the rank system
 ranks:
-  # Should the ranks be sorted by their LuckPerms rank weight?
-  sortTablistByRank: true
   # Settings for the ranks
   # [!] Note: This rank system utilizes LuckPerms, the ranks need to be named like the LuckPerms groups.
   ranks:

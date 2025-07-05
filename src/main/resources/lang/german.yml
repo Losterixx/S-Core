@@ -126,4 +126,4 @@ chat:
     spamMessage: "<gray>Du <red>kannst keine identischen Nachrichten <gray>senden!"
     delayMessage: "<gray>Du <red>sendest Nachrichten zu schnell<gray>! Bitte warte einen Moment."
     invalidCharacters: "<gray>Deine Nachricht enthält <red>ungültige Zeichen<gray>!"
-    swearWords: "<gray>Deine Nachricht enthält <red>Schimpfwörter<gray>! Bitte verhalte dich respektvoll."
+    swearMessage: "<gray>Deine Nachricht enthält <red>Schimpfwörter<gray>! Bitte verhalte dich respektvoll."

@@ -4,7 +4,6 @@ import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.utils.ConfigManager
 import me.clip.placeholderapi.PlaceholderAPI
 import net.kyori.adventure.text.Component
-import net.luckperms.api.LuckPermsProvider
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
@@ -24,14 +23,7 @@ object TablistManager {
                     return
                 }
 
-                val onlinePlayers = Bukkit.getOnlinePlayers().toList()
-                val sortedPlayers = if (getConfig().getBoolean("ranks.sortTablistByRank", false)) {
-                    onlinePlayers.sortedByDescending { getGroupValue(it) }
-                } else {
-                    onlinePlayers
-                }
-
-                sortedPlayers.forEach {
+                Bukkit.getOnlinePlayers().forEach {
                     updateTablist(it)
                     updatePlayerListName(it)
                 }
@@ -51,21 +43,14 @@ object TablistManager {
         if (!getConfig().getBoolean("tablist.playerListNames.enabled", true)) return
         val format = getConfig().getString("tablist.playerListNames.format") ?: "%player_name%"
         val replaced = PlaceholderAPI.setPlaceholders(player, format)
-        player.playerListName(mm.deserialize(replaced))
+
+        val visibleName = mm.deserialize(replaced)
+
+        player.playerListName(visibleName)
     }
 
     private fun formatText(player: Player, text: String): Component {
         val result = PlaceholderAPI.setPlaceholders(player, text)
         return mm.deserialize(result)
-    }
-
-    private fun getGroupValue(player: Player): Int {
-        if (lp == null) return 0
-        val user = lp.userManager.getUser(player.uniqueId) ?: return 0
-        val primaryGroup = user.primaryGroup
-        val group = lp.groupManager.getGroup(primaryGroup) ?: return 0
-
-        val meta = group.cachedData.metaData
-        return meta.weight ?: 0
     }
 }

@@ -18,6 +18,7 @@ class CustomMessagesListener : Listener {
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
+        if (getConfig().getBoolean("customMessages.respectVanish", false) && player.hasMetadata("vanished")) event.joinMessage(null)
         val joinMessage = getConfig().getString("customMessages.join.message", null)
 
         if (getConfig().getBoolean("customMessages.join.enabled")) {
@@ -32,6 +33,7 @@ class CustomMessagesListener : Listener {
     @EventHandler
     fun onQuit(event: PlayerQuitEvent) {
         val player = event.player
+        if (getConfig().getBoolean("customMessages.respectVanish", false) && player.hasMetadata("vanished")) event.quitMessage(null)
         val quitMessage = getConfig().getString("customMessages.quit.message", null)
 
         if (getConfig().getBoolean("customMessages.quit.enabled")) {
@@ -46,6 +48,7 @@ class CustomMessagesListener : Listener {
     @EventHandler
     fun onDeath(event: PlayerDeathEvent) {
         val player = event.player
+        if (getConfig().getBoolean("customMessages.respectVanish", false) && player.hasMetadata("vanished")) event.deathMessage(null)
         val deathMessage = getConfig().getString("customMessages.death.message", null)
 
         if (getConfig().getBoolean("customMessages.death.enabled")) {

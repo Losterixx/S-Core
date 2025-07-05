@@ -10,8 +10,9 @@ import org.bukkit.scheduler.BukkitRunnable
 
 object NametagManager {
 
-    private val mm: MiniMessage = Main.Companion.miniMessage
-    private val main = Main.Companion.instance
+    private val mm: MiniMessage = Main.miniMessage
+    private val main = Main.instance
+    private val lp = main.luckperms
     private fun getConfig() = ConfigManager.getConfig("config")
 
     fun startNametagUpdater() {
@@ -21,42 +22,54 @@ object NametagManager {
                     cancel()
                     return
                 }
-
-                Bukkit.getOnlinePlayers().forEach { player ->
-                    updateNametag(player)
-                }
+                updateAllNametags()
             }
         }.runTaskTimer(main, 0L, getConfig().getLong("nametag.updateInterval", 20))
     }
 
-    private fun updateNametag(player: Player) {
-        val format = getConfig().getString("nametag.format") ?: "%player_name%"
+    private fun updateAllNametags() {
+        val onlinePlayers = Bukkit.getOnlinePlayers()
+        for (viewer in onlinePlayers) {
+            val scoreboard = viewer.scoreboard.takeIf { it != Bukkit.getScoreboardManager().mainScoreboard }
+                ?: Bukkit.getScoreboardManager().newScoreboard.also { viewer.scoreboard = it }
 
-        val playerName = player.name
-        val prefixRaw = papiText(player, getConfig().getString("nametag.prefix", ""))
-        val suffixRaw = papiText(player, getConfig().getString("nametag.suffix", ""))
+            for (target in onlinePlayers) {
+                val weight = getGroupValue(target).coerceIn(0, 9999)
+                val invertedWeight = 9999 - weight
+                val teamName = "${"%04d".format(invertedWeight)}_${target.uniqueId.toString().substring(0, 8)}"
 
-        val prefix = mm.deserialize(prefixRaw)
-        val suffix = mm.deserialize(suffixRaw)
+                val prefixRaw = papiText(target, getConfig().getString("nametag.prefix", ""))
+                val suffixRaw = papiText(target, getConfig().getString("nametag.suffix", ""))
+                val prefix = mm.deserialize(prefixRaw)
+                val suffix = mm.deserialize(suffixRaw)
 
-        val scoreboard = player.scoreboard.takeIf { it != Bukkit.getScoreboardManager().mainScoreboard }
-            ?: Bukkit.getScoreboardManager().newScoreboard.also { player.scoreboard = it }
+                var team = scoreboard.getTeam(teamName)
+                if (team == null) {
+                    team = scoreboard.registerNewTeam(teamName)
+                }
 
-        val teamName = "nametag_${player.uniqueId.toString().substring(0, 8)}"
-        var team = scoreboard.getTeam(teamName)
-        if (team == null) {
-            team = scoreboard.registerNewTeam(teamName)
-        }
+                team.prefix(prefix)
+                team.suffix(suffix)
 
-        team.prefix(prefix)
-        team.suffix(suffix)
+                scoreboard.teams.filter { it.hasEntry(target.name) && it != team }.forEach { it.removeEntry(target.name) }
 
-        if (!team.hasEntry(playerName)) {
-            team.addEntry(playerName)
+                if (!team.hasEntry(target.name)) {
+                    team.addEntry(target.name)
+                }
+            }
         }
     }
 
     private fun papiText(player: Player, text: String): String {
         return PlaceholderAPI.setPlaceholders(player, text)
+    }
+
+    private fun getGroupValue(player: Player): Int {
+        if (lp == null) return 0
+        val user = lp.userManager.getUser(player.uniqueId) ?: return 0
+        val primaryGroup = user.primaryGroup
+        val group = lp.groupManager.getGroup(primaryGroup) ?: return 0
+        val meta = group.cachedData.metaData
+        return meta.weight ?: 0
     }
 }

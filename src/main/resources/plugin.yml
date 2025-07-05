@@ -1,5 +1,5 @@
 name: S-Core
-version: '1.4'
+version: '1.4.1'
 main: dev.losterixx.sCore.Main
 api-version: '1.21'
 authors: [ Losterixx ]
