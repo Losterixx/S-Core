@@ -1,5 +1,5 @@
 name: S-Core
-version: '1.4.1'
+version: '1.5'
 main: dev.losterixx.sCore.Main
 api-version: '1.21'
 authors: [ Losterixx ]
@@ -106,4 +106,28 @@ permissions:
     default: op
   "sCore.command.fly.other":
     description: Permission to toggle fly for other players
+    default: op
+  "sCore.command.hat":
+    description: Permission to use the hat command
+    default: op
+  "sCore.command.suicide":
+    description: Permission to use the suicide command
+    default: op
+  "sCore.command.trash":
+    description: Permission to use the trash command
+    default: op
+  "sCore.command.top":
+    description: Permission to use the top command
+    default: op
+  "sCore.command.god.self":
+    description: Permission to toggle god mode for yourself
+    default: op
+  "sCore.command.god.other":
+    description: Permission to toggle god mode for other players
+    default: op
+  "sCore.command.sudo":
+    description: Permission to use the sudo command
+    default: op
+  "sCore.bypass.sudo":
+    description: Permission to block being forced to execute commands or send messages
     default: op

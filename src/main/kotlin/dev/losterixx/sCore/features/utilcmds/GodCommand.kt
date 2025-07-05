@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
-class FlyCommand : CommandExecutor, TabCompleter {
+class GodCommand : CommandExecutor, TabCompleter {
 
     private val mm = Main.miniMessage
     private val main = Main.instance
@@ -19,7 +19,7 @@ class FlyCommand : CommandExecutor, TabCompleter {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
-        if (!sender.hasPermission("sCore.command.fly.self") && !sender.hasPermission("sCore.command.fly.other")) {
+        if (!sender.hasPermission("sCore.command.god.self") && !sender.hasPermission("sCore.command.god.other")) {
             sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPerms")))
             return false
         }
@@ -31,35 +31,35 @@ class FlyCommand : CommandExecutor, TabCompleter {
                     return false
                 }
 
-                if (!sender.hasPermission("sCore.command.fly.self")) {
+                if (!sender.hasPermission("sCore.command.god.self")) {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPerms")))
                     return false
                 }
 
-                sender.allowFlight = !sender.allowFlight
-                if (sender.allowFlight) {
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.enabled-self")))
+                sender.isInvulnerable = !sender.isInvulnerable
+                if (sender.isInvulnerable) {
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.enabled-self")))
                 } else {
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.disabled-self")))
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.disabled-self")))
                 }
             }
 
             1 -> {
-                if (!sender.hasPermission("sCore.command.fly.other")) {
+                if (!sender.hasPermission("sCore.command.god.other")) {
                     sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.noPerms")))
                     return false
                 }
 
                 if (args[0] == "*") {
                     Bukkit.getOnlinePlayers().forEach { player ->
-                        player.allowFlight = !player.allowFlight
-                        if (player.allowFlight) {
-                            player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.enabled-self")))
+                        player.isInvulnerable = !player.isInvulnerable
+                        if (player.isInvulnerable) {
+                            player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.enabled-self")))
                         } else {
-                            player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.disabled-self")))
+                            player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.disabled-self")))
                         }
                     }
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.toggled-all")))
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.toggled-all")))
                 } else {
                     val targetPlayer = main.server.getPlayer(args[0])
 
@@ -68,21 +68,21 @@ class FlyCommand : CommandExecutor, TabCompleter {
                         return false
                     }
 
-                    targetPlayer.allowFlight = !targetPlayer.allowFlight
-                    if (targetPlayer.allowFlight) {
-                        targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.enabled-self")))
-                        sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.enabled-other")
+                    targetPlayer.isInvulnerable = !targetPlayer.isInvulnerable
+                    if (targetPlayer.isInvulnerable) {
+                        targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.enabled-self")))
+                        sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.enabled-other")
                                     .replace("%player%", targetPlayer.name)))
                     } else {
-                        targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.disabled-self")))
-                        sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.disabled-other")
+                        targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.disabled-self")))
+                        sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.disabled-other")
                                     .replace("%player%", targetPlayer.name)))
                     }
                 }
             }
 
             else -> {
-                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.fly.usage")))
+                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.god.usage")))
             }
         }
 
@@ -92,7 +92,7 @@ class FlyCommand : CommandExecutor, TabCompleter {
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
         val completions = mutableListOf<String>()
 
-        if (!sender.hasPermission("sCore.command.fly.other")) return completions
+        if (!sender.hasPermission("sCore.command.god.other")) return completions
 
         if (args.isEmpty()) {
             completions.addAll(Bukkit.getOnlinePlayers().map { it.name })

@@ -2,6 +2,8 @@ package dev.losterixx.sCore.features.custommessages
 
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.utils.ConfigManager
+import me.clip.placeholderapi.PlaceholderAPI
+import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
@@ -22,7 +24,7 @@ class CustomMessagesListener : Listener {
         val joinMessage = getConfig().getString("customMessages.join.message", null)
 
         if (getConfig().getBoolean("customMessages.join.enabled")) {
-            val message = if (joinMessage != null) mm.deserialize(joinMessage
+            val message = if (joinMessage != null) mm.deserialize(papiText(player, joinMessage)
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
             else null
@@ -37,7 +39,7 @@ class CustomMessagesListener : Listener {
         val quitMessage = getConfig().getString("customMessages.quit.message", null)
 
         if (getConfig().getBoolean("customMessages.quit.enabled")) {
-            val message = if (quitMessage != null) mm.deserialize(quitMessage
+            val message = if (quitMessage != null) mm.deserialize(papiText(player, quitMessage)
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
             else null
@@ -52,7 +54,7 @@ class CustomMessagesListener : Listener {
         val deathMessage = getConfig().getString("customMessages.death.message", null)
 
         if (getConfig().getBoolean("customMessages.death.enabled")) {
-            val message = if (deathMessage != null) mm.deserialize(deathMessage
+            val message = if (deathMessage != null) mm.deserialize(papiText(player, deathMessage)
                 .replace("%prefix%", getPrefix())
                 .replace("%player%", player.name))
             else null
@@ -60,4 +62,8 @@ class CustomMessagesListener : Listener {
         }
     }
 
+
+    private fun papiText(player: Player, text: String): String {
+        return PlaceholderAPI.setPlaceholders(player, text)
+    }
 }

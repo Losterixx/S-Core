@@ -109,14 +109,45 @@ commands:
     disabled-self: "<gray>Der Flugmodus wurde <red>deaktiviert<gray>!"
     enabled-other: "<gray>Der Flugmodus für <white>%player% <gray>wurde <green>aktiviert<gray>!"
     disabled-other: "<gray>Der Flugmodus für <white>%player% <gray>wurde <red>deaktiviert<gray>!"
+    toggled-all: "<gray>Der Flugmodus wurde für alle Spieler <green>umgeschaltet<gray>!"
   heal:
     usage: "<gray>Bitte nutze <red>/heal <?Spieler><gray>!"
     healed-self: "<gray>Du wurdest <green>geheilt<gray>!"
     healed-other: "<gray>Der Spieler <white>%player% <gray>wurde <green>geheilt<gray>!"
+    healed-all: "<gray>Alle Spieler wurden <green>geheilt<gray>!"
   feed:
     usage: "<gray>Bitte nutze <red>/feed <?Spieler><gray>!"
     feed-self: "<gray>Du wurdest <green>gesättigt<gray>!"
     feed-other: "<gray>Der Spieler <white>%player% <gray>wurde <green>gesättigt<gray>!"
+    feed-all: "<gray>Alle Spieler wurden <green>gesättigt<gray>!"
+  hat:
+    usage: "<gray>Bitte nutze <red>/hat<gray>!"
+    equipped: "<gray>Das Item wurde als Hut <green>ausgerüstet<gray>!"
+    noItem: "<red>Du musst <red>ein Item in der Hand halten <gray>!"
+    alreadyWearing: "<gray>Du musst zunächst deinen <green>Helm ausziehen<gray>!"
+  suicide:
+    usage: "<gray>Bitte nutze <red>/suicide<gray>!"
+    killed: "<gray>Du hast <red>Suizid begangen<gray>!"
+  trash:
+    usage: "<gray>Bitte nutze <red>/trash<gray>!"
+    deleted: "<gray>Der Mülleimer wurde geleert!"
+    guiRows: 2
+    guiTitle: "<gray>Mülleimer"
+  top:
+    usage: "<gray>Bitte nutze <red>/top<gray>!"
+    teleported: "<green>Du wurdest <gray>zum höchsten Block <green>teleportiert<gray>!"
+  god:
+    usage: "<gray>Bitte nutze <red>/god <?Spieler><gray>!"
+    enabled-self: "<gray>Der Gott-Modus wurde <green>aktiviert<gray>!"
+    disabled-self: "<gray>Der Gott-Modus wurde <red>deaktiviert<gray>!"
+    enabled-other: "<gray>Der Gott-Modus für <white>%player% <gray>wurde <green>aktiviert<gray>!"
+    disabled-other: "<gray>Der Gott-Modus für <white>%player% <gray>wurde <red>deaktiviert<gray>!"
+    toggled-all: "<gray>Der Gott-Modus wurde für alle Spieler <green>umgeschaltet<gray>!"
+  sudo:
+    usage: "<gray>Bitte nutze <red>/sudo <Spieler> <Befehl/Nachricht><gray>!"
+    executed: "<gray>Der Spieler <white>%player% <gray>wurde gezwungen, folgenden Befehl auszuführen: <yellow>%command%"
+    messageSent: "<gray>Der Spieler <white>%player% <gray>wurde gezwungen, folgende Nachricht zu senden: <yellow>%message%"
+    bypass: "<gray>Du <red>kannst diesen Spieler nicht zwingen etwas zu tun<gray>! Er hat die Bypass-Berechtigung."
 
 # Chat filter messages
 chat:

@@ -109,14 +109,45 @@ commands:
     disabled-self: "<gray>Fly mode has been <red>disabled<gray>!"
     enabled-other: "<gray>Fly mode for <white>%player% <gray>has been <green>enabled<gray>!"
     disabled-other: "<gray>Fly mode for <white>%player% <gray>has been <red>disabled<gray>!"
+    toggled-all: "<gray>Fly mode has been <green>toggled<gray> for all players!"
   heal:
     usage: "<gray>Please use <red>/heal <?player><gray>!"
     healed-self: "<gray>You have been <green>healed<gray>!"
     healed-other: "<gray>The player <white>%player% <gray>has been <green>healed<gray>!"
+    healed-all: "<gray>All players have been <green>healed<gray>!"
   feed:
     usage: "<gray>Please use <red>/feed <?player><gray>!"
     feed-self: "<gray>You have been <green>fed<gray>!"
     feed-other: "<gray>The player <white>%player% <gray>has been <green>fed<gray>!"
+    feed-all: "<gray>All players have been <green>fed<gray>!"
+  hat:
+    usage: "<gray>Please use <red>/hat<gray>!"
+    equipped: "<gray>You have equipped the item in your hand as a hat!"
+    noItem: "<gray>You <red>must hold an item in your hand<gray> to use this command!"
+    alreadyWearing: "<gray>You <red>already have a helmet equipped<gray>! Please remove it first."
+  suicide:
+    usage: "<gray>Please use <red>/suicide<gray>!"
+    killed: "<gray>You have been <red>killed<gray>!"
+  trash:
+    usage: "<gray>Please use <red>/trash<gray>!"
+    deleted: "<gray>You trashcan has been emptied!"
+    guiRows: 2
+    guiTitle: "<gray>Trashcan"
+  top:
+    usage: "<gray>Please use <red>/top<gray>!"
+    teleported: "<green>Teleported <gray>to the highest block!"
+  god:
+    usage: "<gray>Please use <red>/god <?player><gray>!"
+    enabled-self: "<gray>You are now in <green>god mode<gray>!"
+    disabled-self: "<gray>You are no longer in <red>god mode<gray>!"
+    enabled-other: "<gray>The player <white>%player% <gray>is now in <green>god mode<gray>!"
+    disabled-other: "<gray>The player <white>%player% <gray>is no longer in <red>god mode<gray>!"
+    toggled-all: "<gray>God mode has been <green>toggled<gray> for all players!"
+  sudo:
+    usage: "<gray>Please use <red>/sudo <player> <command/message><gray>!"
+    executed: "<gray>The player <white>%player% <gray>has been forced to execute the command: <yellow>%command%"
+    messageSent: "<gray>The player <white>%player% <gray>has been forced to send the message: <yellow>%message%"
+    bypass: "<gray>You <red>cannot force this player to something<gray>! They have the bypass permission."
 
 # Chat filter messages
 chat:

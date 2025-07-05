@@ -48,18 +48,27 @@ class FeedCommand : CommandExecutor, TabCompleter {
                     return false
                 }
 
-                val targetPlayer = main.server.getPlayer(args[0])
+                if (args[0] == "*") {
+                    Bukkit.getOnlinePlayers().forEach { player ->
+                        player.foodLevel = 20
+                        player.saturation = 20f
+                        player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-self")))
+                    }
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-all")))
+                } else {
+                    val targetPlayer = main.server.getPlayer(args[0])
 
-                if (targetPlayer == null) {
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.playerNotFound")))
-                    return false
+                    if (targetPlayer == null) {
+                        sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("general.playerNotFound")))
+                        return false
+                    }
+
+                    targetPlayer.foodLevel = 20
+                    targetPlayer.saturation = 20f
+                    targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-self")))
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-other")
+                                .replace("%player%", targetPlayer.name)))
                 }
-
-                targetPlayer.foodLevel = 20
-                targetPlayer.saturation = 20f
-                targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-self")))
-                sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-other")
-                    .replace("%player%", targetPlayer.name)))
             }
 
             else -> {
@@ -77,8 +86,9 @@ class FeedCommand : CommandExecutor, TabCompleter {
 
         if (args.isEmpty()) {
             completions.addAll(Bukkit.getOnlinePlayers().map { it.name })
+            completions.add("*")
         } else if (args.size == 1) {
-            completions.addAll(Bukkit.getOnlinePlayers().map { it.name }
+            completions.addAll(listOf("*") + Bukkit.getOnlinePlayers().map { it.name }
                 .filter { it.startsWith(args[0], ignoreCase = true) })
         }
 

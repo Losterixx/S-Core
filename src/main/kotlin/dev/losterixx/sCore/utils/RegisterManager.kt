@@ -53,6 +53,12 @@ object RegisterManager {
         if (getModules().getBoolean("util-commands")) registerCommand("fly", FlyCommand(), FlyCommand())
         if (getModules().getBoolean("util-commands")) registerCommand("heal", HealCommand(), HealCommand())
         if (getModules().getBoolean("util-commands")) registerCommand("feed", FeedCommand(), FeedCommand(), "eat")
+        if (getModules().getBoolean("util-commands")) registerCommand("hat", HatCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("suicide", SuicideCommand(), null, "killme", "die")
+        if (getModules().getBoolean("util-commands")) registerCommand("trash", TrashCommand(), null, "trashcan", "bin")
+        if (getModules().getBoolean("util-commands")) registerCommand("top", TopCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("god", GodCommand(), GodCommand(), "godmode")
+        if (getModules().getBoolean("util-commands")) registerCommand("sudo", SudoCommand(), SudoCommand())
 
         main.logger.info("Registered $commands commands!")
     }
@@ -71,6 +77,7 @@ object RegisterManager {
         if (getModules().getBoolean("chat")) registerListener(ChatLockCommand())
         if (getModules().getBoolean("chat")) registerListener(ChatFilterListener())
         if (getModules().getBoolean("chat")) registerListener(ChatFeatureListener())
+        if (getModules().getBoolean("util-commands")) registerListener(TrashCommand())
 
         main.logger.info("Registered $listeners listeners!")
     }
