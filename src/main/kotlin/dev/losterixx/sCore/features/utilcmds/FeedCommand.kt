@@ -52,9 +52,9 @@ class FeedCommand : CommandExecutor, TabCompleter {
                     Bukkit.getOnlinePlayers().forEach { player ->
                         player.foodLevel = 20
                         player.saturation = 20f
-                        player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-self")))
+                        player.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.feed.feed-self")))
                     }
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-all")))
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.feed.feed-all")))
                 } else {
                     val targetPlayer = main.server.getPlayer(args[0])
 
@@ -65,8 +65,8 @@ class FeedCommand : CommandExecutor, TabCompleter {
 
                     targetPlayer.foodLevel = 20
                     targetPlayer.saturation = 20f
-                    targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-self")))
-                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.heal.feed-other")
+                    targetPlayer.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.feed.feed-self")))
+                    sender.sendMessage(mm.deserialize(getPrefix() + getMessages().getString("commands.feed.feed-other")
                                 .replace("%player%", targetPlayer.name)))
                 }
             }

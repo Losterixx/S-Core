@@ -61,7 +61,7 @@ object NametagManager {
     }
 
     private fun papiText(player: Player, text: String): String {
-        return PlaceholderAPI.setPlaceholders(player, text)
+        return PlaceholderAPI.setPlaceholders(player, PlaceholderAPI.setPlaceholders(player, text))
     }
 
     private fun getGroupValue(player: Player): Int {

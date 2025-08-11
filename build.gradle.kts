@@ -39,7 +39,7 @@ dependencies {
 
 tasks {
     runServer {
-        minecraftVersion("1.21.5")
+        minecraftVersion("1.21.7")
     }
 }
 
@@ -60,6 +60,9 @@ tasks {
         }
 
         relocate("dev.dejvokep.boostedyaml", "dev.losterixx.sCore.libs")
+
+        relocate("kotlin", "dev.losterixx.libs.kotlin")
+        relocate("kotlinx", "dev.losterixx.libs.kotlinx")
     }
     processResources {
         val props = mapOf("version" to version)

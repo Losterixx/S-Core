@@ -44,7 +44,7 @@ object TablistManager {
         val format = getConfig().getString("tablist.playerListNames.format") ?: "%player_name%"
         val replaced = PlaceholderAPI.setPlaceholders(player, format)
 
-        val visibleName = mm.deserialize(replaced)
+        val visibleName = mm.deserialize(PlaceholderAPI.setPlaceholders(player, replaced))
 
         player.playerListName(visibleName)
     }

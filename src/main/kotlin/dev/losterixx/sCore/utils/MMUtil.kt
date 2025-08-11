@@ -1,9 +1,13 @@
 package dev.losterixx.sCore.utils
 
+import com.nexomc.nexo.utils.serialize
+import dev.losterixx.sCore.Main
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 
 object MMUtil {
+
+    private val mm = Main.miniMessage
 
     fun translateLegacyCodes(message: String): String {
         return message
@@ -38,6 +42,10 @@ object MMUtil {
 
     fun getTextFromComponent(component: Component): String {
         return PlainTextComponentSerializer.plainText().serialize(component)
+    }
+
+    fun getColorfulTextFromComponent(component: Component): String {
+        return mm.serialize(component)
     }
 
 }
