@@ -29,7 +29,7 @@ player:
       format: "#,###.##"
       # Here you can define the decimal separator
       # Samples:
-      # 'ENGLISH' -> '1,000.00'
-      # 'FRENCH' -> '1 000,00'
-      # 'GERMAN' -> '1.000,00'
-      locale: 'ENGLISH'
+      # 'EN' -> '1,000.00'
+      # 'FR' -> '1 000,00'
+      # 'DE' -> '1.000,00'
+      locale: 'EN'

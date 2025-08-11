@@ -23,9 +23,8 @@ class ChatFormatListener : Listener {
         if (!getConfig().getBoolean("chat.format.enabled") || event.isCancelled) return
 
         var messageText = MMUtil.translateLegacyCodes(MMUtil.getColorfulTextFromComponent(event.message()))
-        main.logger.info("Player ${player.name} sent message: $messageText")
 
-        val rawFormat = getConfig().getString("chat.format.format") ?: return
+        val rawFormat = getConfig().getString("chat.format.format")?.replace("%message%", "<message>") ?: return
 
         val hasColor = player.hasPermission("sCore.chat.color")
         val hasFormat = player.hasPermission("sCore.chat.format")
