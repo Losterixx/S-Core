@@ -56,6 +56,7 @@ class ChatFormatListener : Listener {
 
         val parsedFormat = PlaceholderAPI.setPlaceholders(player, rawFormat)
 
+        messageText = ChatUtils.replaceEmojis(messageText)
         val messageComponent: Component = mm.deserialize(messageText)
 
         event.isCancelled = true

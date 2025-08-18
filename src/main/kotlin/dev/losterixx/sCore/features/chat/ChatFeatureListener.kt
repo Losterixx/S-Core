@@ -1,5 +1,6 @@
 package dev.losterixx.sCore.features.chat
 
+import com.destroystokyo.paper.event.server.AsyncTabCompleteEvent
 import dev.losterixx.sCore.Main
 import dev.losterixx.sCore.utils.ConfigManager
 import dev.losterixx.sCore.utils.MMUtil
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerChatTabCompleteEvent
 
 class ChatFeatureListener : Listener {
 
@@ -18,7 +20,7 @@ class ChatFeatureListener : Listener {
     private val main = Main.instance
     private fun getConfig() = ConfigManager.getConfig("config")
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    /*@EventHandler(priority = EventPriority.LOWEST)
     fun onChat(event: AsyncChatEvent) {
         val player = event.player
         val messageText = MMUtil.translateLegacyCodes(MMUtil.getTextFromComponent(event.message()))
@@ -39,5 +41,6 @@ class ChatFeatureListener : Listener {
         }
 
         event.message(mm.deserialize(newMsg))
-    }
+    }*/
+
 }

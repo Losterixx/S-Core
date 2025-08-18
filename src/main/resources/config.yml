@@ -257,6 +257,8 @@ chat:
     emojis:
       # Enable or disable the emoji replacement
       enabled: true
+      # Shall the emoji key be shown when hovering over the emoji?
+      enableHoverKey: true
       # The list of text-emojis to replace
       # You can add as many emojis as you want
       emojiMap:
