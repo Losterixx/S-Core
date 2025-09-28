@@ -61,7 +61,9 @@ class AutoSpawnTpListener : Listener {
     fun onMove(event: PlayerMoveEvent) {
         val player = event.player
 
-        if (getConfig().getBoolean("autoSpawnTeleport.onMove", false)) {
+        if (player.location.y > getConfig().getDouble("autoSpawnTeleport.onHeight.height", 0.0)) return
+
+        if (getConfig().getBoolean("autoSpawnTeleport.onHeight.enabled", false)) {
             teleportToSpawn(player)
         }
     }

@@ -59,6 +59,13 @@ object RegisterManager {
         if (getModules().getBoolean("util-commands")) registerCommand("top", TopCommand(), null)
         if (getModules().getBoolean("util-commands")) registerCommand("god", GodCommand(), GodCommand(), "godmode")
         if (getModules().getBoolean("util-commands")) registerCommand("sudo", SudoCommand(), SudoCommand())
+        if (getModules().getBoolean("util-commands")) registerCommand("workbench", WorkbenchCommand(), null, "wb", "craft")
+        if (getModules().getBoolean("util-commands")) registerCommand("day", DayCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("night", NightCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("sun", SunCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("rain", RainCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("thunder", ThunderCommand(), null)
+        if (getModules().getBoolean("util-commands")) registerCommand("ping", PingCommand(), PingCommand())
 
         main.logger.info("Registered $commands commands!")
     }

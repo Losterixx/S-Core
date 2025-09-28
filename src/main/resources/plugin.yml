@@ -110,9 +110,6 @@ permissions:
   "sCore.command.hat":
     description: Permission to use the hat command
     default: op
-  "sCore.command.suicide":
-    description: Permission to use the suicide command
-    default: op
   "sCore.command.trash":
     description: Permission to use the trash command
     default: op
@@ -130,4 +127,25 @@ permissions:
     default: op
   "sCore.bypass.sudo":
     description: Permission to block being forced to execute commands or send messages
+    default: op
+  "sCore.command.day":
+    description: Permission to set the time to day
+    default: op
+  "sCore.command.night":
+    description: Permission to set the time to night
+    default: op
+  "sCore.command.sunny":
+    description: Permission to set the weather to sunny
+    default: op
+  "sCore.command.rain":
+    description: Permission to set the weather to rain
+    default: op
+  "sCore.command.thunder":
+    description: Permission to set the weather to thunder
+    default: op
+  "sCore.command.ping.self":
+    description: Permission to check your own ping
+    default: op
+  "sCore.command.ping.other":
+    description: Permission to check other players' ping
     default: op

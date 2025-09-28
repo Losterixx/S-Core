@@ -148,6 +148,27 @@ commands:
     executed: "<gray>The player <white>%player% <gray>has been forced to execute the command: <yellow>%command%"
     messageSent: "<gray>The player <white>%player% <gray>has been forced to send the message: <yellow>%message%"
     bypass: "<gray>You <red>cannot force this player to something<gray>! They have the bypass permission."
+  workbench:
+    usage: "<gray>Please use <red>/workbench<gray>!"
+  day:
+    usage: "<gray>Please use <red>/day<gray>!"
+    set: "<gray>The time has been set to <yellow>day<gray>!"
+  night:
+    usage: "<gray>Please use <red>/night<gray>!"
+    set: "<gray>The time has been set to <yellow>night<gray>!"
+  sun:
+    usage: "<gray>Please use <red>/sun<gray>!"
+    set: "<gray>The weather has been set to <yellow>sunny<gray>!"
+  rain:
+    usage: "<gray>Please use <red>/rain<gray>!"
+    set: "<gray>The weather has been set to <yellow>rain<gray>!"
+  thunder:
+    usage: "<gray>Please use <red>/thunder<gray>!"
+    set: "<gray>The weather has been set to <yellow>thunder<gray>"
+  ping:
+    usage: "<gray>Please use <red>/ping <?player><gray>!"
+    self: "<gray>Your ping is <yellow>%ping% ms<gray>!"
+    other: "<gray>The ping of <white>%player% <gray>is <yellow>%ping% ms<gray>!"
 
 # Chat filter messages
 chat:

@@ -148,6 +148,27 @@ commands:
     executed: "<gray>Der Spieler <white>%player% <gray>wurde gezwungen, folgenden Befehl auszuführen: <yellow>%command%"
     messageSent: "<gray>Der Spieler <white>%player% <gray>wurde gezwungen, folgende Nachricht zu senden: <yellow>%message%"
     bypass: "<gray>Du <red>kannst diesen Spieler nicht zwingen etwas zu tun<gray>! Er hat die Bypass-Berechtigung."
+  workbench:
+    usage: "<gray>Bitte nutze <red>/workbench<gray>!"
+  day:
+    usage: "<gray>Bitte nutze <red>/day<gray>!"
+    set: "<gray>Die Zeit wurde auf <yellow>Tag <gray>gesetzt!"
+  night:
+    usage: "<gray>Bitte nutze <red>/night<gray>!"
+    set: "<gray>Die Zeit wurde auf <yellow>Nacht <gray>gesetzt!"
+  sun:
+    usage: "<gray>Bitte nutze <red>/sun<gray>!"
+    set: "<gray>Das Wetter wurde auf <yellow>Sonnig <gray>gesetzt!"
+  rain:
+    usage: "<gray>Bitte nutze <red>/rain<gray>!"
+    set: "<gray>Das Wetter wurde auf <yellow>Regen <gray>gesetzt!"
+  thunder:
+    usage: "<gray>Bitte nutze <red>/thunder<gray>!"
+    set: "<gray>Das Wetter wurde auf <yellow>Gewitter <gray>gesetzt!"
+  ping:
+    usage: "<gray>Bitte nutze <red>/ping <?Spieler><gray>!"
+    self: "<gray>Dein Ping beträgt <yellow>%ping%ms<gray>!"
+    other: "<gray>Der Ping von <white>%player% <gray>beträgt <yellow>%ping%ms<gray>!"
 
 # Chat filter messages
 chat:
